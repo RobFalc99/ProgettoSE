@@ -41,11 +41,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ListView<?> stackOperand;
 
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="573.0" prefWidth="661.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="573.0" prefWidth="661.0" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Button fx:id="btnCommitOperation" layoutX="296.0" layoutY="287.0" mnemonicParsing="false" onAction="#commitOperation" text="&gt;" />
