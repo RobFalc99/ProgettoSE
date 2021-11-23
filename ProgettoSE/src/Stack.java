@@ -39,5 +39,10 @@ public class Stack{
         return list;
     }
 
+    @Override
+    public String toString() {
+        return "Stack{" + "list=" + list + '}';
+    }
+
     
 }
