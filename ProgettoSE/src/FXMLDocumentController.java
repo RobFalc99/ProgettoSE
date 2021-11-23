@@ -40,6 +40,8 @@ public class FXMLDocumentController implements Initializable {
     private ChoiceBox<?> choiceBoxOperation;
     @FXML
     private ListView<?> stackOperand;
+    @FXML
+    private Button btnSwap;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,6 +66,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void dropAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void swapAction(ActionEvent event) {
     }
 
 }
