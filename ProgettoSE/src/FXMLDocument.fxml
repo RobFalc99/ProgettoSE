@@ -7,18 +7,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="573.0" prefWidth="661.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="573.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Button fx:id="btnCommitOperation" layoutX="296.0" layoutY="290.0" mnemonicParsing="false" onAction="#commitOperation" text="&gt;" />
       <Button fx:id="btnCommitOperand" layoutX="296.0" layoutY="174.0" mnemonicParsing="false" onAction="#commitOperand" text="&gt;" />
-      <TextField fx:id="txtFieldOperand" layoutX="181.0" layoutY="171.0" prefHeight="31.0" prefWidth="91.0" />
+      <TextField fx:id="txtFieldOperand" layoutX="152.0" layoutY="171.0" prefHeight="31.0" prefWidth="127.0" promptText="Es. 5,3+2,6i  or  0+4i" />
       <Button fx:id="btnClear" layoutX="46.0" layoutY="64.0" mnemonicParsing="false" onAction="#clearAction" text="Clear" />
       <Button fx:id="btnDup" layoutX="233.0" layoutY="64.0" mnemonicParsing="false" onAction="#dupAction" text="Dup" />
       <Button fx:id="btnDrop" layoutX="140.0" layoutY="64.0" mnemonicParsing="false" onAction="#dropAction" text="Drop" />
       <ChoiceBox fx:id="choiceBoxOperation" layoutX="181.0" layoutY="287.0" prefHeight="31.0" prefWidth="91.0" />
       <Label layoutX="25.0" layoutY="176.0" text="Scegliere un operando" />
-      <Label layoutX="14.0" layoutY="292.0" text="Scegliere un' operazione" />
+      <Label layoutX="26.0" layoutY="294.0" text="Scegliere un'operazione" />
       <ListView fx:id="stackOperand" layoutX="421.0" layoutY="49.0" prefHeight="291.0" prefWidth="200.0" />
       <Button fx:id="btnSwap" layoutX="305.0" layoutY="64.0" mnemonicParsing="false" onAction="#swapAction" text="Swap" />
     </children>
