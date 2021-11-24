@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-import com.vm.jcomplex.Complex;
+
+import org.apache.commons.math3.complex.Complex;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,7 +45,7 @@ public class StackTest {
     public void testPush() {
         System.out.println("push");
         Complex c = new Complex(2.1, 4.3);
-        Stack instance = new Stack();
+        Stack<Complex> instance = new Stack<>();
         instance.push(c);
         assertFalse(instance.isEmpty());
     }
@@ -55,7 +56,7 @@ public class StackTest {
     @Test
     public void testPop() {
         System.out.println("pop");
-        Stack instance = new Stack();
+        Stack<Complex> instance = new Stack<>();
         Complex expResult = new Complex(2.1, 4.3);
         instance.push(expResult);
         Complex result = instance.pop();
@@ -68,7 +69,7 @@ public class StackTest {
     @Test
     public void testTop() {
         System.out.println("top");
-        Stack instance = new Stack();
+        Stack<Complex> instance = new Stack<>();
         Complex expResult = new Complex(2.1, 4.3);
         instance.push(expResult);
         Complex result = instance.top();
@@ -81,7 +82,7 @@ public class StackTest {
     @Test
     public void testIsEmpty() {
         System.out.println("isEmpty");
-        Stack instance = new Stack();
+        Stack<Complex> instance = new Stack<>();
         Boolean expResult = true;
         Boolean result = instance.isEmpty();
         assertEquals(expResult, result);
@@ -93,7 +94,7 @@ public class StackTest {
     @Test
     public void testClear() {
         System.out.println("clear");
-        Stack instance = new Stack();
+        Stack<Complex> instance = new Stack<>();
         Complex expResult = new Complex(2.1, 4.3);
         instance.push(expResult);
         instance.clear();

@@ -1,5 +1,4 @@
 
-import com.vm.jcomplex.Complex;
 import java.util.LinkedList;
 
 /*  Stack.java
@@ -7,23 +6,23 @@ import java.util.LinkedList;
     12.43.25
     FALCONE     */
 
-public class Stack{
+public class Stack<E>{
     
-    private LinkedList<Complex> list;
+    private LinkedList<E> list;
 
     public Stack() {
         list = new LinkedList<>();
     }
     
-    public void push(Complex c){
+    public void push(E c){
         list.push(c);
     }
     
-    public Complex pop(){
+    public E pop(){
         return list.pop();
     }
     
-    public Complex top(){
+    public E top(){
         return list.getLast();
     }
     
@@ -35,7 +34,7 @@ public class Stack{
         list.clear();
     }
 
-    public LinkedList<Complex> getList() {
+    public LinkedList<E> getList() {
         return list;
     }
 
