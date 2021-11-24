@@ -9,12 +9,16 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import com.vm.jcomplex.Complex;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  *
@@ -22,8 +26,6 @@ import javafx.scene.control.TextField;
  */
 public class FXMLDocumentController implements Initializable {
 
-    @FXML
-    private Label label;
     @FXML
     private Button btnCommitOperation;
     @FXML
@@ -42,10 +44,18 @@ public class FXMLDocumentController implements Initializable {
     private ListView<?> stackOperand;
     @FXML
     private Button btnSwap;
+    @FXML
+    private AnchorPane anchorPane;
+
+    private Scene scene;
+
+    private Window window;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+//        scene = anchorPane.getScene();
+//        window = scene.getWindow();
     }
 
     @FXML
@@ -70,6 +80,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void swapAction(ActionEvent event) {
+    }
+
+    private void popUp(AlertType type, String title, String header, String message) {
+        Alert a = new Alert(type);
+        a.setTitle(title);
+        a.setHeaderText(header);
+        a.setContentText(message);
+        a.showAndWait();
     }
 
 }

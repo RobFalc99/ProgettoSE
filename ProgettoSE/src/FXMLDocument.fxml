@@ -7,9 +7,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="573.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="573.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
     <children>
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Button fx:id="btnCommitOperation" layoutX="296.0" layoutY="290.0" mnemonicParsing="false" onAction="#commitOperation" text="&gt;" />
       <Button fx:id="btnCommitOperand" layoutX="296.0" layoutY="174.0" mnemonicParsing="false" onAction="#commitOperand" text="&gt;" />
       <TextField fx:id="txtFieldOperand" layoutX="152.0" layoutY="171.0" prefHeight="31.0" prefWidth="127.0" promptText="Es. 5,3+2,6i  or  0+4i" />
