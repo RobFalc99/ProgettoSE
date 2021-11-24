@@ -4,21 +4,61 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="573.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
     <children>
-      <Button fx:id="btnCommitOperation" layoutX="296.0" layoutY="290.0" mnemonicParsing="false" onAction="#commitOperation" text="&gt;" />
-      <Button fx:id="btnCommitOperand" layoutX="296.0" layoutY="174.0" mnemonicParsing="false" onAction="#commitOperand" text="&gt;" />
-      <TextField fx:id="txtFieldOperand" layoutX="152.0" layoutY="171.0" prefHeight="31.0" prefWidth="127.0" promptText="Es. 5,3+2,6i  or  0+4i" />
-      <Button fx:id="btnClear" layoutX="46.0" layoutY="64.0" mnemonicParsing="false" onAction="#clearAction" text="Clear" />
-      <Button fx:id="btnDup" layoutX="233.0" layoutY="64.0" mnemonicParsing="false" onAction="#dupAction" text="Dup" />
-      <Button fx:id="btnDrop" layoutX="140.0" layoutY="64.0" mnemonicParsing="false" onAction="#dropAction" text="Drop" />
-      <ChoiceBox fx:id="choiceBoxOperation" layoutX="181.0" layoutY="287.0" prefHeight="31.0" prefWidth="91.0" />
-      <Label layoutX="25.0" layoutY="176.0" text="Scegliere un operando" />
-      <Label layoutX="26.0" layoutY="294.0" text="Scegliere un'operazione" />
-      <ListView fx:id="stackOperand" layoutX="421.0" layoutY="49.0" prefHeight="291.0" prefWidth="200.0" />
-      <Button fx:id="btnSwap" layoutX="305.0" layoutY="64.0" mnemonicParsing="false" onAction="#swapAction" text="Swap" />
+      <SplitPane dividerPositions="0.7425569176882661" layoutX="248.0" layoutY="174.0" orientation="VERTICAL" prefHeight="573.0" prefWidth="661.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.5859969558599696" prefHeight="438.0" prefWidth="659.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <VBox layoutX="289.0" layoutY="85.0" prefHeight="436.0" prefWidth="382.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="122.0" prefWidth="382.0" spacing="35.0">
+                                       <children>
+                                          <Button fx:id="btnClear" mnemonicParsing="false" onAction="#clearAction" text="Clear" />
+                                          <Button fx:id="btnDup" mnemonicParsing="false" onAction="#dupAction" text="Dup" />
+                                          <Button fx:id="btnDrop" mnemonicParsing="false" onAction="#dropAction" text="Drop" />
+                                          <Button fx:id="btnSwap" mnemonicParsing="false" onAction="#swapAction" text="Swap" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="156.0" prefWidth="382.0" spacing="20.0">
+                                       <children>
+                                          <Label text="Scegliere un operando" />
+                                          <TextField fx:id="txtFieldOperand" prefHeight="31.0" prefWidth="127.0" promptText="Es. 5,3+2,6i  or  0+4i" />
+                                          <Button fx:id="btnCommitOperand" mnemonicParsing="false" onAction="#commitOperand" text="&gt;" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="145.0" prefWidth="382.0" spacing="35.0">
+                                       <children>
+                                          <Label text="Scegliere un'operazione" />
+                                          <ChoiceBox fx:id="choiceBoxOperation" prefHeight="31.0" prefWidth="91.0" />
+                                          <Button fx:id="btnCommitOperation" mnemonicParsing="false" onAction="#commitOperation" text="&gt;" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <ListView fx:id="stackOperand" prefHeight="436.0" prefWidth="269.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="132.0" prefWidth="659.0" />
+        </items>
+      </SplitPane>
     </children>
 </AnchorPane>
