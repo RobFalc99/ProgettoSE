@@ -33,4 +33,12 @@ public class Calculator {
         Complex secondOperand = stack.top();
         stack.push(firstOperand.subtract(secondOperand));
     }
+    
+    public Complex mulComplex(){
+        Complex firstOperand = stack.secondLast();
+        Complex secondOperand = stack.top();
+        Complex res = firstOperand.multiply(secondOperand);
+        stack.push(res);
+        return res;
+    }
 }
