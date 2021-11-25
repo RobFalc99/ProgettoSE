@@ -23,7 +23,7 @@ public class Stack<E>{
     }
     
     public E top(){
-        return list.getLast();
+        return list.get(0);
     }
     
     public E secondLast(){
