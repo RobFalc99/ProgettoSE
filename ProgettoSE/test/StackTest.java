@@ -5,6 +5,7 @@
  */
 
 
+import java.util.LinkedList;
 import org.apache.commons.math3.complex.Complex;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -57,6 +58,7 @@ public class StackTest {
     public void testPop() {
         System.out.println("pop");
         Stack<Complex> instance = new Stack<>();
+        instance.push(new Complex(1,2));
         Complex expResult = new Complex(2.1, 4.3);
         instance.push(expResult);
         Complex result = instance.pop();
@@ -101,4 +103,19 @@ public class StackTest {
         assertTrue(instance.isEmpty());
     }
 
+    @Test
+    public void testSecondLast() {
+        System.out.println("secondLast");
+        Stack<Complex> instance = new Stack<>();
+        instance.push(new Complex(5,6));
+        instance.push(new Complex(5,6));
+        Complex expResult = new Complex(2.1,4.3);
+        instance.push(expResult);
+        instance.push(new Complex(3.2,5.1));
+        Complex result = instance.secondLast();
+        assertEquals(expResult, result);
+        
+    }
+
 }
+
