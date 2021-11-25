@@ -33,6 +33,15 @@ public class Calculator {
         Complex secondOperand = stack.top();
         stack.push(firstOperand.subtract(secondOperand));
     }
+    public Complex mulComplex(){
+        Complex firstOperand = stack.secondLast();
+        Complex secondOperand = stack.top();
+        Complex res = firstOperand.multiply(secondOperand);
+        stack.push(res);
+        return res;
+    }
+    
+    
     //==============================EUG
     public Complex addComplex(){
         Complex c1=stack.top();
@@ -45,4 +54,5 @@ public class Calculator {
     
     //=================================ADO
     
+
 }

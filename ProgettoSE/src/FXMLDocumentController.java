@@ -52,17 +52,27 @@ public class FXMLDocumentController implements Initializable {
 
     private Window window;
     
+    private Calculator calculator;
+    
     ArrayList<String> operazioni = new ArrayList<String>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         operazioni.add("+");
         operazioni.add("-");
+        operazioni.add("*");
         choiceBoxOperation.getItems().addAll(operazioni);
     }
 
     @FXML
     private void commitOperation(ActionEvent event) {
+        if ("+".equals(choiceBoxOperation.getValue())){
+            
+        }else if("-".equals(choiceBoxOperation.getValue())){
+            calculator.subComplex();
+        }else if("*".equals(choiceBoxOperation.getValue())){
+            calculator.mulComplex();
+        }
     }
 
     @FXML
