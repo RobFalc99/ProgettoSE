@@ -5,6 +5,7 @@
  */
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,9 +51,13 @@ public class FXMLDocumentController implements Initializable {
     private Scene scene;
 
     private Window window;
+    
+    ArrayList<String> operazioni = new ArrayList<String>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        operazioni.add("+");
+        choiceBoxOperation.getItems().addAll(operazioni);
     }
 
     @FXML
