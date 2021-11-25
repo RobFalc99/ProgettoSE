@@ -49,7 +49,9 @@ public class CalculatorTest {
         Complex result = instance.parse(s);
         assertEquals(expResult, result);
     }
-    
+    /**
+     * Test of pushComplex method, of class Calculator.
+     */
     @Test
     public void testPushComplex (){
         System.out.println("pushComplex");
@@ -61,4 +63,23 @@ public class CalculatorTest {
         assertEquals(expResult, result);
     }
     
+    
+    /**
+     * Test of addComplex method, of class Calculator.
+     */
+    @Test
+    public void testAddComplex() {
+        System.out.println("addComplex");
+        Calculator instance = new Calculator();
+        String s = "3+4i";
+        String s1= "5,3+2i";
+        String s2= "4,2+1,5i";
+        instance.pushComplex(s);
+        instance.pushComplex(s1);
+        instance.pushComplex(s2);
+        Complex expResult = new Complex(9.5, 3.5);
+        Complex result = instance.addComplex();
+        assertEquals(expResult, result);
+        
+    }
 }

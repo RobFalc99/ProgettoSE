@@ -22,15 +22,27 @@ public class Calculator {
         ComplexFormat cf = new ComplexFormat();
         return cf.parse(s);
     }
-
+    //==============================LUIGI
     public void pushComplex(String s) {
         Complex c = parse(s);
         stack.push(c);
     }
-
+    //=============================ROB
     public void subComplex() {
         Complex firstOperand = stack.secondLast();
         Complex secondOperand = stack.top();
         stack.push(firstOperand.subtract(secondOperand));
     }
+    //==============================EUG
+    public Complex addComplex(){
+        Complex c1=stack.top();
+        Complex c2=stack.secondLast();
+        Complex sum = c1.add(c2);
+        stack.push(sum);
+        return sum;
+    }
+    
+    
+    //=================================ADO
+    
 }
