@@ -26,6 +26,10 @@ public class Stack<E>{
         return list.getLast();
     }
     
+    public E secondLast(){
+        return list.get(1);
+    }
+    
     public Boolean isEmpty(){
         return list.isEmpty();
     }
