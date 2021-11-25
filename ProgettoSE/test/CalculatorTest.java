@@ -50,4 +50,15 @@ public class CalculatorTest {
         assertEquals(expResult, result);
     }
     
+    @Test
+    public void testPushComplex (){
+        System.out.println("pushComplex");
+        String s = "3+4i";
+        Calculator instance = new Calculator();
+        Complex expResult = new Complex(3,4);
+        instance.pushComplex(s);
+        Complex result = instance.stack.top();
+        assertEquals(expResult, result);
+    }
+    
 }
