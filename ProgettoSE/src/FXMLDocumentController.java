@@ -18,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
+import org.apache.commons.math3.complex.Complex;
 
 /**
  *
@@ -38,9 +39,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btnDrop;
     @FXML
-    private ChoiceBox<?> choiceBoxOperation;
+    private ChoiceBox<String> choiceBoxOperation;
     @FXML
-    private ListView<?> stackOperand;
+    private ListView<Complex> stackOperand;
     @FXML
     private Button btnSwap;
     @FXML
@@ -52,9 +53,6 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-//        scene = anchorPane.getScene();
-//        window = scene.getWindow();
     }
 
     @FXML
