@@ -6,7 +6,10 @@
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,7 +45,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBoxOperation;
     @FXML
-    private ListView<Complex> stackOperand;
+    private ListView<String> stackOperand;
     @FXML
     private Button btnSwap;
     @FXML
@@ -51,32 +54,44 @@ public class FXMLDocumentController implements Initializable {
     private Scene scene;
 
     private Window window;
-    
+
     private Calculator calculator;
-    
+
     ArrayList<String> operazioni = new ArrayList<String>();
+    private ObservableList<String> complexOperand;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        calculator = new Calculator();
+        complexOperand= FXCollections.observableArrayList();
         operazioni.add("+");
         operazioni.add("-");
         operazioni.add("*");
         choiceBoxOperation.getItems().addAll(operazioni);
+        stackOperand.setItems(complexOperand);
     }
 
     @FXML
     private void commitOperation(ActionEvent event) {
-        if ("+".equals(choiceBoxOperation.getValue())){
-            
-        }else if("-".equals(choiceBoxOperation.getValue())){
+        if ("+".equals(choiceBoxOperation.getValue())) {
+
+        } else if ("-".equals(choiceBoxOperation.getValue())) {
             calculator.subComplex();
-        }else if("*".equals(choiceBoxOperation.getValue())){
+        } else if ("*".equals(choiceBoxOperation.getValue())) {
             calculator.mulComplex();
         }
     }
 
     @FXML
     private void commitOperand(ActionEvent event) {
+        String operand = txtFieldOperand.getText();
+        if (operand.matches(".*i")) {
+            calculator.pushComplex(operand);
+            complexOperand.add(operand);
+            Collections.reverse(complexOperand);
+        } else {
+            popUp(AlertType.WARNING, "Warning", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5.3 + 2.6i or 0 + 4i");
+        }
     }
 
     @FXML
