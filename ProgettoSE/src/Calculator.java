@@ -10,7 +10,7 @@ import org.apache.commons.math3.complex.ComplexFormat;
 
 public class Calculator {
     
-    private Stack<Complex> stack;
+    Stack<Complex> stack;
 
     public Calculator() {
         this.stack = new Stack<>();
