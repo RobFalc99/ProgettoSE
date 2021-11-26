@@ -124,4 +124,19 @@ public class CalculatorTest {
         Complex result = instance.stack.pop();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of clearStack method, of class Calculator.
+     */
+    @Test
+    public void testClearStack() {
+        System.out.println("clearStack");
+        Calculator instance = new Calculator();
+        String s = "3+4i";
+        String s1= "5,3+2i";
+        instance.pushComplex(s1);
+        instance.pushComplex(s);
+        instance.clearStack();
+        assertTrue(instance.stack.isEmpty());
+    }
 }

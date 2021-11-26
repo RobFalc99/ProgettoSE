@@ -79,6 +79,9 @@ public class Calculator {
         stack.push(div);
         return div;
     }
+    public void clearStack(){
+        stack.clear();
+    }
     
     
     //=================================ADO

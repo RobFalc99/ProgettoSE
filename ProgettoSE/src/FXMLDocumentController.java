@@ -127,6 +127,13 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void clearAction(ActionEvent event) {
+        if (complexOperand.size()>=1){
+            complexOperand.clear();
+            calculator.clearStack();
+        }
+        else{
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There is less than 1 operand entered");
+        }
     }
 
     @FXML
