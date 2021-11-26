@@ -106,6 +106,12 @@ public class FXMLDocumentController implements Initializable {
             else{
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
+        }else if("sqrt".equals(choiceBoxOperation.getValue())){
+            if(complexOperand.size()==1){
+                calculator.sqrtComplex();
+            }else {
+                popUp(AlertType.ERROR,"Error", "Not enough operands", "There are less or more  than 1 operands entered");
+            }
         }
         txtFieldOperand.clear();
         complexOperand.clear();

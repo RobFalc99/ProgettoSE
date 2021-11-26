@@ -124,4 +124,18 @@ public class CalculatorTest {
         Complex result = instance.stack.pop();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of sqrtComplex method, of class Calculator.
+     */
+    @Test
+    public void testSqrtComplex() {
+        System.out.println("sqrtComplex");
+        Calculator instance = new Calculator();
+        instance.pushComplex("4+8i");
+        Complex expResult = new Complex(2.544039299028138,1.5723027555148466);
+        Complex result = instance.sqrtComplex();
+        assertEquals(expResult, result);
+    }
+    
 }

@@ -82,6 +82,11 @@ public class Calculator {
     
     
     //=================================ADO
-    
+    public Complex sqrtComplex(){
+        Complex op1=stack.top();
+        Complex sqrtOp1=new Complex (op1.sqrt());
+        stack.push(sqrtOp1);
+        return sqrtOp1;
+    }
 
 }
