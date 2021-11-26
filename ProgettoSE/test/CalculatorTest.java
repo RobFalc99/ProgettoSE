@@ -139,4 +139,30 @@ public class CalculatorTest {
         instance.clearStack();
         assertTrue(instance.stack.isEmpty());
     }
+    /**
+     * Test of sqrtComplex method, of class Calculator.
+     */
+    @Test
+    public void testSqrtComplex() {
+        System.out.println("sqrtComplex");
+        Calculator instance = new Calculator();
+        instance.pushComplex("4+8i");
+        Complex expResult = new Complex(2.544039299028138,1.5723027555148466);
+        Complex result = instance.sqrtComplex();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of dupStackOperand method, of class Calculator.
+     */
+    @Test
+    public void testDupStackOperand() {
+        System.out.println("dupStackOperand");
+        Calculator instance = new Calculator();
+        instance.pushComplex("4+5i");
+        Complex expResult = new Complex(4,5);
+        Complex result = instance.dupStackOperand();
+        assertEquals(expResult, result);
+    }
+    
 }
