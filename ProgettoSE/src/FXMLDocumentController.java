@@ -68,6 +68,7 @@ public class FXMLDocumentController implements Initializable {
         operazioni.add("+");
         operazioni.add("-");
         operazioni.add("*");
+        operazioni.add("/");
         choiceBoxOperation.getItems().addAll(operazioni);
         stackOperand.setItems(complexOperand);
         
@@ -98,6 +99,13 @@ public class FXMLDocumentController implements Initializable {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
             
+        } else if ("/".equals(choiceBoxOperation.getValue())){
+            if(complexOperand.size()>=2){
+                //calculator
+            }
+            else{
+                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
+            }
         }
         complexOperand.clear();
         complexOperand.addAll(calculator.stack.getList());

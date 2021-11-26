@@ -70,6 +70,13 @@ public class Calculator {
         stack.push(sum);
         return sum;
     }
+    public Complex divComplex(){
+        Complex c1=stack.top();
+        Complex c2=stack.secondLast();
+        Complex div=new Complex(c2.divide(c1));
+        stack.push(div);
+        return div;
+    }
     
     
     //=================================ADO

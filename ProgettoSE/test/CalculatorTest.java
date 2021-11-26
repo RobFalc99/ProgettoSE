@@ -82,4 +82,23 @@ public class CalculatorTest {
         assertEquals(expResult, result);
         
     }
+
+    
+
+    /**
+     * Test of divComplex method, of class Calculator.
+     */
+    @Test
+    public void testDivComplex() {
+        System.out.println("divComplex");
+        Calculator instance = new Calculator();
+        String s = "3+4i";
+        String s1= "5,3+2i";
+        instance.pushComplex(s1);
+        instance.pushComplex(s);
+        Complex expResult = new Complex(0.956,-0.608);
+        Complex result = instance.divComplex();
+        assertEquals(expResult, result);
+        
+    }
 }
