@@ -47,6 +47,10 @@ public class Calculator {
         Complex c = parse(s);
         stack.push(c);
     }
+    
+    public void swapStackOperand (){
+        stack.swapOperand();
+    }
     //=============================ROB
     public Complex subComplex() {
         Complex firstOperand = stack.secondLast();

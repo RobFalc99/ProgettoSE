@@ -164,20 +164,32 @@ public class CalculatorTest {
         Complex result = instance.dupStackOperand();
         assertEquals(expResult, result);
     }
+    
+    /**
+     * Test of swapStackOperand method, of class Calculator.
+     */
+    @Test
+    public void testSwapStackOperand() {
+        System.out.println("swapStackOperand");
+        Calculator instance = new Calculator();
+        instance.pushComplex("3+4i");
+        instance.pushComplex("5,3+2i");
+        Complex expResult = new Complex(3,4);
+        instance.swapStackOperand();
+        Complex result = instance.stack.top();
+        assertEquals(expResult, result);    
+    }
 
     /**
      * Test of invSignComplex method, of class Calculator.
      */
     @Test
-      public void testInvSignComplex() {
+    public void testInvSignComplex() {
         System.out.println("invSignComplex");
         Calculator instance = new Calculator();
         instance.pushComplex("5+2i");
         Complex expResult = new Complex(-5,-2);
         Complex result = instance.invSignComplex();
         assertEquals(expResult, result);
-       
     }
-    
-    
 }

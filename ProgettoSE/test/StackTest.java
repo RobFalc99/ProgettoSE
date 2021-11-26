@@ -131,5 +131,19 @@ public class StackTest {
         assertEquals(expResult, result);
     }
     
-}
+    /**
+     * Test of swapOperand method, of class Stack.
+     */
+    @Test
+    public void testSwapOperand() {
+        System.out.println("swapOperand");
+        Stack <Complex> instance = new Stack<>();
+        instance.push(new Complex(2.1,4.3));
+        instance.push(new Complex(5,6));
+        Complex expResult = new Complex(2.1,4.3);
+        instance.swapOperand();
+        Complex result = instance.top();
+        assertEquals(expResult,result);
+    }
 
+}
