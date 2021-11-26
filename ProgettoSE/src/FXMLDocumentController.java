@@ -142,6 +142,9 @@ public class FXMLDocumentController implements Initializable {
             complexOperand.clear();
             complexOperand.addAll(calculator.stack.getList());
         }
+        else{
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There is less than 1 operand entered");
+        }
     }
 
     @FXML
