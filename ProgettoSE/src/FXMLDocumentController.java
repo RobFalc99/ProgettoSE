@@ -66,6 +66,8 @@ public class FXMLDocumentController implements Initializable {
         operazioni.add("-");
         operazioni.add("*");
         operazioni.add("/");
+        operazioni.add("sqrt");
+        operazioni.add("+-");
         choiceBoxOperation.getItems().addAll(operazioni);
         stackOperand.setItems(complexOperand);
 
@@ -104,6 +106,13 @@ public class FXMLDocumentController implements Initializable {
                 calculator.sqrtComplex();
             } else {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less or more  than 1 operands entered");
+            }
+        }else if("+-".equals(choiceBoxOperation.getValue())){
+            if(complexOperand.size()==1){
+                calculator.invSignComplex();
+            }
+            else{
+                popUp(AlertType.ERROR,"Error", "Not enough operands", "There are less or more  than 1 operands entered");
             }
         }
         txtFieldOperand.clear();

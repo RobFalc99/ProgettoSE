@@ -96,5 +96,11 @@ public class Calculator {
         stack.push(sqrtOp1);
         return sqrtOp1;
     }
+      public Complex invSignComplex(){
+        Complex op1=stack.top();
+        Complex invOp1=new Complex(op1.negate());
+        stack.push(invOp1);
+        return invOp1;
+    }
 
 }
