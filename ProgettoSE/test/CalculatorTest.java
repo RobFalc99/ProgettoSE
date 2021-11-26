@@ -99,6 +99,29 @@ public class CalculatorTest {
         Complex expResult = new Complex(0.956,-0.608);
         Complex result = instance.divComplex();
         assertEquals(expResult, result);
-        
+    }
+    
+    @Test
+    public void testSubComplex() {
+        System.out.println("subComplex");
+        Calculator instance = new Calculator();
+        instance.pushComplex("3+4i");
+        instance.pushComplex("2+3i");
+        instance.subComplex();
+        Complex expResult = new Complex(1,1);
+        Complex result = instance.stack.pop();
+        assertEquals(expResult, result);        
+    }
+
+    @Test
+    public void testMulComplex() {
+        System.out.println("mulComplex");
+        Calculator instance = new Calculator();
+        instance.pushComplex("3+4i");
+        instance.pushComplex("2+3i");
+        instance.mulComplex();
+        Complex expResult = new Complex(-6,17);
+        Complex result = instance.stack.pop();
+        assertEquals(expResult, result);
     }
 }

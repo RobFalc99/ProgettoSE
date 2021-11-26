@@ -48,10 +48,12 @@ public class Calculator {
         stack.push(c);
     }
     //=============================ROB
-    public void subComplex() {
+    public Complex subComplex() {
         Complex firstOperand = stack.secondLast();
         Complex secondOperand = stack.top();
-        stack.push(new Complex(firstOperand.subtract(secondOperand)));
+        Complex res = new Complex(firstOperand.subtract(secondOperand));
+        stack.push(res);
+        return res;
     }
     public Complex mulComplex(){
         Complex firstOperand = stack.secondLast();
