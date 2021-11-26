@@ -137,5 +137,18 @@ public class CalculatorTest {
         Complex result = instance.sqrtComplex();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of dupStackOperand method, of class Calculator.
+     */
+    @Test
+    public void testDupStackOperand() {
+        System.out.println("dupStackOperand");
+        Calculator instance = new Calculator();
+        instance.pushComplex("4+5i");
+        Complex expResult = new Complex(4,5);
+        Complex result = instance.dupStackOperand();
+        assertEquals(expResult, result);
+    }
     
 }

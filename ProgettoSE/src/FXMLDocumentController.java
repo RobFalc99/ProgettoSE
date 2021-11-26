@@ -6,8 +6,6 @@
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
-
 
 /**
  *
@@ -64,53 +61,49 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         calculator = new Calculator();
-        complexOperand= FXCollections.observableArrayList();
+        complexOperand = FXCollections.observableArrayList();
         operazioni.add("+");
         operazioni.add("-");
         operazioni.add("*");
         operazioni.add("/");
         choiceBoxOperation.getItems().addAll(operazioni);
         stackOperand.setItems(complexOperand);
-        
+
     }
 
     @FXML
     private void commitOperation(ActionEvent event) {
         if ("+".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size()>=2){
+            if (complexOperand.size() >= 2) {
                 calculator.addComplex();
-            }
-            else{
+            } else {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
-            
+
         } else if ("-".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size()>=2){
+            if (complexOperand.size() >= 2) {
                 calculator.subComplex();
-            }
-            else{
+            } else {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
         } else if ("*".equals(choiceBoxOperation.getValue())) {
-            if(complexOperand.size()>=2){
+            if (complexOperand.size() >= 2) {
                 calculator.mulComplex();
-            }
-            else{
+            } else {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
-            
-        } else if ("/".equals(choiceBoxOperation.getValue())){
-            if(complexOperand.size()>=2){
+
+        } else if ("/".equals(choiceBoxOperation.getValue())) {
+            if (complexOperand.size() >= 2) {
                 calculator.divComplex();
-            }
-            else{
+            } else {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
-        }else if("sqrt".equals(choiceBoxOperation.getValue())){
-            if(complexOperand.size()==1){
+        } else if ("sqrt".equals(choiceBoxOperation.getValue())) {
+            if (complexOperand.size() == 1) {
                 calculator.sqrtComplex();
-            }else {
-                popUp(AlertType.ERROR,"Error", "Not enough operands", "There are less or more  than 1 operands entered");
+            } else {
+                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less or more  than 1 operands entered");
             }
         }
         txtFieldOperand.clear();
@@ -121,7 +114,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void commitOperand(ActionEvent event) {
         String operand = txtFieldOperand.getText();
-        if (operand.matches("[" + "0123456789i.,+-"+ "]+")) {
+        if (operand.matches("[" + "0123456789i.,+-" + "]+")) {
             calculator.pushComplex(operand);
             txtFieldOperand.clear();
             complexOperand.clear();
@@ -137,6 +130,11 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void dupAction(ActionEvent event) {
+        if (complexOperand.size() >= 1) {
+            calculator.dupStackOperand();
+            complexOperand.clear();
+            complexOperand.addAll(calculator.stack.getList());
+        }
     }
 
     @FXML
