@@ -83,6 +83,24 @@ public class CalculatorTest {
         
     }
 
+    
+
+    /**
+     * Test of divComplex method, of class Calculator.
+     */
+    @Test
+    public void testDivComplex() {
+        System.out.println("divComplex");
+        Calculator instance = new Calculator();
+        String s = "3+4i";
+        String s1= "5,3+2i";
+        instance.pushComplex(s1);
+        instance.pushComplex(s);
+        Complex expResult = new Complex(0.956,-0.608);
+        Complex result = instance.divComplex();
+        assertEquals(expResult, result);
+    }
+    
     @Test
     public void testSubComplex() {
         System.out.println("subComplex");
@@ -106,4 +124,18 @@ public class CalculatorTest {
         Complex result = instance.stack.pop();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of sqrtComplex method, of class Calculator.
+     */
+    @Test
+    public void testSqrtComplex() {
+        System.out.println("sqrtComplex");
+        Calculator instance = new Calculator();
+        instance.pushComplex("4+8i");
+        Complex expResult = new Complex(2.544039299028138,1.5723027555148466);
+        Complex result = instance.sqrtComplex();
+        assertEquals(expResult, result);
+    }
+    
 }

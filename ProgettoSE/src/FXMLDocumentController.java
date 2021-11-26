@@ -68,6 +68,7 @@ public class FXMLDocumentController implements Initializable {
         operazioni.add("+");
         operazioni.add("-");
         operazioni.add("*");
+        operazioni.add("/");
         choiceBoxOperation.getItems().addAll(operazioni);
         stackOperand.setItems(complexOperand);
         
@@ -98,7 +99,21 @@ public class FXMLDocumentController implements Initializable {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
             
+        } else if ("/".equals(choiceBoxOperation.getValue())){
+            if(complexOperand.size()>=2){
+                calculator.divComplex();
+            }
+            else{
+                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
+            }
+        }else if("sqrt".equals(choiceBoxOperation.getValue())){
+            if(complexOperand.size()==1){
+                calculator.sqrtComplex();
+            }else {
+                popUp(AlertType.ERROR,"Error", "Not enough operands", "There are less or more  than 1 operands entered");
+            }
         }
+        txtFieldOperand.clear();
         complexOperand.clear();
         complexOperand.addAll(calculator.stack.getList());
     }
@@ -108,6 +123,7 @@ public class FXMLDocumentController implements Initializable {
         String operand = txtFieldOperand.getText();
         if (operand.matches("[" + "0123456789i.,+-"+ "]+")) {
             calculator.pushComplex(operand);
+            txtFieldOperand.clear();
             complexOperand.clear();
             complexOperand.addAll(calculator.stack.getList());
         } else {
