@@ -158,6 +158,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void dropAction(ActionEvent event) {
+        if(complexOperand.size()>=1){
+            calculator.dropStackOperand();
+            complexOperand.clear();
+            complexOperand.addAll(calculator.stack.getList());
+        }
+        else {
+            popUp(AlertType.ERROR,"Error","Illegal operation","you can't do the drop because the stack is empty");
+        }
     }
 
     @FXML

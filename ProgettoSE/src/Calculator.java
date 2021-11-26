@@ -106,5 +106,7 @@ public class Calculator {
         stack.push(invOp1);
         return invOp1;
     }
-
+      public void dropStackOperand(){
+         stack.dropOperand();
+      }
 }

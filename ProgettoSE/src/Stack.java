@@ -72,5 +72,7 @@ public class Stack<E>{
     
     
     //=================================ADO
-   
+   public void dropOperand(){
+       E res=list.removeLast();
+   }
 }
