@@ -48,6 +48,12 @@ public class Stack<E>{
     }
 
     //==============================LUIGI
+    public void swapOperand(){
+        E last = list.pop();
+        E secondLast = list.pop();
+        list.push(last);
+        list.push(secondLast);
+    }
     
     
     

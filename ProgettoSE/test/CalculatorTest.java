@@ -82,4 +82,19 @@ public class CalculatorTest {
         assertEquals(expResult, result);
         
     }
+
+    /**
+     * Test of swapStackOperand method, of class Calculator.
+     */
+    @Test
+    public void testSwapStackOperand() {
+        System.out.println("swapStackOperand");
+        Calculator instance = new Calculator();
+        instance.pushComplex("3+4i");
+        instance.pushComplex("5,3+2i");
+        Complex expResult = new Complex(3,4);
+        instance.swapStackOperand();
+        Complex result = instance.stack.top();
+        assertEquals(expResult, result);    
+    }
 }
