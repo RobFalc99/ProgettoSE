@@ -42,7 +42,7 @@ public class Calculator {
 
     
     
-    //==============================LUIGI
+    
     public void pushComplex(String s) {
         Complex c = parse(s);
         stack.push(c);
@@ -51,7 +51,7 @@ public class Calculator {
     public void swapStackOperand (){
         stack.swapOperand();
     }
-    //=============================ROB
+    
     public Complex subComplex() {
         Complex firstOperand = stack.secondLast();
         Complex secondOperand = stack.top();
@@ -73,7 +73,7 @@ public class Calculator {
     }
     
     
-    //==============================EUG
+    
     public Complex addComplex(){
         Complex c1=stack.top();
         Complex c2=stack.secondLast();
@@ -93,7 +93,7 @@ public class Calculator {
     }
     
     
-    //=================================ADO
+    
     public Complex sqrtComplex(){
         Complex op1=stack.top();
         Complex sqrtOp1=new Complex (op1.sqrt());

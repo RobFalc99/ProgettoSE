@@ -47,7 +47,7 @@ public class Stack<E>{
         return "Stack{" + "list=" + list + '}';
     }
 
-    //==============================LUIGI
+    
     public void swapOperand(){
         E last = list.pop();
         E secondLast = list.pop();
@@ -58,7 +58,7 @@ public class Stack<E>{
     
     
     
-    //=============================ROB
+    
     
     public E dupOperand(){
         E res = list.get(0);
@@ -67,11 +67,7 @@ public class Stack<E>{
     }
     
     
-    //==============================EUG
-    
-    
-    
-    //=================================ADO
+   
    public  E dropOperand(){
        E res=list.pop();
        return res;

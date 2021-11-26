@@ -102,13 +102,13 @@ public class FXMLDocumentController implements Initializable {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
         } else if ("sqrt".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size() == 1) {
+            if (complexOperand.size() >= 1) {
                 calculator.sqrtComplex();
             } else {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less or more  than 1 operands entered");
             }
         }else if("+-".equals(choiceBoxOperation.getValue())){
-            if(complexOperand.size()==1){
+            if(complexOperand.size()>=1){
                 calculator.invSignComplex();
             }
             else{
@@ -129,7 +129,7 @@ public class FXMLDocumentController implements Initializable {
             complexOperand.clear();
             complexOperand.addAll(calculator.stack.getList());
         } else {
-            popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3 + 2,6i");
+            popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
         }
     }
 
@@ -164,7 +164,7 @@ public class FXMLDocumentController implements Initializable {
             complexOperand.addAll(calculator.stack.getList());
         }
         else {
-            popUp(AlertType.ERROR,"Error","Illegal operation","you can't do the drop because the stack is empty");
+            popUp(AlertType.ERROR,"Error","Not enough operands","There is less than 1 operand entered");
         }
     }
 
@@ -176,7 +176,7 @@ public class FXMLDocumentController implements Initializable {
             complexOperand.addAll(calculator.stack.getList());
         }
         else{
-            popUp(AlertType.ERROR, "Error", "Illegal operation", "You can't do the swap because the stack is empty or contains only one element. Please enter at least two operands");
+            popUp(AlertType.ERROR, "Error", "Not enough operands","There is less than 1 operand entered");
         }
     }
 
