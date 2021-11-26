@@ -193,5 +193,20 @@ public class CalculatorTest {
         assertEquals(expResult, result);
         
     }
+
+    /**
+     * Test of dropStackOperand method, of class Calculator.
+     */
+    @Test
+    public void testDropStackOperand() {
+        System.out.println("dropStackOperand");
+        Calculator instance = new Calculator();
+        instance.pushComplex("3+2i");
+        Complex expResult= new Complex(3,5);
+        instance.pushComplex("3+5i");
+        Complex result=instance.dropStackOperand();
+        assertEquals(expResult,result);
+      
+    }
     
 }
