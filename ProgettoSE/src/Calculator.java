@@ -1,6 +1,6 @@
 
-import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.complex.ComplexFormat;
+
 
 /*  Calculator.java
     24-nov-2021
@@ -20,8 +20,28 @@ public class Calculator {
 
     public Complex parse(String s) {
         ComplexFormat cf = new ComplexFormat();
-        return cf.parse(s);
+        if (s.equals("i")){
+            s="0+i";
+        }
+        if(s.contains("+i")){
+            s=s.replace("+i", "+1i");
+        }
+        if(s.contains("-i")){
+            s=s.replace("-i", "-1i");
+        }
+        if(!s.contains("i")){
+            s+="+0i";
+        }
+        if(s.matches("[" + "0123456789i.,"+ "]+" )){
+            s="0+"+s;
+        }
+        return new Complex(cf.parse(s.replace(".", ",")));
     }
+
+    
+
+    
+    
     //==============================LUIGI
     public void pushComplex(String s) {
         Complex c = parse(s);
@@ -31,12 +51,12 @@ public class Calculator {
     public void subComplex() {
         Complex firstOperand = stack.secondLast();
         Complex secondOperand = stack.top();
-        stack.push(firstOperand.subtract(secondOperand));
+        stack.push(new Complex(firstOperand.subtract(secondOperand)));
     }
     public Complex mulComplex(){
         Complex firstOperand = stack.secondLast();
         Complex secondOperand = stack.top();
-        Complex res = firstOperand.multiply(secondOperand);
+        Complex res = new Complex(firstOperand.multiply(secondOperand));
         stack.push(res);
         return res;
     }
@@ -46,7 +66,7 @@ public class Calculator {
     public Complex addComplex(){
         Complex c1=stack.top();
         Complex c2=stack.secondLast();
-        Complex sum = c1.add(c2);
+        Complex sum = new Complex(c1.add(c2));
         stack.push(sum);
         return sum;
     }
