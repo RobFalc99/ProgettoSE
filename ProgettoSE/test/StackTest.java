@@ -117,5 +117,19 @@ public class StackTest {
         
     }
 
+
+    /**
+     * Test of dupOperand method, of class Stack.
+     */
+    @Test
+    public void testDupOperand() {
+        System.out.println("dupOperand");
+        Stack instance = new Stack();
+        Object expResult = new Complex(1,4);
+        instance.push(expResult);
+        Object result = instance.dupOperand();
+        assertEquals(expResult, result);
+    }
+    
 }
 

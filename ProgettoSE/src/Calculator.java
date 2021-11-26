@@ -63,6 +63,11 @@ public class Calculator {
         return res;
     }
     
+    public Complex dupStackOperand(){
+        Complex ret = stack.dupOperand();
+        return ret;
+    }
+    
     
     //==============================EUG
     public Complex addComplex(){
