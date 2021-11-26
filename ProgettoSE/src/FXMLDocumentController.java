@@ -162,6 +162,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void swapAction(ActionEvent event) {
+        if(complexOperand.size()>1){
+            calculator.swapStackOperand();
+            complexOperand.clear();
+            complexOperand.addAll(calculator.stack.getList());
+        }
+        else{
+            popUp(AlertType.ERROR, "Error", "Illegal operation", "You can't do the swap because the stack is empty or contains only one element. Please enter at least two operands");
+        }
     }
 
     private void popUp(AlertType type, String title, String header, String message) {
