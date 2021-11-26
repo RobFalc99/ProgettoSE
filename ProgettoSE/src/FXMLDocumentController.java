@@ -6,8 +6,6 @@
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
-
 
 /**
  *
@@ -64,41 +61,52 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         calculator = new Calculator();
-        complexOperand= FXCollections.observableArrayList();
+        complexOperand = FXCollections.observableArrayList();
         operazioni.add("+");
         operazioni.add("-");
         operazioni.add("*");
+        operazioni.add("/");
         choiceBoxOperation.getItems().addAll(operazioni);
         stackOperand.setItems(complexOperand);
-        
+
     }
 
     @FXML
     private void commitOperation(ActionEvent event) {
         if ("+".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size()>=2){
+            if (complexOperand.size() >= 2) {
                 calculator.addComplex();
-            }
-            else{
+            } else {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
-            
+
         } else if ("-".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size()>=2){
+            if (complexOperand.size() >= 2) {
                 calculator.subComplex();
-            }
-            else{
+            } else {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
         } else if ("*".equals(choiceBoxOperation.getValue())) {
-            if(complexOperand.size()>=2){
+            if (complexOperand.size() >= 2) {
                 calculator.mulComplex();
-            }
-            else{
+            } else {
                 popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
             }
-            
+
+        } else if ("/".equals(choiceBoxOperation.getValue())) {
+            if (complexOperand.size() >= 2) {
+                calculator.divComplex();
+            } else {
+                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
+            }
+        } else if ("sqrt".equals(choiceBoxOperation.getValue())) {
+            if (complexOperand.size() == 1) {
+                calculator.sqrtComplex();
+            } else {
+                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less or more  than 1 operands entered");
+            }
         }
+        txtFieldOperand.clear();
         complexOperand.clear();
         complexOperand.addAll(calculator.stack.getList());
     }
@@ -106,21 +114,37 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void commitOperand(ActionEvent event) {
         String operand = txtFieldOperand.getText();
-        if (operand.matches("[" + "0123456789i.,+-"+ "]+")) {
+        if (operand.matches("[" + "0123456789i.,+-" + "]+")) {
             calculator.pushComplex(operand);
+            txtFieldOperand.clear();
             complexOperand.clear();
             complexOperand.addAll(calculator.stack.getList());
         } else {
-            popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3 + 2,6i");
+            popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
         }
     }
 
     @FXML
     private void clearAction(ActionEvent event) {
+        if (complexOperand.size()>=1){
+            complexOperand.clear();
+            calculator.clearStack();
+        }
+        else{
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There is less than 1 operand entered");
+        }
     }
 
     @FXML
     private void dupAction(ActionEvent event) {
+        if (complexOperand.size() >= 1) {
+            calculator.dupStackOperand();
+            complexOperand.clear();
+            complexOperand.addAll(calculator.stack.getList());
+        }
+        else{
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There is less than 1 operand entered");
+        }
     }
 
     @FXML
@@ -134,8 +158,10 @@ public class FXMLDocumentController implements Initializable {
             complexOperand.clear();
             complexOperand.addAll(calculator.stack.getList());
         }
-        popUp(AlertType.ERROR, "Error", "Illegal operation", "You can't do the swap because the stack is empty or contains only one element. Please enter at least two operands");
-    }
+        else{
+            popUp(AlertType.ERROR, "Error", "Illegal operation", "You can't do the swap because the stack is empty or contains only one element. Please enter at least two operands");
+        }
+    }  
 
     private void popUp(AlertType type, String title, String header, String message) {
         Alert a = new Alert(type);

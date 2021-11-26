@@ -52,10 +52,12 @@ public class Calculator {
         stack.swapOperand();
     }
     //=============================ROB
-    public void subComplex() {
+    public Complex subComplex() {
         Complex firstOperand = stack.secondLast();
         Complex secondOperand = stack.top();
-        stack.push(new Complex(firstOperand.subtract(secondOperand)));
+        Complex res = new Complex(firstOperand.subtract(secondOperand));
+        stack.push(res);
+        return res;
     }
     public Complex mulComplex(){
         Complex firstOperand = stack.secondLast();
@@ -63,6 +65,11 @@ public class Calculator {
         Complex res = new Complex(firstOperand.multiply(secondOperand));
         stack.push(res);
         return res;
+    }
+    
+    public Complex dupStackOperand(){
+        Complex ret = stack.dupOperand();
+        return ret;
     }
     
     
@@ -74,9 +81,24 @@ public class Calculator {
         stack.push(sum);
         return sum;
     }
+    public Complex divComplex(){
+        Complex c1=stack.top();
+        Complex c2=stack.secondLast();
+        Complex div=new Complex(c2.divide(c1));
+        stack.push(div);
+        return div;
+    }
+    public void clearStack(){
+        stack.clear();
+    }
     
     
     //=================================ADO
-    
+    public Complex sqrtComplex(){
+        Complex op1=stack.top();
+        Complex sqrtOp1=new Complex (op1.sqrt());
+        stack.push(sqrtOp1);
+        return sqrtOp1;
+    }
 
 }

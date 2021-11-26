@@ -60,11 +60,16 @@ public class Stack<E>{
     
     //=============================ROB
     
-    
+    public E dupOperand(){
+        E res = list.get(0);
+        list.push(res);
+        return res;
+    }
     
     //==============================EUG
     
     
     
     //=================================ADO
+   
 }
