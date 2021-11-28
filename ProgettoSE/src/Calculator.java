@@ -20,38 +20,33 @@ public class Calculator {
 
     public Complex parse(String s) {
         ComplexFormat cf = new ComplexFormat();
-        if (s.equals("i")){
-            s="0+i";
+        if (s.equals("i")) {
+            s = "0+i";
         }
-        if(s.contains("+i")){
-            s=s.replace("+i", "+1i");
+        if (s.contains("+i")) {
+            s = s.replace("+i", "+1i");
         }
-        if(s.contains("-i")){
-            s=s.replace("-i", "-1i");
+        if (s.contains("-i")) {
+            s = s.replace("-i", "-1i");
         }
-        if(!s.contains("i")){
-            s+="+0i";
+        if (!s.contains("i")) {
+            s += "+0i";
         }
-        if(s.matches("[" + "0123456789i.,"+ "]+" )){
-            s="0+"+s;
+        if (s.matches("[" + "0123456789i.," + "]+")) {
+            s = "0+" + s;
         }
         return new Complex(cf.parse(s.replace(".", ",")));
     }
 
-    
-
-    
-    
-    
     public void pushComplex(String s) {
         Complex c = parse(s);
         stack.push(c);
     }
-    
-    public void swapStackOperand (){
+
+    public void swapStackOperand() {
         stack.swapOperand();
     }
-    
+
     public Complex subComplex() {
         Complex firstOperand = stack.secondLast();
         Complex secondOperand = stack.top();
@@ -59,54 +54,55 @@ public class Calculator {
         stack.push(res);
         return res;
     }
-    public Complex mulComplex(){
+
+    public Complex mulComplex() {
         Complex firstOperand = stack.secondLast();
         Complex secondOperand = stack.top();
         Complex res = new Complex(firstOperand.multiply(secondOperand));
         stack.push(res);
         return res;
     }
-    
-    public Complex dupStackOperand(){
+
+    public Complex dupStackOperand() {
         Complex ret = stack.dupOperand();
         return ret;
     }
-    
-    
-    
-    public Complex addComplex(){
-        Complex c1=stack.top();
-        Complex c2=stack.secondLast();
+
+    public Complex addComplex() {
+        Complex c1 = stack.top();
+        Complex c2 = stack.secondLast();
         Complex sum = new Complex(c1.add(c2));
         stack.push(sum);
         return sum;
     }
-    public Complex divComplex(){
-        Complex c1=stack.top();
-        Complex c2=stack.secondLast();
-        Complex div=new Complex(c2.divide(c1));
+
+    public Complex divComplex() {
+        Complex c1 = stack.top();
+        Complex c2 = stack.secondLast();
+        Complex div = new Complex(c2.divide(c1));
         stack.push(div);
         return div;
     }
-    public void clearStack(){
+
+    public void clearStack() {
         stack.clear();
     }
-    
-    
-    
-    public Complex sqrtComplex(){
-        Complex op1=stack.top();
-        Complex sqrtOp1=new Complex (op1.sqrt());
+
+    public Complex sqrtComplex() {
+        Complex op1 = stack.top();
+        Complex sqrtOp1 = new Complex(op1.sqrt());
         stack.push(sqrtOp1);
         return sqrtOp1;
     }
-      public Complex invSignComplex(){
-        Complex op1=stack.top();
-        Complex invOp1=new Complex(op1.negate());
+
+    public Complex invSignComplex() {
+        Complex op1 = stack.top();
+        Complex invOp1 = new Complex(op1.negate());
         stack.push(invOp1);
         return invOp1;
     }
-      public Complex dropStackOperand(){
-         return stack.dropOperand();
-      }
+
+    public Complex dropStackOperand() {
+        return stack.dropOperand();
+    }
 }
