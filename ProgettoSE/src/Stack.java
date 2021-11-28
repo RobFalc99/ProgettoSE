@@ -1,9 +1,6 @@
 
 import java.util.LinkedList;
 
-/*  Stack.java
-    23-nov-2021
-    12.43.25    */
 /**
  * A LIFO collection
  *

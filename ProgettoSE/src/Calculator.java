@@ -2,10 +2,6 @@
 import org.apache.commons.math3.complex.ComplexFormat;
 
 
-/*  Calculator.java
-    24-nov-2021
-    9.06.19
- */
 public class Calculator {
 
     Stack<Complex> stack;
