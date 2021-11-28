@@ -1,11 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-
-import java.util.LinkedList;
 import org.apache.commons.math3.complex.Complex;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,10 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author FALCONE
- */
 public class StackTest {
 
     public StackTest() {
@@ -58,7 +47,7 @@ public class StackTest {
     public void testPop() {
         System.out.println("pop");
         Stack<Complex> instance = new Stack<>();
-        instance.push(new Complex(1,2));
+        instance.push(new Complex(1, 2));
         Complex expResult = new Complex(2.1, 4.3);
         instance.push(expResult);
         Complex result = instance.pop();
@@ -107,16 +96,15 @@ public class StackTest {
     public void testSecondLast() {
         System.out.println("secondLast");
         Stack<Complex> instance = new Stack<>();
-        instance.push(new Complex(5,6));
-        instance.push(new Complex(5,6));
-        Complex expResult = new Complex(2.1,4.3);
+        instance.push(new Complex(5, 6));
+        instance.push(new Complex(5, 6));
+        Complex expResult = new Complex(2.1, 4.3);
         instance.push(expResult);
-        instance.push(new Complex(3.2,5.1));
+        instance.push(new Complex(3.2, 5.1));
         Complex result = instance.secondLast();
         assertEquals(expResult, result);
-        
-    }
 
+    }
 
     /**
      * Test of dupOperand method, of class Stack.
@@ -125,25 +113,25 @@ public class StackTest {
     public void testDupOperand() {
         System.out.println("dupOperand");
         Stack instance = new Stack();
-        Object expResult = new Complex(1,4);
+        Object expResult = new Complex(1, 4);
         instance.push(expResult);
         Object result = instance.dupOperand();
         assertEquals(expResult, result);
     }
-    
+
     /**
      * Test of swapOperand method, of class Stack.
      */
     @Test
     public void testSwapOperand() {
         System.out.println("swapOperand");
-        Stack <Complex> instance = new Stack<>();
-        instance.push(new Complex(2.1,4.3));
-        instance.push(new Complex(5,6));
-        Complex expResult = new Complex(2.1,4.3);
+        Stack<Complex> instance = new Stack<>();
+        instance.push(new Complex(2.1, 4.3));
+        instance.push(new Complex(5, 6));
+        Complex expResult = new Complex(2.1, 4.3);
         instance.swapOperand();
         Complex result = instance.top();
-        assertEquals(expResult,result);
+        assertEquals(expResult, result);
     }
 
 }

@@ -1,10 +1,9 @@
 
 import org.apache.commons.math3.complex.ComplexFormat;
 
-
 public class Calculator {
 
-    Stack<Complex> stack;
+    private Stack<Complex> stack;
 
     /**
      * An empty constructor
@@ -21,6 +20,15 @@ public class Calculator {
      */
     public Calculator(Stack<Complex> stack) {
         this.stack = stack;
+    }
+
+    /**
+     * Getter of the stack attribute
+     *
+     * @return The stack attribute
+     */
+    public Stack<Complex> getStack() {
+        return stack;
     }
 
     /**

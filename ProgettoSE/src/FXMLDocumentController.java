@@ -1,3 +1,4 @@
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -6,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -14,8 +14,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Window;
-
 
 public class FXMLDocumentController implements Initializable {
 
@@ -40,13 +38,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
-    private Scene scene;
-
-    private Window window;
-
     private Calculator calculator;
 
-    ArrayList<String> operazioni = new ArrayList<String>();
+    ArrayList<String> operazioni = new ArrayList<>();
     private ObservableList<Complex> complexOperand;
 
     @Override
@@ -107,7 +101,7 @@ public class FXMLDocumentController implements Initializable {
         }
         txtFieldOperand.clear();
         complexOperand.clear();
-        complexOperand.addAll(calculator.stack.getList());
+        complexOperand.addAll(calculator.getStack().getList());
     }
 
     @FXML
@@ -117,7 +111,7 @@ public class FXMLDocumentController implements Initializable {
             calculator.pushComplex(operand);
             txtFieldOperand.clear();
             complexOperand.clear();
-            complexOperand.addAll(calculator.stack.getList());
+            complexOperand.addAll(calculator.getStack().getList());
         } else {
             popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
         }
@@ -138,7 +132,7 @@ public class FXMLDocumentController implements Initializable {
         if (complexOperand.size() >= 1) {
             calculator.dupStackOperand();
             complexOperand.clear();
-            complexOperand.addAll(calculator.stack.getList());
+            complexOperand.addAll(calculator.getStack().getList());
         } else {
             popUp(AlertType.ERROR, "Error", "Not enough operands", "There is less than 1 operand entered");
         }
@@ -149,7 +143,7 @@ public class FXMLDocumentController implements Initializable {
         if (complexOperand.size() >= 1) {
             calculator.dropStackOperand();
             complexOperand.clear();
-            complexOperand.addAll(calculator.stack.getList());
+            complexOperand.addAll(calculator.getStack().getList());
         } else {
             popUp(AlertType.ERROR, "Error", "Not enough operands", "There is less than 1 operand entered");
         }
@@ -160,7 +154,7 @@ public class FXMLDocumentController implements Initializable {
         if (complexOperand.size() > 1) {
             calculator.swapStackOperand();
             complexOperand.clear();
-            complexOperand.addAll(calculator.stack.getList());
+            complexOperand.addAll(calculator.getStack().getList());
         } else {
             popUp(AlertType.ERROR, "Error", "Not enough operands", "There is less than 1 operand entered");
         }
