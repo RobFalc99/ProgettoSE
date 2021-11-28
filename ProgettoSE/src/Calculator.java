@@ -5,19 +5,34 @@ import org.apache.commons.math3.complex.ComplexFormat;
 /*  Calculator.java
     24-nov-2021
     9.06.19
-    FALCONE     */
+ */
 public class Calculator {
 
     Stack<Complex> stack;
 
+    /**
+     * An empty constructor
+     */
     public Calculator() {
-        this.stack = new Stack<>();
+        stack = new Stack<>();
     }
 
+    /**
+     * A constructor which initialize the stack attribute to a passed Stack
+     * parameter
+     *
+     * @param stack The stack to which initialize the attribute
+     */
     public Calculator(Stack<Complex> stack) {
         this.stack = stack;
     }
 
+    /**
+     * Parse a string to a Complex number
+     *
+     * @param s The input string
+     * @return A Complex representing the passed string
+     */
     public Complex parse(String s) {
         ComplexFormat cf = new ComplexFormat();
         if (s.equals("i")) {
@@ -38,70 +53,128 @@ public class Calculator {
         return new Complex(cf.parse(s.replace(".", ",")));
     }
 
+    /**
+     * Push a Complex number into the Stack
+     *
+     * @param s The Complex number, as a string, to be pushed
+     */
     public void pushComplex(String s) {
         Complex c = parse(s);
         stack.push(c);
     }
 
+    /**
+     * Swap the second last Complex in the Stack with the last one
+     */
     public void swapStackOperand() {
         stack.swapOperand();
     }
 
+    /**
+     * Pushes a new Complex number into the Stack, which is the result of the
+     * subtraction between the second last Complex in the Stack and the last one
+     *
+     * @return The Complex number pushed into the Stack
+     */
     public Complex subComplex() {
-        Complex firstOperand = stack.secondLast();
-        Complex secondOperand = stack.top();
-        Complex res = new Complex(firstOperand.subtract(secondOperand));
+        Complex c1 = stack.secondLast();
+        Complex c2 = stack.top();
+        Complex res = new Complex(c1.subtract(c2));
         stack.push(res);
         return res;
     }
 
+    /**
+     * Pushes a new Complex number into the Stack, which is the result of the
+     * multiplication product between the second last Complex in the Stack and
+     * the last one
+     *
+     * @return The Complex number pushed into the Stack
+     */
     public Complex mulComplex() {
-        Complex firstOperand = stack.secondLast();
-        Complex secondOperand = stack.top();
-        Complex res = new Complex(firstOperand.multiply(secondOperand));
+        Complex c1 = stack.secondLast();
+        Complex c2 = stack.top();
+        Complex res = new Complex(c1.multiply(c2));
         stack.push(res);
         return res;
     }
 
+    /**
+     * Push a copy of the last Complex in the Stack
+     *
+     * @return The Complex number pushed into the Stack
+     */
     public Complex dupStackOperand() {
-        Complex ret = stack.dupOperand();
-        return ret;
+        Complex res = stack.dupOperand();
+        return res;
     }
 
+    /**
+     * Pushes a new Complex number into the Stack, which is the result of the
+     * addition between the second last Complex in the Stack and the last one
+     *
+     * @return The Complex number pushed into the Stack
+     */
     public Complex addComplex() {
         Complex c1 = stack.top();
         Complex c2 = stack.secondLast();
-        Complex sum = new Complex(c1.add(c2));
-        stack.push(sum);
-        return sum;
+        Complex res = new Complex(c1.add(c2));
+        stack.push(res);
+        return res;
     }
 
+    /**
+     * Pushes a new Complex number into the Stack, which is the result of the
+     * division between the second last Complex in the Stack and the last one
+     *
+     * @return The Complex number pushed into the Stack
+     */
     public Complex divComplex() {
         Complex c1 = stack.top();
         Complex c2 = stack.secondLast();
-        Complex div = new Complex(c2.divide(c1));
-        stack.push(div);
-        return div;
+        Complex res = new Complex(c2.divide(c1));
+        stack.push(res);
+        return res;
     }
 
+    /**
+     * Remove all the Complex numbers from the Stack
+     */
     public void clearStack() {
         stack.clear();
     }
 
+    /**
+     * Pushes a new Complex number into the Stack, which is the result of the
+     * square root of the last Complex number in the Stack
+     *
+     * @return The Complex number pushed into the Stack
+     */
     public Complex sqrtComplex() {
-        Complex op1 = stack.top();
-        Complex sqrtOp1 = new Complex(op1.sqrt());
-        stack.push(sqrtOp1);
-        return sqrtOp1;
+        Complex c1 = stack.top();
+        Complex res = new Complex(c1.sqrt());
+        stack.push(res);
+        return res;
     }
 
+    /**
+     * Pushes a new Complex number into the Stack, which is the result of the
+     * reversal of sign of the last Complex number in the Stack
+     *
+     * @return The Complex number pushed into the Stack
+     */
     public Complex invSignComplex() {
-        Complex op1 = stack.top();
-        Complex invOp1 = new Complex(op1.negate());
-        stack.push(invOp1);
-        return invOp1;
+        Complex c1 = stack.top();
+        Complex res = new Complex(c1.negate());
+        stack.push(res);
+        return res;
     }
 
+    /**
+     * Remove the last Complex number from the Stack
+     *
+     * @return The Complex number pushed into the Stack
+     */
     public Complex dropStackOperand() {
         return stack.dropOperand();
     }
