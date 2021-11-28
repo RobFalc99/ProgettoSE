@@ -106,7 +106,6 @@ public class StackTest {
         instance.push(new Complex(3.2, 5.1));
         Complex result = instance.secondLast();
         assertEquals(expResult, result);
-
     }
 
     /**

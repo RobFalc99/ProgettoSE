@@ -1,10 +1,18 @@
 
 public class Complex extends org.apache.commons.math3.complex.Complex {
 
+    /**
+     * The class constructor, only for real part
+     * @param real The input double
+     */
     public Complex(double real) {
         super(real);
     }
 
+    /**
+     * The class constructor, both for real and imaginary part
+     * @param c The input Complex number
+     */
     public Complex(org.apache.commons.math3.complex.Complex c) {
         super(c.getReal(), c.getImaginary());
     }

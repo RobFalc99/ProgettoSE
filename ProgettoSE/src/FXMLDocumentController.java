@@ -151,7 +151,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void swapAction(ActionEvent event) {
-        if (complexOperand.size() > 1) {
+        if (complexOperand.size() >= 2) {
             calculator.swapStackOperand();
             complexOperand.clear();
             complexOperand.addAll(calculator.getStack().getList());
