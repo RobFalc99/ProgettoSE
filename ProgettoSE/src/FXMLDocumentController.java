@@ -51,7 +51,7 @@ public class FXMLDocumentController implements Initializable {
         operazioni.addAll(new ArrayList<String>(Arrays.asList("+", "-", "*", "/", "sqrt", "+-")));
         choiceBoxOperation.getItems().addAll(operazioni);
         stackOperand.setItems(complexOperand);
-        
+
     }
 
     @FXML
@@ -161,5 +161,5 @@ public class FXMLDocumentController implements Initializable {
         a.setContentText(message);
         a.showAndWait();
     }
-    
+
 }
