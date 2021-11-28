@@ -92,6 +92,9 @@ public class StackTest {
         assertTrue(instance.isEmpty());
     }
 
+     /**
+     * Test of secondLast method, of class Stack.
+     */
     @Test
     public void testSecondLast() {
         System.out.println("secondLast");

@@ -90,6 +90,9 @@ public class CalculatorTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of subComplex method, of class Calculator.
+     */
     @Test
     public void testSubComplex() {
         System.out.println("subComplex");
@@ -102,6 +105,9 @@ public class CalculatorTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of mulComplex method, of class Calculator.
+     */
     @Test
     public void testMulComplex() {
         System.out.println("mulComplex");
