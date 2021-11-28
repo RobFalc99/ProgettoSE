@@ -1,6 +1,7 @@
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,15 +48,10 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         calculator = new Calculator();
         complexOperand = FXCollections.observableArrayList();
-        operazioni.add("+");
-        operazioni.add("-");
-        operazioni.add("*");
-        operazioni.add("/");
-        operazioni.add("sqrt");
-        operazioni.add("+-");
+        operazioni.addAll(new ArrayList<String>(Arrays.asList("+", "-", "*", "/", "sqrt", "+-")));
         choiceBoxOperation.getItems().addAll(operazioni);
         stackOperand.setItems(complexOperand);
-
+        
     }
 
     @FXML
@@ -100,8 +96,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
         txtFieldOperand.clear();
-        complexOperand.clear();
-        complexOperand.addAll(calculator.getStack().getList());
+        stackOperand.getItems().setAll(calculator.getStack().getList());
     }
 
     @FXML
@@ -110,8 +105,7 @@ public class FXMLDocumentController implements Initializable {
         if (operand.matches("[" + "0123456789i.,+-" + "]+")) {
             calculator.pushComplex(operand);
             txtFieldOperand.clear();
-            complexOperand.clear();
-            complexOperand.addAll(calculator.getStack().getList());
+            stackOperand.getItems().setAll(calculator.getStack().getList());
         } else {
             popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
         }
@@ -167,5 +161,5 @@ public class FXMLDocumentController implements Initializable {
         a.setContentText(message);
         a.showAndWait();
     }
-
+    
 }
