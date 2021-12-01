@@ -21,8 +21,6 @@ import javafx.scene.layout.AnchorPane;
 public class FXMLDocumentController implements Initializable {
 
     @FXML
-    private Button btnCommitOperation;
-    @FXML
     private Button btnCommitOperand;
     @FXML
     private TextField txtFieldOperand;
@@ -33,8 +31,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btnDrop;
     @FXML
-    private ChoiceBox<String> choiceBoxOperation;
-    @FXML
     private ListView<Complex> stackOperand;
     @FXML
     private Button btnSwap;
@@ -42,8 +38,7 @@ public class FXMLDocumentController implements Initializable {
     private AnchorPane anchorPane;
 
     private Calculator calculator;
-
-    ArrayList<String> operazioni = new ArrayList<>();
+    
     private ObservableList<Complex> complexOperand;
     @FXML
     private Button btnOver;
@@ -64,8 +59,6 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         calculator = new Calculator();
         complexOperand = FXCollections.observableArrayList();
-        operazioni.addAll(new ArrayList<String>(Arrays.asList("+", "-", "*", "/", "sqrt", "+-")));
-        choiceBoxOperation.getItems().addAll(operazioni);
         stackOperand.setItems(complexOperand);
 
     }
@@ -80,51 +73,6 @@ public class FXMLDocumentController implements Initializable {
         } else {
             popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
         }
-    }
-
-    @FXML
-    private void commitOperation(ActionEvent event) {
-        if ("+".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size() >= 2) {
-                calculator.addComplex();
-            } else {
-                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
-            }
-
-        } else if ("-".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size() >= 2) {
-                calculator.subComplex();
-            } else {
-                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
-            }
-        } else if ("*".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size() >= 2) {
-                calculator.mulComplex();
-            } else {
-                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
-            }
-
-        } else if ("/".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size() >= 2) {
-                calculator.divComplex();
-            } else {
-                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
-            }
-        } else if ("sqrt".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size() >= 1) {
-                calculator.sqrtComplex();
-            } else {
-                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less or more  than 1 operands entered");
-            }
-        } else if ("+-".equals(choiceBoxOperation.getValue())) {
-            if (complexOperand.size() >= 1) {
-                calculator.invSignComplex();
-            } else {
-                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less or more  than 1 operands entered");
-            }
-        }
-        txtFieldOperand.clear();
-        stackOperand.getItems().setAll(calculator.getStack().getList());
     }
 
     @FXML
