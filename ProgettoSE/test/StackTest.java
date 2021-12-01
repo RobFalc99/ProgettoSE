@@ -1,5 +1,4 @@
 
-import java.util.LinkedList;
 import org.apache.commons.math3.complex.Complex;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -9,6 +8,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StackTest {
+    
+    private Complex operand1;
+    private Complex operand2;
+    private Stack<Complex> instance;
 
     public StackTest() {
     }
@@ -23,6 +26,9 @@ public class StackTest {
 
     @Before
     public void setUp() {
+        operand1 = new Complex(2.1,4.3);
+        operand2 = new Complex(5,6);
+        instance = new Stack<>();
     }
 
     @After
@@ -35,9 +41,7 @@ public class StackTest {
     @Test
     public void testPush() {
         System.out.println("push");
-        Complex c = new Complex(2.1, 4.3);
-        Stack<Complex> instance = new Stack<>();
-        instance.push(c);
+        instance.push(operand1);
         assertFalse(instance.isEmpty());
     }
 
@@ -47,12 +51,10 @@ public class StackTest {
     @Test
     public void testPop() {
         System.out.println("pop");
-        Stack<Complex> instance = new Stack<>();
-        instance.push(new Complex(1, 2));
-        Complex expResult = new Complex(2.1, 4.3);
-        instance.push(expResult);
+        instance.push(operand2);
+        instance.push(operand1);
         Complex result = instance.pop();
-        assertEquals(expResult, result);
+        assertEquals(operand1, result);
     }
 
     /**
@@ -61,11 +63,9 @@ public class StackTest {
     @Test
     public void testTop() {
         System.out.println("top");
-        Stack<Complex> instance = new Stack<>();
-        Complex expResult = new Complex(2.1, 4.3);
-        instance.push(expResult);
+        instance.push(operand1);
         Complex result = instance.top();
-        assertEquals(expResult, result);
+        assertEquals(operand1, result);
     }
 
     /**
@@ -74,10 +74,8 @@ public class StackTest {
     @Test
     public void testIsEmpty() {
         System.out.println("isEmpty");
-        Stack<Complex> instance = new Stack<>();
-        Boolean expResult = true;
         Boolean result = instance.isEmpty();
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     /**
@@ -86,9 +84,7 @@ public class StackTest {
     @Test
     public void testClear() {
         System.out.println("clear");
-        Stack<Complex> instance = new Stack<>();
-        Complex expResult = new Complex(2.1, 4.3);
-        instance.push(expResult);
+        instance.push(operand1);
         instance.clear();
         assertTrue(instance.isEmpty());
     }
@@ -99,14 +95,12 @@ public class StackTest {
     @Test
     public void testSecondLast() {
         System.out.println("secondLast");
-        Stack<Complex> instance = new Stack<>();
-        instance.push(new Complex(5, 6));
-        instance.push(new Complex(5, 6));
-        Complex expResult = new Complex(2.1, 4.3);
-        instance.push(expResult);
-        instance.push(new Complex(3.2, 5.1));
+        instance.push(operand2);
+        instance.push(operand2);
+        instance.push(operand1);
+        instance.push(operand2);
         Complex result = instance.secondLast();
-        assertEquals(expResult, result);
+        assertEquals(operand1, result);
     }
 
     /**
@@ -115,11 +109,9 @@ public class StackTest {
     @Test
     public void testDupOperand() {
         System.out.println("dupOperand");
-        Stack instance = new Stack();
-        Object expResult = new Complex(1, 4);
-        instance.push(expResult);
-        Object result = instance.dupOperand();
-        assertEquals(expResult, result);
+        instance.push(operand1);
+        Complex result = instance.dupOperand();
+        assertEquals(operand1, result);
     }
 
     /**
@@ -128,13 +120,11 @@ public class StackTest {
     @Test
     public void testSwapOperand() {
         System.out.println("swapOperand");
-        Stack<Complex> instance = new Stack<>();
-        instance.push(new Complex(2.1, 4.3));
-        instance.push(new Complex(5, 6));
-        Complex expResult = new Complex(2.1, 4.3);
+        instance.push(operand1);
+        instance.push(operand2);
         instance.swapOperand();
         Complex result = instance.top();
-        assertEquals(expResult, result);
+        assertEquals(operand1, result);
     }
 
     /**
@@ -143,11 +133,9 @@ public class StackTest {
     @Test
     public void testDropOperand() {
         System.out.println("dropOperand");
-        Stack<Complex> instance = new Stack();
-        Complex expResult = new Complex(3,4);
-        instance.push(expResult);
+        instance.push(operand1);
         Complex result = instance.dropOperand();
-        assertEquals(expResult, result);
+        assertEquals(operand1, result);
     }
 
     /**
@@ -156,13 +144,11 @@ public class StackTest {
     @Test
     public void testOverOperand() {
         System.out.println("overOperand");
-        Stack<Complex> instance = new Stack();
-        Complex expResult = new Complex(3,4);
         Complex second = new Complex(2,1);
-        instance.push(expResult);
+        instance.push(operand1);
         instance.push(second);
         Object result = instance.overOperand();
-        assertEquals(expResult, result);
+        assertEquals(operand1, result);
     }
 
 }
