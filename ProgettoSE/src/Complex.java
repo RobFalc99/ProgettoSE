@@ -1,4 +1,6 @@
 
+import java.text.DecimalFormat;
+
 public class Complex extends org.apache.commons.math3.complex.Complex {
 
     /**
@@ -21,18 +23,19 @@ public class Complex extends org.apache.commons.math3.complex.Complex {
 
     @Override
     public String toString() {
+        DecimalFormat formatter = new DecimalFormat("#,###.#####");
         String comp = "";
         if (this.getReal() == 0 && this.getImaginary() == 0) {
             comp += "0";
             return comp;
         }
         if (this.getReal() != 0) {
-            comp += Double.toString(this.getReal());
+            comp +=formatter.format(this.getReal());
         }
         if (this.getImaginary() < 0) {
-            comp += Double.toString(this.getImaginary()) + "i";
+            comp += formatter.format(this.getImaginary()) + "i";
         } else if (this.getImaginary() > 0) {
-            comp += "+" + Double.toString(this.getImaginary()) + "i";
+            comp += "+" + formatter.format(this.getImaginary()) + "i";
         }
         return comp;
     }
