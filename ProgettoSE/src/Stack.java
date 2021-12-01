@@ -113,4 +113,9 @@ public class Stack<E> {
         E res = list.pop();
         return res;
     }
+     public E overOperand(){
+       E secondLast = list.get(1);
+       list.push(secondLast);
+       return secondLast;
+   }
 }

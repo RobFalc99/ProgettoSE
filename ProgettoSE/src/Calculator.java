@@ -182,4 +182,9 @@ public class Calculator {
     public Complex dropStackOperand() {
         return stack.dropOperand();
     }
+    public Complex overStackOperand(){
+          Complex ret=stack.overOperand();
+          return ret;
+      }
+
 }

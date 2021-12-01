@@ -204,5 +204,15 @@ public class CalculatorTest {
         assertEquals(expResult, result);
 
     }
-
+    
+    @Test
+    public void testOverStackOperand() {
+       System.out.println("overStackOperand");
+        Calculator instance = new Calculator();
+        instance.pushComplex("3+2i");
+        instance.pushComplex("1+4i");
+        Complex expResult =new Complex(3,2);
+        Complex result = instance.overStackOperand();
+        assertEquals(expResult, result);
+    }
 }

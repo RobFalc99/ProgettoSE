@@ -43,6 +43,20 @@ public class FXMLDocumentController implements Initializable {
 
     ArrayList<String> operazioni = new ArrayList<>();
     private ObservableList<Complex> complexOperand;
+    @FXML
+    private Button btnOver;
+    @FXML
+    private Button btnAdd;
+    @FXML
+    private Button btnSub;
+    @FXML
+    private Button btnMul;
+    @FXML
+    private Button btnDiv;
+    @FXML
+    private Button btnSqrt;
+    @FXML
+    private Button btnInvSign;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -160,6 +174,44 @@ public class FXMLDocumentController implements Initializable {
         a.setHeaderText(header);
         a.setContentText(message);
         a.showAndWait();
+    }
+
+
+    @FXML
+    private void addAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void subAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void mulAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void divAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void sqrtAction(ActionEvent event) {
+    }
+
+
+    @FXML
+    private void overAction(ActionEvent event) {
+          if(complexOperand.size()>=2){
+            calculator.overStackOperand();
+            complexOperand.clear();
+            complexOperand.addAll(calculator.getStack().getList());
+        }
+        else {
+            popUp(AlertType.ERROR,"Error","Not enough operands","You can't do the over beacuse there are less than 2 operand ");
+        }
+    }
+
+    @FXML
+    private void invSignAction(ActionEvent event) {
     }
 
 }
