@@ -54,6 +54,13 @@ public class Calculator {
         if (!s.contains("i")) {
             s += "+0i";
         }
+        if(s.startsWith("+")){
+            s = s.substring(1, s.length());
+        }
+        if(s.startsWith("-") && s.substring(1, s.length()).matches("[" + "0123456789i.," + "]+") && s.endsWith("i")){
+            s = "0-" + s.substring(1, s.length());
+            return new Complex(cf.parse(s.replace(".", ",")));
+        }
         if (s.matches("[" + "0123456789i.," + "]+")) {
             s = "0+" + s;
         }
