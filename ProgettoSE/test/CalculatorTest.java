@@ -1,166 +1,116 @@
 import org.apache.commons.math3.complex.Complex;
-import org.junit.After;
-import org.junit.AfterClass;
+import org.apache.commons.math3.complex.ComplexFormat;
+import org.junit.Assert;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-
+ 
+ 
 public class CalculatorTest {
-
+    private Calculator instance;
+    private String operand1;
+    private String operand2;
+ 
     public CalculatorTest() {
     }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
+ 
     @Before
     public void setUp() {
+        instance=new Calculator();
+        operand1="3+4i";
+        operand2="5,3+2i";
     }
-
-    @After
-    public void tearDown() {
-    }
-
+ 
+ 
     /**
      * Test of parse method, of class Calculator.
      */
     @Test
     public void testParse() {
         System.out.println("parse");
-        String s = "3+4i";
-        Calculator instance = new Calculator();
-        Complex expResult = new Complex(3, 4);
-        Complex result = instance.parse(s);
-        assertEquals(expResult, result);
+        assertEquals(new Complex(3,4), instance.parse(operand1));
     }
-
+ 
     /**
      * Test of pushComplex method, of class Calculator.
      */
     @Test
     public void testPushComplex() {
         System.out.println("pushComplex");
-        String s = "3+4i";
-        Calculator instance = new Calculator();
-        Complex expResult = new Complex(3, 4);
-        instance.pushComplex(s);
-        Complex result = instance.getStack().top();
-        assertEquals(expResult, result);
+        instance.pushComplex(operand1);
+        assertEquals(new Complex(3, 4), instance.getStack().top());
     }
-
+ 
     /**
      * Test of addComplex method, of class Calculator.
      */
     @Test
     public void testAddComplex() {
         System.out.println("addComplex");
-        Calculator instance = new Calculator();
-        String s = "3+4i";
-        String s1 = "5,3+2i";
-        String s2 = "4,2+1,5i";
-        instance.pushComplex(s);
-        instance.pushComplex(s1);
-        instance.pushComplex(s2);
-        Complex expResult = new Complex(9.5, 3.5);
-        Complex result = instance.addComplex();
-        assertEquals(expResult, result);
-
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
+        assertEquals(new Complex(8.3, 6), instance.addComplex());
+ 
     }
-
+ 
     /**
      * Test of divComplex method, of class Calculator.
      */
     @Test
     public void testDivComplex() {
         System.out.println("divComplex");
-        Calculator instance = new Calculator();
-        String s = "3+4i";
-        String s1 = "5,3+2i";
-        instance.pushComplex(s1);
-        instance.pushComplex(s);
-        Complex expResult = new Complex(0.956, -0.608);
-        Complex result = instance.divComplex();
-        assertEquals(expResult, result);
+        instance.pushComplex(operand2);
+        instance.pushComplex(operand1);
+        assertEquals(new Complex(0.956, -0.608), instance.divComplex());
     }
-
+ 
     /**
      * Test of subComplex method, of class Calculator.
      */
     @Test
     public void testSubComplex() {
         System.out.println("subComplex");
-        Calculator instance = new Calculator();
-        instance.pushComplex("3+4i");
-        instance.pushComplex("2+3i");
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
         instance.subComplex();
-        Complex expResult = new Complex(1, 1);
-        Complex result = instance.getStack().pop();
-        assertEquals(expResult, result);
+        assertEquals(new Complex(-2.3, 2), instance.getStack().pop());
     }
-
+ 
     /**
      * Test of mulComplex method, of class Calculator.
      */
     @Test
     public void testMulComplex() {
         System.out.println("mulComplex");
-        Calculator instance = new Calculator();
-        instance.pushComplex("3+4i");
-        instance.pushComplex("2+3i");
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
         instance.mulComplex();
-        Complex expResult = new Complex(-6, 17);
-        Complex result = instance.getStack().pop();
-        assertEquals(expResult, result);
+        Assert.assertEquals(7.9, instance.getStack().top().getReal(), 0.02);
+        Assert.assertEquals(27.2, instance.getStack().top().getImaginary(), 0.02);
     }
-
-    /**
-     * Test of clearStack method, of class Calculator.
-     */
-    @Test
-    public void testClearStack() {
-        System.out.println("clearStack");
-        Calculator instance = new Calculator();
-        String s = "3+4i";
-        String s1 = "5,3+2i";
-        instance.pushComplex(s1);
-        instance.pushComplex(s);
-        instance.clearStack();
-        assertTrue(instance.getStack().isEmpty());
-    }
-
+ 
     /**
      * Test of sqrtComplex method, of class Calculator.
      */
     @Test
     public void testSqrtComplex() {
         System.out.println("sqrtComplex");
-        Calculator instance = new Calculator();
-        instance.pushComplex("4+8i");
-        Complex expResult = new Complex(2.544039299028138, 1.5723027555148466);
-        Complex result = instance.sqrtComplex();
-        assertEquals(expResult, result);
+        instance.pushComplex(operand1);
+        assertEquals(new Complex(2, 1), instance.sqrtComplex());
     }
-
+ 
     /**
      * Test of dupStackOperand method, of class Calculator.
      */
     @Test
     public void testDupStackOperand() {
         System.out.println("dupStackOperand");
-        Calculator instance = new Calculator();
-        instance.pushComplex("4+5i");
-        Complex expResult = new Complex(4, 5);
-        Complex result = instance.dupStackOperand();
-        assertEquals(expResult, result);
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
+        assertEquals(new Complex(5.3, 2), instance.dupStackOperand());
     }
-
+ 
     /**
      * Test of swapStackOperand method, of class Calculator.
      */
@@ -168,51 +118,55 @@ public class CalculatorTest {
     public void testSwapStackOperand() {
         System.out.println("swapStackOperand");
         Calculator instance = new Calculator();
-        instance.pushComplex("3+4i");
-        instance.pushComplex("5,3+2i");
-        Complex expResult = new Complex(3, 4);
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
         instance.swapStackOperand();
-        Complex result = instance.getStack().top();
-        assertEquals(expResult, result);
+        assertEquals(new Complex(3, 4), instance.getStack().top());
     }
-
+ 
     /**
      * Test of invSignComplex method, of class Calculator.
      */
     @Test
     public void testInvSignComplex() {
         System.out.println("invSignComplex");
-        Calculator instance = new Calculator();
-        instance.pushComplex("5+2i");
-        Complex expResult = new Complex(-5, -2);
-        Complex result = instance.invSignComplex();
-        assertEquals(expResult, result);
-
+        instance.pushComplex(operand1);
+        assertEquals(new Complex(-3, -4), instance.invSignComplex());
+ 
     }
-
+ 
     /**
      * Test of dropStackOperand method, of class Calculator.
      */
     @Test
     public void testDropStackOperand() {
         System.out.println("dropStackOperand");
-        Calculator instance = new Calculator();
-        instance.pushComplex("3+2i");
-        Complex expResult = new Complex(3, 5);
-        instance.pushComplex("3+5i");
-        Complex result = instance.dropStackOperand();
-        assertEquals(expResult, result);
-
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
+        assertEquals(new Complex(5.3, 2), instance.dropStackOperand());
+ 
     }
     
+    /**
+     * Test of overStackOperand method, of class Calculator.
+     */
     @Test
     public void testOverStackOperand() {
        System.out.println("overStackOperand");
-        Calculator instance = new Calculator();
-        instance.pushComplex("3+2i");
-        instance.pushComplex("1+4i");
-        Complex expResult =new Complex(3,2);
-        Complex result = instance.overStackOperand();
-        assertEquals(expResult, result);
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
+        assertEquals(new Complex(3,4), instance.overStackOperand());
+    }
+    
+    /**
+     * Test of clearStack method, of class Calculator.
+     */
+    @Test
+    public void testClearStack() {
+        System.out.println("clearStack");
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
+        instance.clearStack();
+        assertTrue(instance.getStack().isEmpty());
     }
 }

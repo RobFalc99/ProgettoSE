@@ -115,7 +115,7 @@ public class Stack<E> {
     }
     
     /**
-     * Copy the second last as the first in the collection
+     * Copy the second last as the last in the collection
      *
      * @return The copied element
      */
