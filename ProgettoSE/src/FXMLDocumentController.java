@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class FXMLDocumentController implements Initializable {
@@ -68,6 +70,18 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    private void insertOperand() {
+        String operand = txtFieldOperand.getText();
+        if (operand.matches("[" + "0123456789i.,+-" + "]+")) {
+            calculator.pushComplex(operand);
+            txtFieldOperand.clear();
+            complexOperand.clear();
+            complexOperand.addAll(calculator.getStack().getList());
+        } else {
+            popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
+        }
+    }
+
     @FXML
     private void commitOperation(ActionEvent event) {
         if ("+".equals(choiceBoxOperation.getValue())) {
@@ -115,14 +129,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void commitOperand(ActionEvent event) {
-        String operand = txtFieldOperand.getText();
-        if (operand.matches("[" + "0123456789i.,+-" + "]+")) {
-            calculator.pushComplex(operand);
-            txtFieldOperand.clear();
-            stackOperand.getItems().setAll(calculator.getStack().getList());
-        } else {
-            popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
-        }
+        insertOperand();
     }
 
     @FXML
@@ -176,7 +183,6 @@ public class FXMLDocumentController implements Initializable {
         a.showAndWait();
     }
 
-    
     @FXML
     private void addAction(ActionEvent event) {
         if (complexOperand.size() >= 2) {
@@ -210,10 +216,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void divAction(ActionEvent event) {
-        if (complexOperand.size() >= 2) {
-            calculator.divComplex();
+        if (!calculator.getStack().top().equals(new Complex(0))) {
+            if (complexOperand.size() >= 2) {
+                calculator.divComplex();
+            } else {
+                popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
+            }
         } else {
-            popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
+            popUp(AlertType.ERROR, "Error", "Impossible to execute division", "You are trying to divide by zero");
         }
         stackOperand.getItems().setAll(calculator.getStack().getList());
     }
@@ -228,7 +238,6 @@ public class FXMLDocumentController implements Initializable {
         stackOperand.getItems().setAll(calculator.getStack().getList());
     }
 
-    
     @FXML
     private void overAction(ActionEvent event) {
         if (complexOperand.size() >= 2) {
@@ -238,7 +247,7 @@ public class FXMLDocumentController implements Initializable {
         } else {
             popUp(AlertType.ERROR, "Error", "Not enough operands", "You can't do the over beacuse there are less than 2 operand ");
         }
-        
+
     }
 
     @FXML
@@ -249,6 +258,13 @@ public class FXMLDocumentController implements Initializable {
             popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less or more  than 1 operands entered");
         }
         stackOperand.getItems().setAll(calculator.getStack().getList());
+    }
+
+    @FXML
+    private void onEnterAction(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            insertOperand();
+        }
     }
 
 }

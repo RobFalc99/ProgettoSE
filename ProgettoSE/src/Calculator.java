@@ -39,6 +39,9 @@ public class Calculator {
      */
     public Complex parse(String s) {
         ComplexFormat cf = new ComplexFormat();
+        if (s.equals("0")){
+            return new Complex(0);
+        }
         if (s.equals("i")) {
             s = "0+i";
         }

@@ -23,7 +23,7 @@ public class Complex extends org.apache.commons.math3.complex.Complex {
     public String toString() {
         String comp = "";
         if (this.getReal() == 0 && this.getImaginary() == 0) {
-            comp += "0+i";
+            comp += "0";
             return comp;
         }
         if (this.getReal() != 0) {
