@@ -176,42 +176,79 @@ public class FXMLDocumentController implements Initializable {
         a.showAndWait();
     }
 
-
+    
     @FXML
     private void addAction(ActionEvent event) {
+        if (complexOperand.size() >= 2) {
+            calculator.addComplex();
+        } else {
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
+        }
+        txtFieldOperand.clear();
+        stackOperand.getItems().setAll(calculator.getStack().getList());
     }
 
     @FXML
     private void subAction(ActionEvent event) {
+        if (complexOperand.size() >= 2) {
+            calculator.subComplex();
+        } else {
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
+        }
+        stackOperand.getItems().setAll(calculator.getStack().getList());
     }
 
     @FXML
     private void mulAction(ActionEvent event) {
+        if (complexOperand.size() >= 2) {
+            calculator.mulComplex();
+        } else {
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
+        }
+        stackOperand.getItems().setAll(calculator.getStack().getList());
     }
 
     @FXML
     private void divAction(ActionEvent event) {
+        if (complexOperand.size() >= 2) {
+            calculator.divComplex();
+        } else {
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than 2 operands entered");
+        }
+        stackOperand.getItems().setAll(calculator.getStack().getList());
     }
 
     @FXML
     private void sqrtAction(ActionEvent event) {
+        if (complexOperand.size() >= 1) {
+            calculator.sqrtComplex();
+        } else {
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less or more  than 1 operands entered");
+        }
+        stackOperand.getItems().setAll(calculator.getStack().getList());
     }
 
-
+    
     @FXML
     private void overAction(ActionEvent event) {
-          if(complexOperand.size()>=2){
+        if (complexOperand.size() >= 2) {
             calculator.overStackOperand();
             complexOperand.clear();
             complexOperand.addAll(calculator.getStack().getList());
+        } else {
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "You can't do the over beacuse there are less than 2 operand ");
         }
-        else {
-            popUp(AlertType.ERROR,"Error","Not enough operands","You can't do the over beacuse there are less than 2 operand ");
-        }
+        
     }
 
     @FXML
     private void invSignAction(ActionEvent event) {
+        if (complexOperand.size() >= 1) {
+            calculator.invSignComplex();
+        } else {
+            popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less or more  than 1 operands entered");
+        }
+        stackOperand.getItems().setAll(calculator.getStack().getList());
     }
 
 }

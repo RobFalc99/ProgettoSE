@@ -113,6 +113,12 @@ public class Stack<E> {
         E res = list.pop();
         return res;
     }
+    
+    /**
+     * Copy the second last as the first in the collection
+     *
+     * @return The copied element
+     */
      public E overOperand(){
        E secondLast = list.get(1);
        list.push(secondLast);

@@ -1,4 +1,5 @@
 
+import java.util.LinkedList;
 import org.apache.commons.math3.complex.Complex;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -133,6 +134,34 @@ public class StackTest {
         Complex expResult = new Complex(2.1, 4.3);
         instance.swapOperand();
         Complex result = instance.top();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of dropOperand method, of class Stack.
+     */
+    @Test
+    public void testDropOperand() {
+        System.out.println("dropOperand");
+        Stack<Complex> instance = new Stack();
+        Complex expResult = new Complex(3,4);
+        instance.push(expResult);
+        Complex result = instance.dropOperand();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of overOperand method, of class Stack.
+     */
+    @Test
+    public void testOverOperand() {
+        System.out.println("overOperand");
+        Stack<Complex> instance = new Stack();
+        Complex expResult = new Complex(3,4);
+        Complex second = new Complex(2,1);
+        instance.push(expResult);
+        instance.push(second);
+        Object result = instance.overOperand();
         assertEquals(expResult, result);
     }
 
