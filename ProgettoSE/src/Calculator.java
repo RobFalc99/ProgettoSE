@@ -4,12 +4,14 @@ import org.apache.commons.math3.complex.ComplexFormat;
 public class Calculator {
 
     private Stack<Complex> stack;
+    private Variables variables;
 
     /**
      * An empty constructor
      */
     public Calculator() {
         stack = new Stack<>();
+        variables = new Variables();
     }
 
     /**
@@ -20,6 +22,7 @@ public class Calculator {
      */
     public Calculator(Stack<Complex> stack) {
         this.stack = stack;
+        variables = new Variables();
     }
 
     /**
@@ -30,6 +33,16 @@ public class Calculator {
     public Stack<Complex> getStack() {
         return stack;
     }
+
+    /**
+     * Getter of the variables attribute
+     *
+     * @return The variables hash map attribute
+     */
+    public Variables getVariables() {
+        return variables;
+    }
+    
 
     /**
      * Parse a string to a Complex number
