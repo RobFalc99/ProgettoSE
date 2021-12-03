@@ -104,9 +104,9 @@ public class Calculator {
      * @return The Complex number pushed into the Stack
      */
     public Complex subComplex() {
-        Complex c1 = stack.secondLast();
-        Complex c2 = stack.top();
-        Complex res = new Complex(c1.subtract(c2));
+        Complex c1 = stack.pop();
+        Complex c2 = stack.pop();
+        Complex res = new Complex(c2.subtract(c1));
         stack.push(res);
         return res;
     }
@@ -119,9 +119,9 @@ public class Calculator {
      * @return The Complex number pushed into the Stack
      */
     public Complex mulComplex() {
-        Complex c1 = stack.secondLast();
-        Complex c2 = stack.top();
-        Complex res = new Complex(c1.multiply(c2));
+        Complex c1 = stack.pop();
+        Complex c2 = stack.pop();
+        Complex res = new Complex(c2.multiply(c1));
         stack.push(res);
         return res;
     }
@@ -143,9 +143,9 @@ public class Calculator {
      * @return The Complex number pushed into the Stack
      */
     public Complex addComplex() {
-        Complex c1 = stack.top();
-        Complex c2 = stack.secondLast();
-        Complex res = new Complex(c1.add(c2));
+        Complex c1 = stack.pop();
+        Complex c2 = stack.pop();
+        Complex res = new Complex(c2.add(c1));
         stack.push(res);
         return res;
     }
@@ -157,8 +157,8 @@ public class Calculator {
      * @return The Complex number pushed into the Stack
      */
     public Complex divComplex() {
-        Complex c1 = stack.top();
-        Complex c2 = stack.secondLast();
+        Complex c1 = stack.pop();
+        Complex c2 = stack.pop();
         Complex res = new Complex(c2.divide(c1));
         stack.push(res);
         return res;
@@ -178,7 +178,7 @@ public class Calculator {
      * @return The Complex number pushed into the Stack
      */
     public Complex sqrtComplex() {
-        Complex c1 = stack.top();
+        Complex c1 = stack.pop();
         Complex res = new Complex(c1.sqrt());
         stack.push(res);
         return res;
@@ -191,7 +191,7 @@ public class Calculator {
      * @return The Complex number pushed into the Stack
      */
     public Complex invSignComplex() {
-        Complex c1 = stack.top();
+        Complex c1 = stack.pop();
         Complex res = new Complex(c1.negate());
         stack.push(res);
         return res;
