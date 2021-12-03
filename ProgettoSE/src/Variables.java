@@ -62,7 +62,12 @@ public class Variables extends HashMap<String,Complex>{
         return result;
     }
     
-    
+    /**
+     * Changes the value associated with the passed key with the difference between the complex passed and the Complex value associated to the passed key
+     * @param s The input String
+     * @param c The input Complex
+     * @return A Complex that is the difference of the passed complex and the complex value associated to the input string
+     */
     public Complex subValue(String s, Complex c) {
         Complex x = this.get(s);
         Complex total = x.subtract(c);
