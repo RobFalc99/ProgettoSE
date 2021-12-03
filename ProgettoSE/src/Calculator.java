@@ -205,6 +205,13 @@ public class Calculator {
     public Complex dropStackOperand() {
         return stack.dropOperand();
     }
+    
+    
+    /**
+     * Copy the last element in the stack
+     *
+     * @return The Complex number pushed into the Stack
+     */
     public Complex overStackOperand(){
           Complex ret=stack.overOperand();
           return ret;
@@ -219,7 +226,7 @@ public class Calculator {
     public Complex pushVariable(String var){
         Complex c = stack.top();
         Complex ret = null;
-        //ret = variables.setVariable(var, c);
+        ret = new Complex(variables.setVariable(var, c));
         return ret;
     }
     
