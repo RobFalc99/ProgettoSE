@@ -1,4 +1,4 @@
-
+import org.apache.commons.math3.complex.Complex;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,9 +27,16 @@ public class Variables extends HashMap<String,Complex>{
         });
     }
     
+    /**
+     *
+     * @param s The input String
+     * @param c The input Complex
+     * @return The input Complex added to hashMap
+     */
+    public Complex setVariables (String s, Complex c){
+        this.replace(s, c);
+        return c;
+    }
     
-    
-    
-    
-    
+     
 }

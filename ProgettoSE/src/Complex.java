@@ -23,7 +23,7 @@ public class Complex extends org.apache.commons.math3.complex.Complex {
 
     @Override
     public String toString() {
-        DecimalFormat formatter = new DecimalFormat("#,###.#####");
+        DecimalFormat formatter = new DecimalFormat();
         String comp = "";
         if (this.getReal() == 0 && this.getImaginary() == 0) {
             comp += "0";
