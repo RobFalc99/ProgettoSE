@@ -51,5 +51,16 @@ public class VariablesTest {
         instance.setVariables(key, value);
         assertEquals(value, instance.get(key));
     }
+
+    /**
+     * Test of addValue method, of class Variables.
+     */
+    @Test
+    public void testAddValue() {
+        System.out.println("addValue");
+        instance.setVariables(key, value);
+        Complex result = instance.addValue(key, value);
+        assertEquals(result, instance.get(key));
+    }
     
 }

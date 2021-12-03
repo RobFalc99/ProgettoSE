@@ -38,5 +38,18 @@ public class Variables extends HashMap<String,Complex>{
         return c;
     }
     
+    /**
+     * Changes the value associated with the passed key with the sum between the complex passed and the Complex value associated to the passed key
+     * @param s The input String
+     * @param c The input Complex
+     * @return A Complex that is the sum of the passed complex and the complex value associated to the input string
+     */
+    public Complex addValue (String s, Complex c){
+        Complex c1 = this.get(s);
+        Complex result= c.add(c1);
+        this.replace(s, result);
+        return result;
+    }
+    
      
 }
