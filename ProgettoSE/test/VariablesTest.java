@@ -72,5 +72,17 @@ public class VariablesTest {
         Complex result = instance.addValue(key, value);
         assertEquals(result, instance.get(key));
     }
+  
+
+    /**
+     * Test of subValue method, of class Variables.
+     */
+    @Test
+    public void testSubValue() {
+        System.out.println("subValue");
+        instance.setVariable(key, value);
+        Complex result = instance.subValue(key,value);
+        assertEquals(instance.get(key), result);
+    }
     
 }
