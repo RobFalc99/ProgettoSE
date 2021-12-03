@@ -218,22 +218,22 @@ public class Calculator {
     /**
      * Sets a variable's value as the last element in the stack
      *
-     * @param var The variable name
+     * @param key The variable name
      * @return Complex saved in the variable
      */
-    public Complex pushVariable(String var) {
+    public Complex pushVariable(String key) {
         Complex ret = stack.top();
-        return new Complex(variables.setVariable(var, ret));
+        return new Complex(variables.setVariable(key, ret));
     }
 
     /**
      * Loads a variable's value as an operand in the stack
      *
-     * @param var The variable name
+     * @param key The variable name
      * @return Complex pushed into the stack
      */
-    public Complex loadVariable(String var) {
-        Complex ret = new Complex(variables.getVariable(var));
+    public Complex loadVariable(String key) {
+        Complex ret = new Complex(variables.getVariable(key));
         stack.push(ret);
         return ret;
     }
