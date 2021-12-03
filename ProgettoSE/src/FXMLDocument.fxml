@@ -16,7 +16,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <SplitPane dividerPositions="0.5859969558599696" prefHeight="438.0" prefWidth="659.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.6432160804020101" prefHeight="438.0" prefWidth="659.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
@@ -33,7 +33,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="73.0" prefWidth="463.0" spacing="20.0">
                                        <children>
-                                          <Label prefHeight="17.0" prefWidth="133.0" text="Inserire un operando" />
+                                          <Label prefHeight="21.0" prefWidth="144.0" text="Inserire un operando" />
                                           <TextField fx:id="txtFieldOperand" alignment="CENTER" minHeight="-Infinity" minWidth="160.0" onKeyPressed="#onEnterAction" prefHeight="31.0" prefWidth="178.0" promptText="Es. 5,3+2,6i  or  0+4i" />
                                           <Button fx:id="btnCommitOperand" mnemonicParsing="false" onAction="#commitOperand" text="Commit" />
                                        </children>
@@ -69,7 +69,7 @@
                                     <HBox alignment="CENTER" prefHeight="106.0" prefWidth="463.0" spacing="20.0">
                                        <children>
                                           <Label text="Inserire operazione su variabile" />
-                                          <TextField fx:id="txtFieldVariable" alignment="CENTER" onKeyPressed="#onEnterVariableAction" promptText="Es. &gt;A, &lt;B, +C, -D" />
+                                          <TextField fx:id="txtFieldVariable" alignment="CENTER" onKeyPressed="#onEnterVariableAction" prefHeight="31.0" prefWidth="170.0" promptText="Es. &gt;A, &lt;B, +C, -D" />
                                           <Button fx:id="btnCommitVariable" mnemonicParsing="false" onAction="#commitVariable" text="Commit" />
                                        </children>
                                        <VBox.margin>
@@ -85,7 +85,7 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <ListView fx:id="stackOperand" prefHeight="436.0" prefWidth="269.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                              <ListView fx:id="stackOperand" layoutX="17.0" prefHeight="418.0" prefWidth="299.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                            </children>
                         </AnchorPane>
                     </items>
