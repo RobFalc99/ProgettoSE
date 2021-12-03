@@ -209,5 +209,31 @@ public class Calculator {
           Complex ret=stack.overOperand();
           return ret;
       }
+    
+    /**
+     * Set a variable value as the last element in the stack
+     *
+     * @param var   The variable name
+     * @return Complex saved in the variable
+     */
+    public Complex pushVariable(String var){
+        Complex c = stack.top();
+        Complex ret = null;
+        //ret = variables.setVariable(var, c);
+        return ret;
+    }
+    
+    /**
+     * Load a variable value as an operand in the stack
+     *
+     * @param var   The variable name
+     * @return Complex pushed into the stack
+     */
+    public Complex loadVariable(String var){
+        Complex c = null;
+        //c = variables.getVariable();
+        stack.push(c);
+        return c;
+    }
 
 }
