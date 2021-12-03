@@ -43,13 +43,24 @@ public class VariablesTest {
     }
 
     /**
-     * Test of setVariable method, of class Variables.
+     * Test of setVariables method, of class Variables.
      */
     @Test
     public void testSetVariables() {
         System.out.println("setVariables");
         instance.setVariable(key, value);
         assertEquals(value, instance.get(key));
+    }
+
+
+    /**
+     * Test of getVariable method, of class Variables.
+     */
+    @Test
+    public void testGetVariable() {   
+        System.out.println("getVariable");
+        instance.setVariable(key, value);
+        assertEquals(value,instance.getVariable(key));
     }
     
 }

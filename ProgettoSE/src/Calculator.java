@@ -238,7 +238,7 @@ public class Calculator {
      */
     public Complex loadVariable(String var){
         Complex c = null;
-        //c = variables.getVariable();
+        c = new Complex(variables.getVariable(var));
         stack.push(c);
         return c;
     }

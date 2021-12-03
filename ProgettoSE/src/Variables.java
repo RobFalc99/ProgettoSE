@@ -28,15 +28,26 @@ public class Variables extends HashMap<String,Complex>{
     }
     
     /**
+     * Set the value of a variable
      *
      * @param s The input String
      * @param c The input Complex
      * @return The input Complex added to hashMap
      */
-    public Complex setVariable (String s, Complex c){
+    public Complex setVariable(String s, Complex c){
         this.replace(s, c);
         return c;
     }
     
+    /**
+     *  Return the value associated to a variable
+     * 
+     * @param s The input String
+     * @return The complex associated to the string s
+     */
+    public Complex getVariable(String s){
+       return this.get(s);
+    }
      
+    
 }
