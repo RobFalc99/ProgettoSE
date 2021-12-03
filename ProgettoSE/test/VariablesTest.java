@@ -48,17 +48,27 @@ public class VariablesTest {
     @Test
     public void testSetVariables() {
         System.out.println("setVariables");
-        instance.setVariables(key, value);
+        instance.setVariable(key, value);
         assertEquals(value, instance.get(key));
     }
 
+
+    /**
+     * Test of getVariable method, of class Variables.
+     */
+    @Test
+    public void testGetVariable() {   
+        System.out.println("getVariable");
+        instance.setVariable(key, value);
+        assertEquals(value,instance.getVariable(key));
+    }
     /**
      * Test of addValue method, of class Variables.
      */
     @Test
     public void testAddValue() {
         System.out.println("addValue");
-        instance.setVariables(key, value);
+        instance.setVariable(key, value);
         Complex result = instance.addValue(key, value);
         assertEquals(result, instance.get(key));
     }

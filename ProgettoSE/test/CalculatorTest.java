@@ -14,15 +14,15 @@ public class CalculatorTest {
  
     public CalculatorTest() {
     }
- 
+
     @Before
     public void setUp() {
         instance=new Calculator();
         operand1="3+4i";
         operand2="5,3+2i";
     }
- 
- 
+
+    
     /**
      * Test of parse method, of class Calculator.
      */
@@ -169,4 +169,32 @@ public class CalculatorTest {
         instance.clearStack();
         assertTrue(instance.getStack().isEmpty());
     }
+
+    /**
+     * Test of pushVariable method, of class Calculator.
+     */
+    @Test
+    public void testPushVariable() {
+        System.out.println("pushVariable");
+        instance.pushComplex(operand1);
+        instance.pushVariable("A");
+        Complex result = instance.getVariables().get("A");
+        assertEquals(new Complex(3,4), result);
+    }
+
+    /**
+     * Test of loadVariable method, of class Calculator.
+     */
+    @Test
+    public void testLoadVariable() {
+        System.out.println("loadVariable");
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
+        instance.pushVariable("A");
+        instance.dropStackOperand();
+        instance.loadVariable("A");
+        Complex result = instance.getStack().top();
+        assertEquals(new Complex(5.3,2), result);
+    }
+
 }
