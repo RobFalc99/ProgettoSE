@@ -54,6 +54,10 @@ public class FXMLDocumentController implements Initializable {
     private Button btnSqrt;
     @FXML
     private Button btnInvSign;
+    @FXML
+    private TextField txtFieldVariable;
+    @FXML
+    private Button btnCommitVariable;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -201,6 +205,14 @@ public class FXMLDocumentController implements Initializable {
         if (event.getCode() == KeyCode.ENTER) {
             insertOperand();
         }
+    }
+
+    @FXML
+    private void onEnterVariableAction(KeyEvent event) {
+    }
+
+    @FXML
+    private void commitVariable(ActionEvent event) {
     }
 
 }

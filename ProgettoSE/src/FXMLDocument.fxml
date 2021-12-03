@@ -22,7 +22,7 @@
                            <children>
                               <VBox layoutX="289.0" layoutY="85.0" prefHeight="436.0" prefWidth="382.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox alignment="CENTER" prefHeight="122.0" prefWidth="382.0" spacing="35.0">
+                                    <HBox alignment="CENTER" prefHeight="93.0" prefWidth="463.0" spacing="35.0">
                                        <children>
                                           <Button fx:id="btnClear" mnemonicParsing="false" onAction="#clearAction" text="Clear" />
                                           <Button fx:id="btnDup" mnemonicParsing="false" onAction="#dupAction" text="Dup" />
@@ -31,16 +31,16 @@
                                           <Button fx:id="btnOver" layoutX="104.0" layoutY="59.0" mnemonicParsing="false" onAction="#overAction" text="Over" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" prefHeight="156.0" prefWidth="382.0" spacing="20.0">
+                                    <HBox alignment="CENTER" prefHeight="73.0" prefWidth="463.0" spacing="20.0">
                                        <children>
-                                          <Label text="Scegliere un operando" />
-                                          <TextField fx:id="txtFieldOperand" alignment="CENTER" minHeight="-Infinity" minWidth="160.0" onKeyPressed="#onEnterAction" prefHeight="31.0" prefWidth="127.0" promptText="Es. 5,3+2,6i  or  0+4i" />
-                                          <Button fx:id="btnCommitOperand" mnemonicParsing="false" onAction="#commitOperand" text="&gt;" />
+                                          <Label prefHeight="17.0" prefWidth="133.0" text="Inserire un operando" />
+                                          <TextField fx:id="txtFieldOperand" alignment="CENTER" minHeight="-Infinity" minWidth="160.0" onKeyPressed="#onEnterAction" prefHeight="31.0" prefWidth="178.0" promptText="Es. 5,3+2,6i  or  0+4i" />
+                                          <Button fx:id="btnCommitOperand" mnemonicParsing="false" onAction="#commitOperand" text="Commit" />
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" prefHeight="161.0" prefWidth="462.0" spacing="20.0">
+                                    <HBox alignment="CENTER" prefHeight="163.0" prefWidth="463.0" spacing="20.0">
                                        <children>
-                                          <Label text="Scegliere un operando" />
+                                          <Label prefHeight="17.0" prefWidth="169.0" text="Scegliere un'operazione" />
                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                              <children>
                                                 <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addAction" prefHeight="31.0" prefWidth="46.0" text="+" />
@@ -62,6 +62,19 @@
                                              </padding>
                                           </VBox>
                                        </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="106.0" prefWidth="463.0" spacing="20.0">
+                                       <children>
+                                          <Label text="Inserire operazione su variabile" />
+                                          <TextField fx:id="txtFieldVariable" alignment="CENTER" onKeyPressed="#onEnterVariableAction" promptText="Es. &gt;A, &lt;B, +C, -D" />
+                                          <Button fx:id="btnCommitVariable" mnemonicParsing="false" onAction="#commitVariable" text="Commit" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
                                        <padding>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </padding>
