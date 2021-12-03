@@ -67,18 +67,45 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    private void updateView() {
+        txtFieldOperand.clear();
+        txtFieldVariable.clear();
+        complexOperand.clear();
+        complexOperand.addAll(calculator.getStack().getList());
+    }
+
     private void insertOperand() {
         String operand = txtFieldOperand.getText();
         if (operand.matches("[" + "0123456789i.,+-" + "]+")) {
             calculator.pushComplex(operand);
-            txtFieldOperand.clear();
-            complexOperand.clear();
-            complexOperand.addAll(calculator.getStack().getList());
+            updateView();
         } else {
             popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
         }
     }
-    
+
+    private void insertVariable() {
+        String varOperation = txtFieldVariable.getText();
+        if (varOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
+            if (varOperation.charAt(0) == '>') {
+                calculator.pushVariable(varOperation.substring(1).toUpperCase());
+            }
+            if (varOperation.charAt(0) == '<') {
+                calculator.loadVariable(varOperation.substring(1).toUpperCase());
+            }
+            if (varOperation.charAt(0) == '+') {
+                calculator.addToVariable(varOperation.substring(1).toUpperCase());
+            }
+            if (varOperation.charAt(0) == '-') {
+                calculator.subToVariable(varOperation.substring(1).toUpperCase());
+            }
+            updateView();
+        }
+        else {
+            popUp(AlertType.ERROR, "Error", "Not a variable operation", "The entered variable isn't an alphabet letter");
+        }
+    }
+
     private Boolean checkOperationCondition(int minOperands) {
         if (complexOperand.size() >= minOperands) {
             return true;
@@ -95,7 +122,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void clearAction(ActionEvent event) {
-        if(checkOperationCondition(1)){
+        if (checkOperationCondition(1)) {
             complexOperand.clear();
             calculator.clearStack();
         }
@@ -103,28 +130,25 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void dupAction(ActionEvent event) {
-        if(checkOperationCondition(1)){
+        if (checkOperationCondition(1)) {
             calculator.dupStackOperand();
-            complexOperand.clear();
-            complexOperand.addAll(calculator.getStack().getList());
+            updateView();
         }
     }
 
     @FXML
     private void dropAction(ActionEvent event) {
-        if(checkOperationCondition(1)){
+        if (checkOperationCondition(1)) {
             calculator.dropStackOperand();
-            complexOperand.clear();
-            complexOperand.addAll(calculator.getStack().getList());
+            updateView();
         }
     }
 
     @FXML
     private void swapAction(ActionEvent event) {
-        if(checkOperationCondition(2)){
+        if (checkOperationCondition(2)) {
             calculator.swapStackOperand();
-            complexOperand.clear();
-            complexOperand.addAll(calculator.getStack().getList());
+            updateView();
         }
     }
 
@@ -140,8 +164,7 @@ public class FXMLDocumentController implements Initializable {
     private void addAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
             calculator.addComplex();
-            txtFieldOperand.clear();
-            stackOperand.getItems().setAll(calculator.getStack().getList());
+            updateView();
         }
     }
 
@@ -149,8 +172,7 @@ public class FXMLDocumentController implements Initializable {
     private void subAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
             calculator.subComplex();
-            txtFieldOperand.clear();
-            stackOperand.getItems().setAll(calculator.getStack().getList());
+            updateView();
         }
     }
 
@@ -158,8 +180,7 @@ public class FXMLDocumentController implements Initializable {
     private void mulAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
             calculator.mulComplex();
-            txtFieldOperand.clear();
-            stackOperand.getItems().setAll(calculator.getStack().getList());
+            updateView();
         }
     }
 
@@ -168,8 +189,7 @@ public class FXMLDocumentController implements Initializable {
         if (!calculator.getStack().top().equals(new Complex(0))) {
             if (checkOperationCondition(2)) {
                 calculator.divComplex();
-                txtFieldOperand.clear();
-                stackOperand.getItems().setAll(calculator.getStack().getList());
+                updateView();
             }
         } else {
             popUp(AlertType.ERROR, "Error", "Impossible to execute division", "You are trying to divide by zero");
@@ -178,9 +198,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void sqrtAction(ActionEvent event) {
-        if(checkOperationCondition(1)){
+        if (checkOperationCondition(1)) {
             calculator.sqrtComplex();
-            stackOperand.getItems().setAll(calculator.getStack().getList());
+            updateView();
         }
     }
 
@@ -188,7 +208,7 @@ public class FXMLDocumentController implements Initializable {
     private void overAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
             calculator.overStackOperand();
-            stackOperand.getItems().setAll(calculator.getStack().getList());
+            updateView();
         }
     }
 
@@ -196,7 +216,7 @@ public class FXMLDocumentController implements Initializable {
     private void invSignAction(ActionEvent event) {
         if (checkOperationCondition(1)) {
             calculator.invSignComplex();
-            stackOperand.getItems().setAll(calculator.getStack().getList());
+            updateView();
         }
     }
 
@@ -209,10 +229,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void onEnterVariableAction(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            insertVariable();
+        }
     }
 
     @FXML
     private void commitVariable(ActionEvent event) {
+        insertVariable();
     }
 
 }
