@@ -61,11 +61,13 @@ public class Variables extends HashMap<String,Complex>{
         this.replace(s, result);
         return result;
     }
-       public Complex subValue(String s,Complex c){
-        Complex x=this.get(s);
-        Complex total=x.subtract(c);
+    
+    
+    public Complex subValue(String s, Complex c) {
+        Complex x = this.get(s);
+        Complex total = x.subtract(c);
         this.replace(s, total);
-         return total;
-     }
+        return total;
+    }
        
 }

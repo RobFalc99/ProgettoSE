@@ -224,5 +224,18 @@ public class CalculatorTest {
         assertEquals(new Complex(8.3, 6), instance.addToVariable(variable1));
 
     }
+    
+    /**
+     * Test of subToVariable method, of class Calculator.
+     */
+    @Test
+    public void testSubToVariable() {
+        System.out.println("addToVariable");
+        instance.pushComplex(operand1);
+        instance.pushVariable(variable1);
+        instance.pushComplex(operand2);
+        assertEquals(new Complex(-2.3, 2), instance.subToVariable(variable1));
+
+    }
 
 }

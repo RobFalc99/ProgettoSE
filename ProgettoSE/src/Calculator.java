@@ -251,6 +251,15 @@ public class Calculator {
     public Complex addToVariable(String key){
         return new Complex(variables.addValue(key, stack.top()));
     }
+    
+    /**
+     * Update the value of the indicated variable as the difference of the current value of the variable and the last operand in the Stack
+     * @param key The variable to be updated
+     * @return The difference of the current value of the variable and the last operand in the Stack
+     */
+    public Complex subToVariable(String key){
+        return new Complex(variables.subValue(key, stack.top()));
+    }
 
     
     
