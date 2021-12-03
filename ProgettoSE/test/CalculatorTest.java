@@ -1,28 +1,45 @@
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.complex.ComplexFormat;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
  
  
 public class CalculatorTest {
     private Calculator instance;
     private String operand1;
     private String operand2;
- 
+    private String variable1;
+    
     public CalculatorTest() {
     }
- 
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
     @Before
     public void setUp() {
         instance=new Calculator();
         operand1="3+4i";
         operand2="5,3+2i";
+        variable1="A";
     }
- 
- 
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
+    
     /**
      * Test of parse method, of class Calculator.
      */
@@ -169,4 +186,43 @@ public class CalculatorTest {
         instance.clearStack();
         assertTrue(instance.getStack().isEmpty());
     }
+
+    /**
+     * Test of pushVariable method, of class Calculator.
+     */
+    @Test
+    public void testPushVariable() {
+        System.out.println("pushVariable");
+        instance.pushComplex(operand1);
+        instance.pushVariable(variable1);
+        assertEquals(new Complex(3,4), instance.getVariables().get(variable1));
+    }
+
+    /**
+     * Test of loadVariable method, of class Calculator.
+     */
+    @Test
+    public void testLoadVariable() {
+        System.out.println("loadVariable");
+        instance.pushComplex(operand1);
+        instance.pushComplex(operand2);
+        instance.pushVariable(variable1);
+        instance.dropStackOperand();
+        instance.loadVariable(variable1);
+        assertEquals(new Complex(5.3,2), instance.getStack().top());
+    }
+
+    /**
+     * Test of addToVariable method, of class Calculator.
+     */
+    @Test
+    public void testAddToVariable() {
+        System.out.println("addToVariable");
+        instance.pushComplex(operand1);
+        instance.pushVariable(variable1);
+        instance.pushComplex(operand2);
+        assertEquals(new Complex(8.3, 6), instance.addToVariable(variable1));
+
+    }
+
 }
