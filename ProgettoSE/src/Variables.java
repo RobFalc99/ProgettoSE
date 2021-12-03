@@ -79,8 +79,8 @@ public class Variables extends HashMap<String, Complex> {
      * the complex value associated to the input string
      */
     public Complex subValue(String s, Complex c) {
-        Complex x = this.get(s);
-        Complex total = x.subtract(c);
+        Complex c1 = this.get(s);
+        Complex total = c1.subtract(c);
         this.replace(s, total);
         return total;
     }

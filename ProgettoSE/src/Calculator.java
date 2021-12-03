@@ -206,7 +206,7 @@ public class Calculator {
     }
 
     /**
-     * Copies the last element in the stack
+     * Copies the second last element in the stack
      *
      * @return The Complex number pushed into the Stack
      */
@@ -222,10 +222,8 @@ public class Calculator {
      * @return Complex saved in the variable
      */
     public Complex pushVariable(String var) {
-        Complex c = stack.top();
-        Complex ret = null;
-        ret = new Complex(variables.setVariable(var, c));
-        return ret;
+        Complex ret = stack.top();
+        return new Complex(variables.setVariable(var, ret));
     }
 
     /**
@@ -235,10 +233,9 @@ public class Calculator {
      * @return Complex pushed into the stack
      */
     public Complex loadVariable(String var) {
-        Complex c = null;
-        c = new Complex(variables.getVariable(var));
-        stack.push(c);
-        return c;
+        Complex ret = new Complex(variables.getVariable(var));
+        stack.push(ret);
+        return ret;
     }
 
     /**
