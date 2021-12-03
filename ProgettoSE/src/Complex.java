@@ -30,7 +30,7 @@ public class Complex extends org.apache.commons.math3.complex.Complex {
             return comp;
         }
         if (this.getReal() != 0) {
-            comp +=formatter.format(this.getReal());
+            comp += formatter.format(this.getReal());
         }
         if (this.getImaginary() < 0) {
             comp += formatter.format(this.getImaginary()) + "i";

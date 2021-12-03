@@ -18,7 +18,7 @@ public class Stack<E> {
     }
 
     /**
-     * Add a new element at the top of the collection
+     * Adds a new element at the top of the collection
      *
      * @param c The element to add in the collection
      */
@@ -27,7 +27,7 @@ public class Stack<E> {
     }
 
     /**
-     * Remove the last element added into the collection
+     * Removes the last element added into the collection
      *
      * @return The element removed from the collection
      */
@@ -36,7 +36,7 @@ public class Stack<E> {
     }
 
     /**
-     * Return the last element added into the collection
+     * Returns the last element added into the collection
      *
      * @return The element at the top of the collection
      */
@@ -45,7 +45,7 @@ public class Stack<E> {
     }
 
     /**
-     * Return the second last element added into the collection
+     * Returns the second last element added into the collection
      *
      * @return The element after the top of the collection
      */
@@ -54,7 +54,7 @@ public class Stack<E> {
     }
 
     /**
-     * Check if the collection is empty
+     * Checks if the collection is empty
      *
      * @return True if the collection is empty; False otherwise
      */
@@ -63,7 +63,7 @@ public class Stack<E> {
     }
 
     /**
-     * Remove all the elements from the collection
+     * Removes all the elements from the collection
      */
     public void clear() {
         list.clear();
@@ -84,7 +84,7 @@ public class Stack<E> {
     }
 
     /**
-     * Swap the second last element in the collection with the last one
+     * Swaps the second last element in the collection with the last one
      */
     public void swapOperand() {
         E last = list.pop();
@@ -94,7 +94,7 @@ public class Stack<E> {
     }
 
     /**
-     * Add a copy of the last element in the collection
+     * Adds a copy of the last element in the collection
      *
      * @return The added element
      */
@@ -105,7 +105,7 @@ public class Stack<E> {
     }
 
     /**
-     * Remove the last element in the collection
+     * Removes the last element in the collection
      *
      * @return The removed element
      */
@@ -113,15 +113,15 @@ public class Stack<E> {
         E res = list.pop();
         return res;
     }
-    
+
     /**
-     * Copy the second last as the last in the collection
+     * Copies the second last as the last in the collection
      *
      * @return The copied element
      */
-     public E overOperand(){
-       E secondLast = list.get(1);
-       list.push(secondLast);
-       return secondLast;
-   }
+    public E overOperand() {
+        E secondLast = list.get(1);
+        list.push(secondLast);
+        return secondLast;
+    }
 }

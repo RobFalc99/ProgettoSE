@@ -42,17 +42,16 @@ public class Calculator {
     public Variables getVariables() {
         return variables;
     }
-    
 
     /**
-     * Parse a string to a Complex number
+     * Parses a string to a Complex number
      *
      * @param s The input string
      * @return A Complex representing the passed string
      */
     public Complex parse(String s) {
         ComplexFormat cf = new ComplexFormat();
-        if (s.equals("0")){
+        if (s.equals("0")) {
             return new Complex(0);
         }
         if (s.equals("i")) {
@@ -67,10 +66,10 @@ public class Calculator {
         if (!s.contains("i")) {
             s += "+0i";
         }
-        if(s.startsWith("+")){
+        if (s.startsWith("+")) {
             s = s.substring(1, s.length());
         }
-        if(s.startsWith("-") && s.substring(1, s.length()).matches("[" + "0123456789i.," + "]+") && s.endsWith("i")){
+        if (s.startsWith("-") && s.substring(1, s.length()).matches("[" + "0123456789i.," + "]+") && s.endsWith("i")) {
             s = "0-" + s.substring(1, s.length());
             return new Complex(cf.parse(s.replace(".", ",")));
         }
@@ -81,7 +80,7 @@ public class Calculator {
     }
 
     /**
-     * Push a Complex number into the Stack
+     * Pushes a Complex number into the Stack
      *
      * @param s The Complex number, as a string, to be pushed
      */
@@ -91,7 +90,7 @@ public class Calculator {
     }
 
     /**
-     * Swap the second last Complex in the Stack with the last one
+     * Swaps the second last Complex in the Stack with the last one
      */
     public void swapStackOperand() {
         stack.swapOperand();
@@ -127,7 +126,7 @@ public class Calculator {
     }
 
     /**
-     * Push a copy of the last Complex in the Stack
+     * Pushes a copy of the last Complex in the Stack
      *
      * @return The Complex number pushed into the Stack
      */
@@ -165,7 +164,7 @@ public class Calculator {
     }
 
     /**
-     * Remove all the Complex numbers from the Stack
+     * Removes all the Complex numbers from the Stack
      */
     public void clearStack() {
         stack.clear();
@@ -198,72 +197,72 @@ public class Calculator {
     }
 
     /**
-     * Remove the last Complex number from the Stack
+     * Removes the last Complex number from the Stack
      *
      * @return The Complex number pushed into the Stack
      */
     public Complex dropStackOperand() {
         return stack.dropOperand();
     }
-    
-    
+
     /**
-     * Copy the last element in the stack
+     * Copies the last element in the stack
      *
      * @return The Complex number pushed into the Stack
      */
-    public Complex overStackOperand(){
-          Complex ret=stack.overOperand();
-          return ret;
-      }
-    
+    public Complex overStackOperand() {
+        Complex ret = stack.overOperand();
+        return ret;
+    }
+
     /**
-     * Set a variable value as the last element in the stack
+     * Sets a variable's value as the last element in the stack
      *
-     * @param var   The variable name
+     * @param var The variable name
      * @return Complex saved in the variable
      */
-    public Complex pushVariable(String var){
+    public Complex pushVariable(String var) {
         Complex c = stack.top();
         Complex ret = null;
         ret = new Complex(variables.setVariable(var, c));
         return ret;
     }
-    
+
     /**
-     * Load a variable value as an operand in the stack
+     * Loads a variable's value as an operand in the stack
      *
-     * @param var   The variable name
+     * @param var The variable name
      * @return Complex pushed into the stack
      */
-    public Complex loadVariable(String var){
+    public Complex loadVariable(String var) {
         Complex c = null;
         c = new Complex(variables.getVariable(var));
         stack.push(c);
         return c;
     }
-    
+
     /**
-     * Update the value of the indicated variable as the sum of the current value of the variable and the last operand in the Stack
-     * @param key The variable to be updated
-     * @return The sum of the current value of the variable and the last operand in the Stack
+     * Update the value of the indicated variable as the sum of the current
+     * value of the variable and the last operand in the Stack
+     *
+     * @param key The variable's name to be updated
+     * @return The sum between the current value of the variable and the last
+     * operand in the Stack
      */
-    public Complex addToVariable(String key){
+    public Complex addToVariable(String key) {
         return new Complex(variables.addValue(key, stack.top()));
     }
-    
+
     /**
-     * Update the value of the indicated variable as the difference of the current value of the variable and the last operand in the Stack
-     * @param key The variable to be updated
-     * @return The difference of the current value of the variable and the last operand in the Stack
+     * Update the value of the indicated variable as the difference of the
+     * current value of the variable and the last operand in the Stack
+     *
+     * @param key The variable's name to be updated
+     * @return The difference between the current value of the variable and the
+     * last operand in the Stack
      */
-    public Complex subToVariable(String key){
+    public Complex subToVariable(String key) {
         return new Complex(variables.subValue(key, stack.top()));
     }
-
-    
-    
-
-  
 
 }
