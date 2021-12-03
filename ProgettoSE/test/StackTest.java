@@ -1,14 +1,11 @@
 
 import org.apache.commons.math3.complex.Complex;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StackTest {
-    
+
     private Complex operand1;
     private Complex operand2;
     private Stack<Complex> instance;
@@ -16,23 +13,11 @@ public class StackTest {
     public StackTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
-        operand1 = new Complex(2.1,4.3);
-        operand2 = new Complex(5,6);
+        operand1 = new Complex(2.1, 4.3);
+        operand2 = new Complex(5, 6);
         instance = new Stack<>();
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -89,7 +74,7 @@ public class StackTest {
         assertTrue(instance.isEmpty());
     }
 
-     /**
+    /**
      * Test of secondLast method, of class Stack.
      */
     @Test
@@ -144,7 +129,7 @@ public class StackTest {
     @Test
     public void testOverOperand() {
         System.out.println("overOperand");
-        Complex second = new Complex(2,1);
+        Complex second = new Complex(2, 1);
         instance.push(operand1);
         instance.push(second);
         Object result = instance.overOperand();
