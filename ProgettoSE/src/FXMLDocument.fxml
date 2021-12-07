@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="800.0" maxWidth="1000.0" minHeight="600.0" minWidth="800.0" prefHeight="573.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="800.0" maxWidth="1000.0" minHeight="600.0" minWidth="800.0" prefHeight="573.0" prefWidth="661.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
     <children>
       <SplitPane dividerPositions="0.7425569176882661" layoutX="248.0" layoutY="174.0" orientation="VERTICAL" prefHeight="573.0" prefWidth="661.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
