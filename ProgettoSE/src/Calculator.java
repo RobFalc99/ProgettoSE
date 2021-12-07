@@ -222,7 +222,7 @@ public class Calculator {
      * @return Complex saved in the variable
      */
     public Complex pushVariable(String key) {
-        Complex ret = stack.top();
+        Complex ret = stack.pop();
         return new Complex(variables.setVariable(key, ret));
     }
 
@@ -247,7 +247,7 @@ public class Calculator {
      * operand in the Stack
      */
     public Complex addToVariable(String key) {
-        return new Complex(variables.addValue(key, stack.top()));
+        return new Complex(variables.addValue(key, stack.pop()));
     }
 
     /**
@@ -259,7 +259,7 @@ public class Calculator {
      * last operand in the Stack
      */
     public Complex subToVariable(String key) {
-        return new Complex(variables.subValue(key, stack.top()));
+        return new Complex(variables.subValue(key, stack.pop()));
     }
 
 }
