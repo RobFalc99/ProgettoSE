@@ -12,6 +12,8 @@ public class ProjectApplication extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
 
         Scene scene = new Scene(root);
+        
+        Application.setUserAgentStylesheet(getClass().getResource("Template.css").toExternalForm());
 
         stage.setScene(scene);
         stage.show();
