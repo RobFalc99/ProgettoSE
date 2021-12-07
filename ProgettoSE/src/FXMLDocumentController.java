@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -55,6 +56,20 @@ public class FXMLDocumentController implements Initializable {
     private TextField txtFieldVariable;
     @FXML
     private Button btnCommitVariable;
+    @FXML
+    private TextField txtFieldUsOperationName;
+    @FXML
+    private TextField txtFieldUsOperationSeq;
+    @FXML
+    private Button btnInsertUserOperation;
+    @FXML
+    private ChoiceBox<String> choiceBoxUserOperations;
+    @FXML
+    private Button btnLoadOnTxtFieldUsOperationSeq;
+    @FXML
+    private Button btnDeleteUserOperation;
+    @FXML
+    private Button btnCommitUserOperation;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -233,6 +248,26 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void commitVariable(ActionEvent event) {
         insertVariable();
+    }
+
+    @FXML
+    private void onEnterUserOperationAction(KeyEvent event) {
+    }
+
+    @FXML
+    private void newUserOperationAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void loadOnTxtFieldUsOperationSeqAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void deleteUserOperationAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void commitUserOperationAction(ActionEvent event) {
     }
 
 }
