@@ -52,12 +52,14 @@ public class Invoker {
      * Calls the execute method of the userOperations associated with the name of the string passed as a parameter
      * @param name The name of the userOperations
      * @param calculator The calculator object that you need to pass to execute
+     * @return True if the execute ends correctly, False otherwise
      */
-    public void execute (String name, Calculator calculator){
+    public Boolean execute (String name, Calculator calculator){
         for (UserOperation u: userOperations){
             if (u.getName().equals(name))
-                u.execute(calculator);
+                return u.execute(calculator);
         }
+        return false;
     }
     
     

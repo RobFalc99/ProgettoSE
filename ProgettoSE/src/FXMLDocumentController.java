@@ -114,8 +114,7 @@ public class FXMLDocumentController implements Initializable {
         if (varOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
             if (varOperation.charAt(0) == '<') {
                 calculator.loadVariable(varOperation.substring(1).toUpperCase());
-            }
-            else if (checkOperationCondition(1)) {
+            } else if (checkOperationCondition(1)) {
                 if (varOperation.charAt(0) == '>') {
                     calculator.pushVariable(varOperation.substring(1).toUpperCase());
                 }
@@ -267,20 +266,17 @@ public class FXMLDocumentController implements Initializable {
 
     private void insertUserOperation() {
         String userOperationName = txtFieldUsOperationName.getText();
-        if(definedUserOperations.contains(userOperationName)){
+        if (definedUserOperations.contains(userOperationName)) {
             popUp(AlertType.ERROR, "ERROR", "The new user operation can't be defined", "There's already an user operation with the same name");
             return;
         }
         ArrayList<String> operations = new ArrayList<>();
         Scanner scan = new Scanner(txtFieldUsOperationSeq.getText());
+        scan.useDelimiter(" ");
         ArrayList<String> correctOperations = new ArrayList<>(Arrays.asList("+", "-", "*", "/", "+-", "sqrt", "clear", "drop", "swap", "over", "dup"));
         while (scan.hasNext()) {
             String newOperation = scan.next();
-            if (correctOperations.contains(newOperation)) {
-                operations.add(newOperation);
-            } else if (newOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
-                operations.add(newOperation);
-            } else if (newOperation.matches("[" + "0123456789i.,+-" + "]")) {
+            if (correctOperations.contains(newOperation) || newOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]") || newOperation.matches("[" + "0123456789i.,+-" + "]") || newOperation.matches("(\\d,\\d)|(\\d,\\di)|(\\d,\\d[+-]\\d,\\di)|(\\d[+-]\\d,\\di)|(\\d[+-]\\di)")) {
                 operations.add(newOperation);
             } else {
                 popUp(AlertType.ERROR, "Error", "Impossible to define the user operation", "The user operation contains the not supported operation: " + newOperation);
@@ -315,37 +311,47 @@ public class FXMLDocumentController implements Initializable {
         UserOperation toRemoveUO = null;
         if (definedUserOperations.contains(userOperationName)) {
             ArrayList<UserOperation> usOp = invoker.getUserOperations();
-            for (UserOperation uO : usOp) 
-                if (uO.getName().equals(userOperationName)) 
+            for (UserOperation uO : usOp) {
+                if (uO.getName().equals(userOperationName)) {
                     toRemoveUO = uO;
+                }
+            }
         }
         if (toRemoveUO != null) {
             invoker.removeUserOperation(toRemoveUO);
             updateView();
             definedUserOperations.remove(userOperationName);
             popUp(AlertType.CONFIRMATION, "SUCCESS", "The old user operation has been removed with success", "The old user operation\nName: " + toRemoveUO.getName() + "\nOperations: " + toRemoveUO.getOperations());
-        }else
+        } else {
             popUp(AlertType.ERROR, "ERROR", "The new user operation defined doesn't exists", "The user operation: " + userOperationName + " isn't defined yet");
+        }
     }
 
     @FXML
     private void commitUserOperationAction(ActionEvent event) {
         String userOperationName = choiceBoxUserOperations.getSelectionModel().getSelectedItem();
         UserOperation toCommitUO = null;
-         if (definedUserOperations.contains(userOperationName)) {
+        if (definedUserOperations.contains(userOperationName)) {
             ArrayList<UserOperation> usOp = invoker.getUserOperations();
-            for (UserOperation uO : usOp) 
-                if (uO.getName().equals(userOperationName)) 
+            for (UserOperation uO : usOp) {
+                if (uO.getName().equals(userOperationName)) {
                     toCommitUO = uO;
+                }
+            }
         }
-        
-          if (toCommitUO != null) {
-            invoker.execute(userOperationName,calculator);
-            updateView();
-            choiceBoxUserOperations.getSelectionModel().clearSelection();
-            popUp(AlertType.CONFIRMATION, "SUCCESS", "The old user operation was successful", "The old user operation\nName: " + toCommitUO.getName() + "\nOperations: " + toCommitUO.getOperations());
-        }else
-            popUp(AlertType.ERROR, "ERROR", "The new user operation defined doesn't exists", "The user operation: " + userOperationName + " isn't defined yet");
+
+        if (toCommitUO != null) {
+            Boolean res = invoker.execute(userOperationName, calculator);
+            if (res == true) {
+                updateView();
+                choiceBoxUserOperations.getSelectionModel().clearSelection();
+                popUp(AlertType.CONFIRMATION, "SUCCESS", "The user operation was successful runned", "The user operation\nName: " + toCommitUO.getName() + "\nOperations: " + toCommitUO.getOperations());
+            }else
+                popUp(AlertType.ERROR, "ERROR", "The user operation doesn't end correctly", "The user operation: " + userOperationName);
+
+        } else {
+            popUp(AlertType.ERROR, "ERROR", "The user operation defined doesn't exists", "The user operation: " + userOperationName + " isn't defined yet");
+        }
     }
 
 }
