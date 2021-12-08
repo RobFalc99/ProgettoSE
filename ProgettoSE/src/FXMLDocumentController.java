@@ -112,12 +112,12 @@ public class FXMLDocumentController implements Initializable {
     private void insertVariable() {
         String varOperation = txtFieldVariable.getText();
         if (varOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
-            if (checkOperationCondition(1)) {
+            if (varOperation.charAt(0) == '<') {
+                calculator.loadVariable(varOperation.substring(1).toUpperCase());
+            }
+            else if (checkOperationCondition(1)) {
                 if (varOperation.charAt(0) == '>') {
                     calculator.pushVariable(varOperation.substring(1).toUpperCase());
-                }
-                if (varOperation.charAt(0) == '<') {
-                    calculator.loadVariable(varOperation.substring(1).toUpperCase());
                 }
                 if (varOperation.charAt(0) == '+') {
                     calculator.addToVariable(varOperation.substring(1).toUpperCase());
@@ -125,8 +125,8 @@ public class FXMLDocumentController implements Initializable {
                 if (varOperation.charAt(0) == '-') {
                     calculator.subToVariable(varOperation.substring(1).toUpperCase());
                 }
-                updateView();
             }
+            updateView();
         } else {
             popUp(AlertType.ERROR, "Error", "Not a variable operation", "The entered variable isn't an alphabet letter");
         }
