@@ -56,8 +56,29 @@ public class InvokerTest {
     public void tearDown() {
     }
 
+    
     /**
-     * Test of execute method, of class Invoker.
+     * Test of addUserOperation method, of class Invoker.
+     */
+    @Test
+    public void testAddUserOperation() {
+        System.out.println("addUserOperation");
+        Boolean result=instance.addUserOperation(uo1);
+        assertEquals(instance.getUserOperations().contains(uo1), result);
+    }
+
+    /**
+     * Test of removeUserOperation method, of class Invoker.
+     */
+    @Test
+    public void testRemoveUserOperation() {
+        System.out.println("removeUserOperation");
+        instance.addUserOperation(uo1);
+        Boolean result=instance.removeUserOperation(uo1);
+        assertEquals(!instance.getUserOperations().contains(uo1), result);
+    }
+     /**
+     * Test of execute method, of class UserOperation.
      */
     @Test
     public void testExecute() {

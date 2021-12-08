@@ -1,6 +1,9 @@
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -70,8 +73,10 @@ public class FXMLDocumentController implements Initializable {
     private Button btnDeleteUserOperation;
     @FXML
     private Button btnCommitUserOperation;
-    
+
     private Invoker invoker;
+
+    private ObservableList<String> definedUserOperations;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -80,6 +85,9 @@ public class FXMLDocumentController implements Initializable {
         stackOperand.setItems(complexOperand);
         invoker = new Invoker();
 
+        definedUserOperations = FXCollections.observableArrayList();
+        choiceBoxUserOperations.setItems(definedUserOperations);
+
     }
 
     private void updateView() {
@@ -87,6 +95,8 @@ public class FXMLDocumentController implements Initializable {
         txtFieldVariable.clear();
         complexOperand.clear();
         complexOperand.addAll(calculator.getStack().getList());
+        txtFieldUsOperationName.clear();
+        txtFieldUsOperationSeq.clear();
     }
 
     private void insertOperand() {
@@ -102,17 +112,19 @@ public class FXMLDocumentController implements Initializable {
     private void insertVariable() {
         String varOperation = txtFieldVariable.getText();
         if (varOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
-            if (varOperation.charAt(0) == '>') {
-                calculator.pushVariable(varOperation.substring(1).toUpperCase());
-            }
             if (varOperation.charAt(0) == '<') {
                 calculator.loadVariable(varOperation.substring(1).toUpperCase());
             }
-            if (varOperation.charAt(0) == '+') {
-                calculator.addToVariable(varOperation.substring(1).toUpperCase());
-            }
-            if (varOperation.charAt(0) == '-') {
-                calculator.subToVariable(varOperation.substring(1).toUpperCase());
+            else if (checkOperationCondition(1)) {
+                if (varOperation.charAt(0) == '>') {
+                    calculator.pushVariable(varOperation.substring(1).toUpperCase());
+                }
+                if (varOperation.charAt(0) == '+') {
+                    calculator.addToVariable(varOperation.substring(1).toUpperCase());
+                }
+                if (varOperation.charAt(0) == '-') {
+                    calculator.subToVariable(varOperation.substring(1).toUpperCase());
+                }
             }
             updateView();
         } else {
@@ -253,12 +265,44 @@ public class FXMLDocumentController implements Initializable {
         insertVariable();
     }
 
+    private void insertUserOperation() {
+        String userOperationName = txtFieldUsOperationName.getText();
+        if(definedUserOperations.contains(userOperationName)){
+            popUp(AlertType.ERROR, "ERROR", "The new user operation can't be defined", "There's already an user operation with the same name");
+            return;
+        }
+        ArrayList<String> operations = new ArrayList<>();
+        Scanner scan = new Scanner(txtFieldUsOperationSeq.getText());
+        ArrayList<String> correctOperations = new ArrayList<>(Arrays.asList("+", "-", "*", "/", "+-", "sqrt", "clear", "drop", "swap", "over", "dup"));
+        while (scan.hasNext()) {
+            String newOperation = scan.next();
+            if (correctOperations.contains(newOperation)) {
+                operations.add(newOperation);
+            } else if (newOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
+                operations.add(newOperation);
+            } else if (newOperation.matches("[" + "0123456789i.,+-" + "]+")) {
+                operations.add(newOperation);
+            } else {
+                popUp(AlertType.ERROR, "Error", "Impossible to define the user operation", "The user operation contains the not supported operation: " + newOperation);
+                return;
+            }
+        }
+        invoker.addUserOperation(new UserOperation(userOperationName, operations));
+        definedUserOperations.add(userOperationName);
+        updateView();
+        popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been pushed with success", "The new user operation\nName: " + userOperationName + "\nOperations: " + operations);
+    }
+
     @FXML
     private void onEnterUserOperationAction(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            insertUserOperation();
+        }
     }
 
     @FXML
     private void newUserOperationAction(ActionEvent event) {
+        insertUserOperation();
     }
 
     @FXML
@@ -267,6 +311,21 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void deleteUserOperationAction(ActionEvent event) {
+        String userOperationName = choiceBoxUserOperations.getSelectionModel().getSelectedItem();
+        UserOperation toRemoveUO = null;
+        if (definedUserOperations.contains(userOperationName)) {
+            ArrayList<UserOperation> usOp = invoker.getUserOperations();
+            for (UserOperation uO : usOp) 
+                if (uO.getName().equals(userOperationName)) 
+                    toRemoveUO = uO;
+        }
+        if (toRemoveUO != null) {
+            invoker.removeUserOperation(toRemoveUO);
+            updateView();
+            definedUserOperations.remove(userOperationName);
+            popUp(AlertType.CONFIRMATION, "SUCCESS", "The old user operation has been removed with success", "The old user operation\nName: " + toRemoveUO.getName() + "\nOperations: " + toRemoveUO.getOperations());
+        }else
+            popUp(AlertType.ERROR, "ERROR", "The new user operation defined doesn't exists", "The user operation: " + userOperationName + " isn't defined yet");
     }
 
     @FXML
