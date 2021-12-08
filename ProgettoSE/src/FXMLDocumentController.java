@@ -75,7 +75,7 @@ public class FXMLDocumentController implements Initializable {
     private Button btnCommitUserOperation;
 
     private Invoker invoker;
-    
+
     private ObservableList<String> definedUserOperations;
 
     @Override
@@ -84,7 +84,7 @@ public class FXMLDocumentController implements Initializable {
         complexOperand = FXCollections.observableArrayList();
         stackOperand.setItems(complexOperand);
         invoker = new Invoker();
-        
+
         definedUserOperations = FXCollections.observableArrayList();
         choiceBoxUserOperations.setItems(definedUserOperations);
 
@@ -112,7 +112,7 @@ public class FXMLDocumentController implements Initializable {
     private void insertVariable() {
         String varOperation = txtFieldVariable.getText();
         if (varOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
-            if (checkOperationCondition(1)){
+            if (checkOperationCondition(1)) {
                 if (varOperation.charAt(0) == '>') {
                     calculator.pushVariable(varOperation.substring(1).toUpperCase());
                 }
@@ -126,7 +126,7 @@ public class FXMLDocumentController implements Initializable {
                     calculator.subToVariable(varOperation.substring(1).toUpperCase());
                 }
                 updateView();
-            } 
+            }
         } else {
             popUp(AlertType.ERROR, "Error", "Not a variable operation", "The entered variable isn't an alphabet letter");
         }
@@ -267,6 +267,10 @@ public class FXMLDocumentController implements Initializable {
 
     private void insertUserOperation() {
         String userOperationName = txtFieldUsOperationName.getText();
+        if(definedUserOperations.contains(userOperationName)){
+            popUp(AlertType.ERROR, "ERROR", "The new user operation can't be defined", "There's already an user operation with the same name");
+            return;
+        }
         ArrayList<String> operations = new ArrayList<>();
         Scanner scan = new Scanner(txtFieldUsOperationSeq.getText());
         ArrayList<String> correctOperations = new ArrayList<>(Arrays.asList("+", "-", "*", "/", "+-", "sqrt", "clear", "drop", "swap", "over", "dup"));
@@ -276,23 +280,24 @@ public class FXMLDocumentController implements Initializable {
                 operations.add(newOperation);
             } else if (newOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
                 operations.add(newOperation);
-            } else if(newOperation.matches("[" + "0123456789i.,+-" + "]+")){
+            } else if (newOperation.matches("[" + "0123456789i.,+-" + "]+")) {
                 operations.add(newOperation);
             } else {
-                popUp(AlertType.ERROR, "Error", "Impossible to define the user operation", "The user operation contains the not supported operation: "+newOperation);
+                popUp(AlertType.ERROR, "Error", "Impossible to define the user operation", "The user operation contains the not supported operation: " + newOperation);
                 return;
             }
         }
         invoker.addUserOperation(new UserOperation(userOperationName, operations));
         definedUserOperations.add(userOperationName);
         updateView();
-        popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been pushed with success", "The new user operation\nName: "+userOperationName+"\nOperations: "+operations);
+        popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been pushed with success", "The new user operation\nName: " + userOperationName + "\nOperations: " + operations);
     }
 
     @FXML
     private void onEnterUserOperationAction(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER)
+        if (event.getCode() == KeyCode.ENTER) {
             insertUserOperation();
+        }
     }
 
     @FXML
@@ -306,6 +311,21 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void deleteUserOperationAction(ActionEvent event) {
+        String userOperationName = choiceBoxUserOperations.getSelectionModel().getSelectedItem();
+        UserOperation toRemoveUO = null;
+        if (definedUserOperations.contains(userOperationName)) {
+            ArrayList<UserOperation> usOp = invoker.getUserOperations();
+            for (UserOperation uO : usOp) 
+                if (uO.getName().equals(userOperationName)) 
+                    toRemoveUO = uO;
+        }
+        if (toRemoveUO != null) {
+            invoker.removeUserOperation(toRemoveUO);
+            updateView();
+            definedUserOperations.remove(userOperationName);
+            popUp(AlertType.CONFIRMATION, "SUCCESS", "The old user operation has been removed with success", "The old user operation\nName: " + toRemoveUO.getName() + "\nOperations: " + toRemoveUO.getOperations());
+        }else
+            popUp(AlertType.ERROR, "ERROR", "The new user operation defined doesn't exists", "The user operation: " + userOperationName + " isn't defined yet");
     }
 
     @FXML
