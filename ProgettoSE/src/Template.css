@@ -3424,19 +3424,16 @@ is being used to size a border should also be in pixels.
 .alert.confirmation.dialog-pane,
 .text-input-dialog.dialog-pane,
 .choice-dialog.dialog-pane {
-    -fx-graphic: url("dialog-confirm.png");
+    -fx-graphic: url("ok.png");
 }
 
-.alert.information.dialog-pane {
-    -fx-graphic: url("dialog-information.png");
-}
 
 .alert.error.dialog-pane {
-    -fx-graphic: url("dialog-error.png");
+    -fx-graphic: url("error.png");
 }
 
 .alert.warning.dialog-pane {
-    -fx-graphic: url("dialog-warning.png");
+    -fx-graphic: url("warning.png");
 }
 
 /*TEXTFIELD*/
