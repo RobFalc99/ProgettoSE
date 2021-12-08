@@ -70,12 +70,15 @@ public class FXMLDocumentController implements Initializable {
     private Button btnDeleteUserOperation;
     @FXML
     private Button btnCommitUserOperation;
+    
+    private Invoker invoker;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         calculator = new Calculator();
         complexOperand = FXCollections.observableArrayList();
         stackOperand.setItems(complexOperand);
+        invoker = new Invoker();
 
     }
 
