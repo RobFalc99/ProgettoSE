@@ -125,7 +125,7 @@ is being used to size a border should also be in pixels.
 
     /* A bright blue for highlighting/accenting objects.  For example: selected
      * text; selected items in menus, lists, trees, and tables; progress bars */
-    -fx-accent: #0096C9;
+    -fx-accent: #c2c2c2;
 
     /* Default buttons color, this is similar to accent but more subtle */
     -fx-default-button: #ABD8ED;
@@ -134,8 +134,8 @@ is being used to size a border should also be in pixels.
      * first color in -fx-background-color for the "focused" pseudo-class. Also
      * typically used with insets of -1.4 to provide a glowing effect.
      */
-    -fx-focus-color: #039ED3;
-    -fx-faint-focus-color: #039ED322;
+    -fx-focus-color: #FFFFFF;
+    -fx-faint-focus-color: #6e6e6e;
 
     /* The color that is used in styling controls. The default value is based
      * on -fx-base, but is changed by pseudoclasses to change the base color.
@@ -401,6 +401,7 @@ is being used to size a border should also be in pixels.
     -fx-bounds-type: logical_vertical_center;
     /* Enable LCD text rendering */
     -fx-font-smoothing-type: lcd;
+    -fx-effect: dropshadow( gaussian , #333333 , 0,0,0,1 );
 }
 
 /* ====   BUTTON LIKE THINGS   ============================================== */
@@ -415,18 +416,16 @@ is being used to size a border should also be in pixels.
 .combo-box-base,
 .combo-box-base:editable > .arrow-button {
     -fx-background-color: 
-        #090a0c,
-        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
-        linear-gradient(#20262b, #191d22),
-        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
-    -fx-background-radius: 5,4,3,5;
-    -fx-background-insets: 0,1,2,0;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-    -fx-font-family: "Arial";
-    -fx-text-fill: linear-gradient(white, #d0d0d0);
-    -fx-font-size: 12px;
+        #c3c4c4,
+        linear-gradient(#d6d6d6 50%, white 100%),
+        radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,1,1,2;
+    -fx-font-family: "System";
+    -fx-text-fill: #404040;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , darkgrey , 0,0,0,2 );
     -fx-padding: 10 20 10 20;
 }
 .menu-button > .label {
@@ -451,7 +450,12 @@ is being used to size a border should also be in pixels.
 .spinner .increment-arrow-button:hover,
 .spinner .decrement-arrow-button:hover,
 .tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button:hover {
-    -fx-color: -fx-hover-base;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+        #9d4024,
+        #d86e3a,
+        radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
+    -fx-effect: dropshadow( gaussian , #9d4024 , 0,0,0,2 );
 }
 .button:armed,
 .toggle-button:armed,
@@ -476,7 +480,7 @@ is being used to size a border should also be in pixels.
 
 .button:pressed {
     -fx-padding: 12 20 8 20;
-    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+    -fx-background-insets: 1 0 1 0,2 0 2 0, 3 0 3 0;
 }
 
 /* ====   DISABLED THINGS   ================================================= */
@@ -3433,4 +3437,94 @@ is being used to size a border should also be in pixels.
 
 .alert.warning.dialog-pane {
     -fx-graphic: url("dialog-warning.png");
+}
+
+/*TEXTFIELD*/
+.text-field{
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-text-fill: white;
+}
+
+.text-field:focused {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-text-fill: white;
+}
+
+/*LISTVIEW*/
+.list-view{
+    -fx-font-weight: bold; 
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#666666 0%, #525252 25%, #404040 75%, #b5b5b5 100%);
+    -fx-text-fill: white;
+}
+
+.list-cell:even{
+    -fx-cell-hover-color: #595959;
+    -fx-background-color: #595959;
+    -fx-text-fill: white;
+    -fx-font-size: 14px; 
+}
+
+.list-cell:odd {
+    -fx-cell-hover-color: #3b3b3b;
+    -fx-background-color: #3b3b3b;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.list-cell:filled:hover {
+    -fx-cell-hover-color: #808080;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+
+/*CHOICE BOX*/
+.choice-box .context-menu{
+    -fx-background-color: 
+        #c3c4c4,
+        linear-gradient(#d6d6d6 50%, white 100%),
+        radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: #404040;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "System";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+
+.choice-box .menu-item:focused{
+    -fx-background-color: 
+        lightgrey,
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+}
+
+.choice-box .menu-item:focused > .label { -fx-text-fill: black; }
+
+.choice-box .menu-item > .label{
+    -fx-text-fill: #404040;
+}
+
+.choice-box > .label { -fx-text-fill: #404040; }
+
+.choice-box:pressed {
+    -fx-background-insets: 1 0 1 0,2 0 2 0, 3 0 3 0;
+}
+
+/*H AND V BOXES*/
+.horizontal-box .vertical-box .split-pane{
+    -fx-background-color: transparent;
+}
+
+/*BACKGROUND*/
+.root { 
+    -fx-base: #121212;
 }

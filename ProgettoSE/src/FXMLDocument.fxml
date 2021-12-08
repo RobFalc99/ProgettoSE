@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="1000.0" maxWidth="1200.0" minHeight="650.0" minWidth="950.0" prefHeight="622.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="1000.0" maxWidth="1200.0" minHeight="650.0" minWidth="980.0" prefHeight="622.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
     <children>
       <SplitPane dividerPositions="0.7425569176882661" layoutX="248.0" layoutY="174.0" orientation="VERTICAL" prefHeight="573.0" prefWidth="661.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -37,9 +37,12 @@
                                        <children>
                                           <Label prefHeight="21.0" prefWidth="144.0" text="Inserire un operando">
                                              <font>
-                                                <Font name="System Bold" size="12.0" />
+                                                <Font name="System Bold" size="14.0" />
                                              </font></Label>
-                                          <TextField fx:id="txtFieldOperand" alignment="CENTER" minHeight="-Infinity" minWidth="160.0" onKeyPressed="#onEnterAction" prefHeight="31.0" prefWidth="178.0" promptText="Es. 5,3+2,6i  or  0+4i" />
+                                          <TextField fx:id="txtFieldOperand" alignment="CENTER" minHeight="-Infinity" minWidth="160.0" onKeyPressed="#onEnterAction" prefHeight="31.0" prefWidth="178.0" promptText="Es. 5,3+2,6i  or  0+4i">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font></TextField>
                                           <Button fx:id="btnCommitOperand" mnemonicParsing="false" onAction="#commitOperand" text="Commit" />
                                        </children>
                                     </HBox>
@@ -47,7 +50,7 @@
                                        <children>
                                           <Label prefHeight="17.0" prefWidth="169.0" text="Scegliere un'operazione">
                                              <font>
-                                                <Font name="System Bold" size="12.0" />
+                                                <Font name="System Bold" size="14.0" />
                                              </font></Label>
                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                              <children>
@@ -78,9 +81,12 @@
                                        <children>
                                           <Label text="Inserire operazione su variabile">
                                              <font>
-                                                <Font name="System Bold" size="12.0" />
+                                                <Font name="System Bold" size="14.0" />
                                              </font></Label>
-                                          <TextField fx:id="txtFieldVariable" alignment="CENTER" onKeyPressed="#onEnterVariableAction" prefHeight="31.0" prefWidth="170.0" promptText="Es. &gt;A, &lt;B, +C, -D" />
+                                          <TextField fx:id="txtFieldVariable" alignment="CENTER" onKeyPressed="#onEnterVariableAction" prefHeight="31.0" prefWidth="170.0" promptText="Es. &gt;A, &lt;B, +C, -D">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font></TextField>
                                           <Button fx:id="btnCommitVariable" mnemonicParsing="false" onAction="#commitVariable" text="Commit" />
                                        </children>
                                        <VBox.margin>
@@ -107,47 +113,53 @@
                <children>
                   <Label alignment="CENTER" prefHeight="31.0" prefWidth="135.0" text="Operazioni utente">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" layoutX="144.0" layoutY="14.0" prefHeight="151.0" prefWidth="798.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox alignment="CENTER" layoutX="144.0" layoutY="14.0" prefHeight="151.0" prefWidth="798.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <padding>
                         <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="100.0" spacing="5.0">
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="132.0" spacing="5.0">
                            <children>
                               <Label text="Nome">
                                  <font>
-                                    <Font name="System Italic" size="12.0" />
+                                    <Font name="System Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtFieldUsOperationName" alignment="CENTER" prefHeight="29.0" prefWidth="109.0" promptText="Es. Hypotenuse" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="193.0" spacing="5.0">
-                           <children>
-                              <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="60.0" text="Operazioni">
+                              <TextField fx:id="txtFieldUsOperationName" alignment="CENTER" prefHeight="29.0" prefWidth="109.0" promptText="Es. Hypotenuse">
                                  <font>
-                                    <Font name="System Italic" size="12.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="txtFieldUsOperationSeq" alignment="CENTER" onKeyPressed="#onEnterUserOperationAction" prefHeight="29.0" prefWidth="173.0" promptText="Es. dup * swap dup * + sqrt" />
+                                    <Font size="14.0" />
+                                 </font></TextField>
                            </children>
                         </VBox>
-                        <Button fx:id="btnInsertUserOperation" mnemonicParsing="false" onAction="#newUserOperationAction" prefHeight="35.0" prefWidth="68.0" text="New">
+                        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="198.0" spacing="5.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="76.0" text="Operazioni">
+                                 <font>
+                                    <Font name="System Italic" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtFieldUsOperationSeq" alignment="CENTER" onKeyPressed="#onEnterUserOperationAction" prefHeight="29.0" prefWidth="173.0" promptText="Es. dup * swap dup * + sqrt">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></TextField>
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnInsertUserOperation" minHeight="40.0" minWidth="70.0" mnemonicParsing="false" onAction="#newUserOperationAction" prefHeight="40.0" prefWidth="70.0" text="New">
                            <HBox.margin>
                               <Insets top="21.0" />
                            </HBox.margin>
                         </Button>
-                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="62.0" prefWidth="150.0" spacing="5.0">
+                        <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="166.0" spacing="5.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="23.0" prefWidth="142.0" text="Operazioni utente definite" textAlignment="CENTER">
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="166.0" text="Operazioni utente definite" textAlignment="CENTER">
                                  <font>
-                                    <Font name="System Italic" size="12.0" />
+                                    <Font name="System Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox fx:id="choiceBoxUserOperations" prefHeight="25.0" prefWidth="143.0" />
+                              <ChoiceBox fx:id="choiceBoxUserOperations" prefHeight="35.0" prefWidth="143.0" />
                            </children>
                            <HBox.margin>
                               <Insets left="30.0" />
