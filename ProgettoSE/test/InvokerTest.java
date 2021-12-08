@@ -22,7 +22,6 @@ public class InvokerTest {
     private UserOperation uo2;
     private ArrayList<String> operationsUo1;
     private ArrayList<String> operationsUo2;
-    private ArrayList<UserOperation> userOperations;
     private Invoker instance;
     
     public InvokerTest() {
@@ -38,7 +37,6 @@ public class InvokerTest {
     
     @Before
     public void setUp() {
-        userOperations = new ArrayList<>();
         calculator = new Calculator();
         instance = new Invoker();
         operationsUo1=new ArrayList<>();
@@ -47,9 +45,6 @@ public class InvokerTest {
         operationsUo1.add("*");
         uo1=new UserOperation("hypotenuse", operationsUo1);
         uo2=new UserOperation("solve2degree", operationsUo2);
-        userOperations.add(uo1);
-        userOperations.add(uo2);
-        instance.setUserOperations(userOperations);
     }
     
     @After
@@ -83,6 +78,7 @@ public class InvokerTest {
     @Test
     public void testExecute() {
         System.out.println("execute");
+        instance.addUserOperation(uo1);
         calculator.pushComplex("5");
         instance.execute("hypotenuse", calculator);
         assertEquals(calculator.getStack().top(), calculator.parse("25"));
