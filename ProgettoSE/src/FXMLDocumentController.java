@@ -1,6 +1,9 @@
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -70,8 +73,10 @@ public class FXMLDocumentController implements Initializable {
     private Button btnDeleteUserOperation;
     @FXML
     private Button btnCommitUserOperation;
-    
+
     private Invoker invoker;
+    
+    private ObservableList<String> definedUserOperations;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,6 +84,9 @@ public class FXMLDocumentController implements Initializable {
         complexOperand = FXCollections.observableArrayList();
         stackOperand.setItems(complexOperand);
         invoker = new Invoker();
+        
+        definedUserOperations = FXCollections.observableArrayList();
+        choiceBoxUserOperations.setItems(definedUserOperations);
 
     }
 
@@ -87,6 +95,8 @@ public class FXMLDocumentController implements Initializable {
         txtFieldVariable.clear();
         complexOperand.clear();
         complexOperand.addAll(calculator.getStack().getList());
+        txtFieldUsOperationName.clear();
+        txtFieldUsOperationSeq.clear();
     }
 
     private void insertOperand() {
@@ -253,12 +263,38 @@ public class FXMLDocumentController implements Initializable {
         insertVariable();
     }
 
+    private void insertUserOperation() {
+        String userOperationName = txtFieldUsOperationName.getText();
+        ArrayList<String> operations = new ArrayList<>();
+        Scanner scan = new Scanner(txtFieldUsOperationSeq.getText());
+        ArrayList<String> correctOperations = new ArrayList<>(Arrays.asList("+", "-", "*", "/", "+-", "sqrt", "clear", "drop", "swap", "over", "dup"));
+        while (scan.hasNext()) {
+            String newOperation = scan.next();
+            if (correctOperations.contains(newOperation)) {
+                operations.add(newOperation);
+            } else if (newOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
+                operations.add(newOperation);
+            } else if(newOperation.matches("[" + "0123456789i.,+-" + "]+")){
+                operations.add(newOperation);
+            } else {
+                popUp(AlertType.ERROR, "Error", "Impossible to define the user operation", "The user operation contains the not supported operation: "+newOperation);
+                return;
+            }
+        }
+        //invoker.add(new UserOperation(userOperationName, operations));
+        definedUserOperations.add(userOperationName);
+        updateView();
+    }
+
     @FXML
     private void onEnterUserOperationAction(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER)
+            insertUserOperation();
     }
 
     @FXML
     private void newUserOperationAction(ActionEvent event) {
+        insertUserOperation();
     }
 
     @FXML
