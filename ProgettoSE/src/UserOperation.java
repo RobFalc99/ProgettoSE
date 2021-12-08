@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserOperation {
     
@@ -55,6 +57,22 @@ public class UserOperation {
         this.operations = operations;
     }
     
-    
+    /**
+     * Goes through the entire sequence of operations defined in the user operation and executes them in sequence by calling the suitable Calculator methods.
+     * @param calculator The calculator object on which to call the operations
+     */
+    public void execute(Calculator calculator){
+        Runnable r;
+        Map <String, Runnable> map = new HashMap<> (calculator.getOperationMap());
+        for (String s: operations){
+            if (s.matches("[" + "0123456789i.," + "]+"))
+                calculator.pushComplex(s);
+            else{
+                r=map.get(s);
+                r.run();
+            }
+        }
+        
+    }
     
 }

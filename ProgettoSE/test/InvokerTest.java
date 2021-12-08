@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
  * @author FALCONE
  */
 public class InvokerTest {
+    private Calculator calculator;
     private UserOperation uo1;
     private UserOperation uo2;
     private ArrayList<String> operationsUo1;
@@ -36,14 +37,14 @@ public class InvokerTest {
     
     @Before
     public void setUp() {
+        calculator = new Calculator();
         instance = new Invoker();
         operationsUo1=new ArrayList<>();
         operationsUo2=new ArrayList<>();
-        uo1=new UserOperation("hypotenuse", operationsUo1);
-        uo2=new UserOperation("solve2degree", operationsUo2);
         operationsUo1.add("dup");
         operationsUo1.add("*");
-        operationsUo1.add("swap");
+        uo1=new UserOperation("hypotenuse", operationsUo1);
+        uo2=new UserOperation("solve2degree", operationsUo2);
     }
     
     @After
@@ -70,6 +71,17 @@ public class InvokerTest {
         instance.addUserOperation(uo1);
         Boolean result=instance.removeUserOperation(uo1);
         assertEquals(!instance.getUserOperations().contains(uo1), result);
+    }
+     /**
+     * Test of execute method, of class UserOperation.
+     */
+    @Test
+    public void testExecute() {
+        System.out.println("execute");
+        instance.addUserOperation(uo1);
+        calculator.pushComplex("5");
+        instance.execute("hypotenuse", calculator);
+        assertEquals(calculator.getStack().top(), calculator.parse("25"));
     }
     
 }

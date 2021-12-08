@@ -17,6 +17,8 @@ import static org.junit.Assert.*;
  * @author FALCONE
  */
 public class UserOperationTest {
+    Calculator calculator;
+    UserOperation instance;
     
     public UserOperationTest() {
     }
@@ -31,6 +33,11 @@ public class UserOperationTest {
     
     @Before
     public void setUp() {
+        ArrayList<String> operationsUo1 = new ArrayList<>();
+        operationsUo1.add("dup");
+        operationsUo1.add("*");
+        calculator = new Calculator();
+        instance = new UserOperation("op1",operationsUo1);
     }
     
     @After
@@ -38,47 +45,15 @@ public class UserOperationTest {
     }
 
     /**
-     * Test of getName method, of class UserOperation.
+     * Test of execute method, of class UserOperation.
      */
     @Test
-    public void testGetName() {
-        System.out.println("getName");
-        UserOperation instance = new UserOperation();
-        String expResult = "";
-        String result = instance.getName();
-    }
-
-    /**
-     * Test of setName method, of class UserOperation.
-     */
-    @Test
-    public void testSetName() {
-        System.out.println("setName");
-        String name = "";
-        UserOperation instance = new UserOperation();
-        instance.setName(name);
-    }
-
-    /**
-     * Test of getOperations method, of class UserOperation.
-     */
-    @Test
-    public void testGetOperations() {
-        System.out.println("getOperations");
-        UserOperation instance = new UserOperation();
-        ArrayList<String> expResult = null;
-        ArrayList<String> result = instance.getOperations();
-    }
-
-    /**
-     * Test of setOperations method, of class UserOperation.
-     */
-    @Test
-    public void testSetOperations() {
-        System.out.println("setOperations");
-        ArrayList<String> operations = null;
-        UserOperation instance = new UserOperation();
-        instance.setOperations(operations);
+    public void testExecute() {
+        System.out.println("execute");
+        calculator.pushComplex("5");
+        instance.execute(calculator);
+        assertEquals(calculator.getStack().top(), calculator.parse("25"));
+        
     }
     
 }
