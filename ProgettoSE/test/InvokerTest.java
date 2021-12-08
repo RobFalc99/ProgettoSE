@@ -72,10 +72,9 @@ public class InvokerTest {
         Boolean result = instance.removeUserOperation(uo1);
         assertEquals(!instance.getUserOperations().contains(uo1), result);
     }
-
     /**
-     * Test of execute method, of class UserOperation.
-     */
+    * Test of execute method, of class UserOperation.
+    */
     @Test
     public void testExecute() {
         System.out.println("execute");
