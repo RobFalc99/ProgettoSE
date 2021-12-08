@@ -330,6 +330,22 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void commitUserOperationAction(ActionEvent event) {
+        String userOperationName = choiceBoxUserOperations.getSelectionModel().getSelectedItem();
+        UserOperation toCommitUO = null;
+         if (definedUserOperations.contains(userOperationName)) {
+            ArrayList<UserOperation> usOp = invoker.getUserOperations();
+            for (UserOperation uO : usOp) 
+                if (uO.getName().equals(userOperationName)) 
+                    toCommitUO = uO;
+        }
+        
+          if (toCommitUO != null) {
+            invoker.execute(userOperationName,calculator);
+            updateView();
+            choiceBoxUserOperations.getSelectionModel().clearSelection();
+            popUp(AlertType.CONFIRMATION, "SUCCESS", "The old user operation was successful", "The old user operation\nName: " + toCommitUO.getName() + "\nOperations: " + toCommitUO.getOperations());
+        }else
+            popUp(AlertType.ERROR, "ERROR", "The new user operation defined doesn't exists", "The user operation: " + userOperationName + " isn't defined yet");
     }
 
 }
