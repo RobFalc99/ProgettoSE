@@ -280,7 +280,7 @@ public class FXMLDocumentController implements Initializable {
                 operations.add(newOperation);
             } else if (newOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
                 operations.add(newOperation);
-            } else if (newOperation.matches("[" + "0123456789i.,+-" + "]+")) {
+            } else if (newOperation.matches("[" + "0123456789i.,+-" + "]")) {
                 operations.add(newOperation);
             } else {
                 popUp(AlertType.ERROR, "Error", "Impossible to define the user operation", "The user operation contains the not supported operation: " + newOperation);
