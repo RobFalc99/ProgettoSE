@@ -17,6 +17,11 @@ import static org.junit.Assert.*;
  * @author FALCONE
  */
 public class InvokerTest {
+    private UserOperation uo1;
+    private UserOperation uo2;
+    private ArrayList<String> operationsUo1;
+    private ArrayList<String> operationsUo2;
+    private Invoker instance;
     
     public InvokerTest() {
     }
@@ -31,21 +36,40 @@ public class InvokerTest {
     
     @Before
     public void setUp() {
+        instance = new Invoker();
+        operationsUo1=new ArrayList<>();
+        operationsUo2=new ArrayList<>();
+        uo1=new UserOperation("hypotenuse", operationsUo1);
+        uo2=new UserOperation("solve2degree", operationsUo2);
+        operationsUo1.add("dup");
+        operationsUo1.add("*");
+        operationsUo1.add("swap");
     }
     
     @After
     public void tearDown() {
     }
 
+    
     /**
-     * Test of getUserOperations method, of class Invoker.
+     * Test of addUserOperation method, of class Invoker.
      */
     @Test
-    public void testGetUserOperations() {
-        System.out.println("getUserOperations");
-        Invoker instance = new Invoker();
-        ArrayList<UserOperation> expResult = null;
-        ArrayList<UserOperation> result = instance.getUserOperations();
+    public void testAddUserOperation() {
+        System.out.println("addUserOperation");
+        Boolean result=instance.addUserOperation(uo1);
+        assertEquals(instance.getUserOperations().contains(uo1), result);
+    }
+
+    /**
+     * Test of removeUserOperation method, of class Invoker.
+     */
+    @Test
+    public void testRemoveUserOperation() {
+        System.out.println("removeUserOperation");
+        instance.addUserOperation(uo1);
+        Boolean result=instance.removeUserOperation(uo1);
+        assertEquals(!instance.getUserOperations().contains(uo1), result);
     }
     
 }
