@@ -286,6 +286,7 @@ public class FXMLDocumentController implements Initializable {
         invoker.addUserOperation(new UserOperation(userOperationName, operations));
         definedUserOperations.add(userOperationName);
         updateView();
+        popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been pushed with success", "The new user operation\nName: "+userOperationName+"\nOperations: "+operations);
     }
 
     @FXML
