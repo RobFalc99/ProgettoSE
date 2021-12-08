@@ -105,7 +105,7 @@ public class FXMLDocumentController implements Initializable {
             calculator.pushComplex(operand);
             updateView();
         } else {
-            popUp(AlertType.ERROR, "Error", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
+            popUp(AlertType.ERROR, "ERROR", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
         }
     }
 
@@ -127,7 +127,7 @@ public class FXMLDocumentController implements Initializable {
             }
             updateView();
         } else {
-            popUp(AlertType.ERROR, "Error", "Not a variable operation", "The entered variable isn't an alphabet letter");
+            popUp(AlertType.ERROR, "ERROR", "Not a variable operation", "The entered variable isn't an alphabet letter");
         }
     }
 
@@ -135,7 +135,7 @@ public class FXMLDocumentController implements Initializable {
         if (complexOperand.size() >= minOperands) {
             return true;
         } else {
-            popUp(AlertType.ERROR, "Error", "Not enough operands", "There are less than " + minOperands + " operands entered");
+            popUp(AlertType.ERROR, "ERROR", "Not enough operands", "There are less than " + minOperands + " operands entered");
             return false;
         }
     }
@@ -217,7 +217,7 @@ public class FXMLDocumentController implements Initializable {
                 updateView();
             }
         } else {
-            popUp(AlertType.ERROR, "Error", "Impossible to execute division", "You are trying to divide by zero");
+            popUp(AlertType.ERROR, "ERROR", "Impossible to execute division", "You are trying to divide by zero");
         }
     }
 
@@ -267,7 +267,7 @@ public class FXMLDocumentController implements Initializable {
     private void insertUserOperation() {
         String userOperationName = txtFieldUsOperationName.getText();
         if (definedUserOperations.contains(userOperationName)) {
-            popUp(AlertType.ERROR, "ERROR", "The new user operation can't be defined", "There's already an user operation with the same name");
+            popUp(AlertType.ERROR, "ERROR", "The new user operation can't be defined", "There's already an user operation with the same name: " + userOperationName);
             return;
         }
         ArrayList<String> operations = new ArrayList<>();
@@ -276,17 +276,20 @@ public class FXMLDocumentController implements Initializable {
         ArrayList<String> correctOperations = new ArrayList<>(Arrays.asList("+", "-", "*", "/", "+-", "sqrt", "clear", "drop", "swap", "over", "dup"));
         while (scan.hasNext()) {
             String newOperation = scan.next();
-            if (correctOperations.contains(newOperation) || newOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]") || newOperation.matches("[" + "0123456789i.,+-" + "]") || newOperation.matches("(\\d,\\d)|(\\d,\\di)|(\\d,\\d[+-]\\d,\\di)|(\\d[+-]\\d,\\di)|(\\d[+-]\\di)")) {
+            if (correctOperations.contains(newOperation)
+                    || newOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")
+                    || newOperation.matches("[" + "0123456789i.,+-" + "]")
+                    || newOperation.matches("(\\d,\\d)|(\\d,\\di)|(\\d,\\d[+-]\\d,\\di)|(\\d[+-]\\d,\\di)|(\\d[+-]\\di)")) {
                 operations.add(newOperation);
             } else {
-                popUp(AlertType.ERROR, "Error", "Impossible to define the user operation", "The user operation contains the not supported operation: " + newOperation);
+                popUp(AlertType.ERROR, "ERROR", "Impossible to define the user operation", "The user operation contains a not supported operation: " + newOperation);
                 return;
             }
         }
         invoker.addUserOperation(new UserOperation(userOperationName, operations));
         definedUserOperations.add(userOperationName);
         updateView();
-        popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been pushed with success", "The new user operation\nName: " + userOperationName + "\nOperations: " + operations);
+        popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been defined with success", "The new user operation\nName: " + userOperationName + "\nOperations: " + operations);
     }
 
     @FXML
@@ -323,7 +326,7 @@ public class FXMLDocumentController implements Initializable {
             definedUserOperations.remove(userOperationName);
             popUp(AlertType.CONFIRMATION, "SUCCESS", "The old user operation has been removed with success", "The old user operation\nName: " + toRemoveUO.getName() + "\nOperations: " + toRemoveUO.getOperations());
         } else {
-            popUp(AlertType.ERROR, "ERROR", "The new user operation defined doesn't exists", "The user operation: " + userOperationName + " isn't defined yet");
+            popUp(AlertType.ERROR, "ERROR", "The new user operation defined doesn't exists", "The user operation " + userOperationName + " isn't defined yet");
         }
     }
 
@@ -345,12 +348,13 @@ public class FXMLDocumentController implements Initializable {
             if (res == true) {
                 updateView();
                 choiceBoxUserOperations.getSelectionModel().clearSelection();
-                popUp(AlertType.CONFIRMATION, "SUCCESS", "The user operation was successful runned", "The user operation\nName: " + toCommitUO.getName() + "\nOperations: " + toCommitUO.getOperations());
-            }else
-                popUp(AlertType.ERROR, "ERROR", "The user operation doesn't end correctly", "The user operation: " + userOperationName);
+                popUp(AlertType.CONFIRMATION, "SUCCESS", "The user operation was successfully runned", "The user operation\nName: " + toCommitUO.getName() + "\nOperations: " + toCommitUO.getOperations());
+            } else {
+                popUp(AlertType.ERROR, "ERROR", "The user operation meets an error", "The user operation name: " + userOperationName);
+            }
 
         } else {
-            popUp(AlertType.ERROR, "ERROR", "The user operation defined doesn't exists", "The user operation: " + userOperationName + " isn't defined yet");
+            popUp(AlertType.ERROR, "ERROR", "The invoked user operation doesn't exists", "The user operation " + userOperationName + " isn't defined yet");
         }
     }
 

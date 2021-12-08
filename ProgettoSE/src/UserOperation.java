@@ -98,9 +98,10 @@ public class UserOperation {
                 if (calculator.getStack().getList().size() > 1) {
                     r = map.get(s);
                     r.run();
-                }else
+                } else {
                     return false;
-                
+                }
+
             }
         }
         return true;
