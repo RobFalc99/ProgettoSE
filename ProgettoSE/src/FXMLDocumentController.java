@@ -283,7 +283,7 @@ public class FXMLDocumentController implements Initializable {
                 return;
             }
         }
-        //invoker.add(new UserOperation(userOperationName, operations));
+        invoker.addUserOperation(new UserOperation(userOperationName, operations));
         definedUserOperations.add(userOperationName);
         updateView();
     }
