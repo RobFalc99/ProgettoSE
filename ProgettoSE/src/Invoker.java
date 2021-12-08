@@ -20,6 +20,14 @@ public class Invoker {
         return userOperations;
     }
     
+    public Boolean addUserOperation(UserOperation uo){
+        return userOperations.add(uo);
+    }
+    
+    public Boolean removeUserOperation(UserOperation uo){
+        return userOperations.remove(uo);
+    }
+    
     
     
     
