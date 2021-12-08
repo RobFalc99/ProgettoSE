@@ -20,10 +20,20 @@ public class Invoker {
         return userOperations;
     }
     
+    /**
+     * Adds a new User Operation to the userOperations list
+     * @param uo The new User Operation to be added 
+     * @return True if the input User Operation is added, else otherwise (as specified by Collection.add(E))
+     */
     public Boolean addUserOperation(UserOperation uo){
         return userOperations.add(uo);
     }
     
+    /**
+     * Removes the input User Operation in the userOperations list
+     * @param uo The User Operation to be removed 
+     * @return True if the input User Operation is removed, else otherwise
+     */
     public Boolean removeUserOperation(UserOperation uo){
         return userOperations.remove(uo);
     }
