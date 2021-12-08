@@ -1,10 +1,13 @@
 
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.math3.complex.ComplexFormat;
 
 public class Calculator {
 
     private Stack<Complex> stack;
     private Variables variables;
+    private final Map<String, Runnable> operationMap;
 
     /**
      * An empty constructor
@@ -12,6 +15,20 @@ public class Calculator {
     public Calculator() {
         stack = new Stack<>();
         variables = new Variables();
+        operationMap = new HashMap<>();
+        
+        operationMap.put("+", () -> addComplex());
+        operationMap.put("-", () -> subComplex());
+        operationMap.put("*", () -> mulComplex());
+        operationMap.put("/", () -> divComplex());
+        operationMap.put("rad", () -> sqrtComplex());
+        operationMap.put("+-", () -> invSignComplex());
+        operationMap.put("swap", () -> stack.swapOperand());
+        operationMap.put("dup", () -> stack.dupOperand());
+        operationMap.put("over", () -> stack.overOperand());
+        operationMap.put("drop", () -> stack.dropOperand());
+        operationMap.put("clear", () -> stack.clear());
+        
     }
 
     /**
@@ -23,6 +40,19 @@ public class Calculator {
     public Calculator(Stack<Complex> stack) {
         this.stack = stack;
         variables = new Variables();
+        operationMap = new HashMap<>();
+        
+        operationMap.put("+", () -> addComplex());
+        operationMap.put("-", () -> subComplex());
+        operationMap.put("*", () -> mulComplex());
+        operationMap.put("/", () -> divComplex());
+        operationMap.put("rad", () -> sqrtComplex());
+        operationMap.put("+-", () -> invSignComplex());
+        operationMap.put("swap", () -> stack.swapOperand());
+        operationMap.put("dup", () -> stack.dupOperand());
+        operationMap.put("over", () -> stack.overOperand());
+        operationMap.put("drop", () -> stack.dropOperand());
+        operationMap.put("clear", () -> stack.clear());
     }
 
     /**
@@ -260,6 +290,14 @@ public class Calculator {
      */
     public Complex subToVariable(String key) {
         return new Complex(variables.subValue(key, stack.pop()));
+    }
+
+    /**
+     * Getter of the operationMap attribute
+     * @return a map which represents the operationMap attribute
+     */
+    public Map<String, Runnable> getOperationMap() {
+        return operationMap;
     }
 
 }
