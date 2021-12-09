@@ -147,11 +147,15 @@
                                  </font></TextField>
                            </children>
                         </VBox>
-                        <Button fx:id="btnInsertUserOperation" minHeight="40.0" minWidth="70.0" mnemonicParsing="false" onAction="#newUserOperationAction" prefHeight="40.0" prefWidth="70.0" text="New">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="btnInsertUserOperation" minHeight="40.0" minWidth="70.0" mnemonicParsing="false" onAction="#newUserOperationAction" prefHeight="40.0" prefWidth="70.0" text="New" />
+                              <Button fx:id="btnModifyUserOperationSeq" minHeight="40.0" minWidth="70.0" mnemonicParsing="false" onAction="#modifyUserOperationSeqAction" prefHeight="40.0" prefWidth="70.0" text="Modify" />
+                           </children>
                            <HBox.margin>
-                              <Insets top="21.0" />
+                              <Insets top="27.0" />
                            </HBox.margin>
-                        </Button>
+                        </VBox>
                         <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="166.0" spacing="5.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="166.0" text="Defined User Operations" textAlignment="CENTER">
@@ -159,25 +163,28 @@
                                     <Font name="System Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox fx:id="choiceBoxUserOperations" prefHeight="35.0" prefWidth="143.0" />
+                              <ChoiceBox fx:id="choiceBoxUserOperations" prefHeight="35.0" prefWidth="143.0">
+                                 <VBox.margin>
+                                    <Insets top="2.0" />
+                                 </VBox.margin></ChoiceBox>
                            </children>
                            <HBox.margin>
-                              <Insets left="30.0" />
+                              <Insets />
                            </HBox.margin>
                         </VBox>
                         <Button fx:id="btnLoadOnTxtFieldUsOperationSeq" mnemonicParsing="false" onAction="#loadOnTxtFieldUsOperationSeqAction" text="Load">
                            <HBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="24.0" />
                            </HBox.margin>
                         </Button>
                         <Button fx:id="btnDeleteUserOperation" mnemonicParsing="false" onAction="#deleteUserOperationAction" text="Delete">
                            <HBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="24.0" />
                            </HBox.margin>
                         </Button>
                         <Button fx:id="btnCommitUserOperation" mnemonicParsing="false" onAction="#commitUserOperationAction" text="Commit">
                            <HBox.margin>
-                              <Insets top="20.0" />
+                              <Insets top="24.0" />
                            </HBox.margin>
                         </Button>
                      </children>
