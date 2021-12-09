@@ -11,6 +11,8 @@ public class CalculatorTest {
     private Calculator instance;
     private String operand1;
     private String operand2;
+    private String operand3;
+    private String operand4;
     private String variable1;
 
     public CalculatorTest() {
@@ -21,6 +23,8 @@ public class CalculatorTest {
         instance = new Calculator();
         operand1 = "3+4i";
         operand2 = "5,3+2i";
+        operand3 = "6";
+        operand4 = "-4i";
         variable1 = "A";
     }
 
@@ -31,6 +35,8 @@ public class CalculatorTest {
     public void testParse() {
         System.out.println("parse");
         assertEquals(new Complex(3, 4), instance.parse(operand1));
+        assertEquals(new Complex(6), instance.parse(operand3));
+        assertEquals(new Complex(0, -4), instance.parse(operand4));
     }
 
     /**
@@ -39,6 +45,7 @@ public class CalculatorTest {
     @Test
     public void testPushComplex() {
         System.out.println("pushComplex");
+        instance.pushComplex(operand2);
         instance.pushComplex(operand1);
         assertEquals(new Complex(3, 4), instance.getStack().top());
     }
@@ -52,6 +59,11 @@ public class CalculatorTest {
         instance.pushComplex(operand1);
         instance.pushComplex(operand2);
         assertEquals(new Complex(8.3, 6), instance.addComplex());
+        instance.pushComplex(operand3);
+        assertEquals(new Complex(14.3, 6), instance.addComplex());
+        instance.pushComplex(operand3);
+        instance.pushComplex(operand4);
+        assertEquals(new Complex(6, -4), instance.addComplex());
 
     }
 
@@ -64,6 +76,10 @@ public class CalculatorTest {
         instance.pushComplex(operand2);
         instance.pushComplex(operand1);
         assertEquals(new Complex(0.956, -0.608), instance.divComplex());
+        instance.pushComplex(operand3);
+        instance.pushComplex("0");
+        assertTrue(instance.divComplex().isNaN());
+        
     }
 
     /**
@@ -74,8 +90,9 @@ public class CalculatorTest {
         System.out.println("subComplex");
         instance.pushComplex(operand1);
         instance.pushComplex(operand2);
-        instance.subComplex();
-        assertEquals(new Complex(-2.3, 2), instance.getStack().pop());
+        assertEquals(new Complex(-2.3, 2), instance.subComplex());
+        instance.pushComplex(operand4);
+        assertEquals(new Complex(-2.3, 6), instance.subComplex());
     }
 
     /**
@@ -99,6 +116,8 @@ public class CalculatorTest {
         System.out.println("sqrtComplex");
         instance.pushComplex(operand1);
         assertEquals(new Complex(2, 1), instance.sqrtComplex());
+        instance.pushComplex("-1");
+        assertEquals(new Complex(0, 1), instance.sqrtComplex());
     }
 
     /**
@@ -179,6 +198,7 @@ public class CalculatorTest {
         instance.pushComplex(operand1);
         instance.pushVariable(variable1);
         assertEquals(new Complex(3, 4), instance.getVariables().get(variable1));
+        assertTrue(!instance.getStack().getList().contains(instance.parse(operand1)));
     }
 
     /**
