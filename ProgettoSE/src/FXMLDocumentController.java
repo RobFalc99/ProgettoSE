@@ -293,8 +293,8 @@ public class FXMLDocumentController implements Initializable {
             if (operations != null) {
                 invoker.addUserOperation(new UserOperation(txtFieldUsOperationName.getText(), operations));
                 definedUserOperations.add(txtFieldUsOperationName.getText());
-                updateView();
                 popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been defined with success", "The new user operation\nName: " + txtFieldUsOperationName.getText() + "\nOperations: " + operations);
+                updateView();
             }
         }
     }
