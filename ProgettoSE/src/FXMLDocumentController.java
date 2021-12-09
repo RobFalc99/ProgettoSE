@@ -284,17 +284,21 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void insertUserOperation() {
-        ArrayList<String> operations = checkUserOperation();
-        if (operations != null) {
-            invoker.addUserOperation(new UserOperation(txtFieldUsOperationName.getText(), operations));
-            definedUserOperations.add(txtFieldUsOperationName.getText());
-            updateView();
-            popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been defined with success", "The new user operation\nName: " + txtFieldUsOperationName.getText() + "\nOperations: " + operations);
+        if (txtFieldUsOperationName.getText().isEmpty() || txtFieldUsOperationSeq.getText().isEmpty()) {
+            popUp(AlertType.ERROR, "ERROR", "Impossible to define the user operation", "Hasn't been defined any user operation");
+        } else {
+            ArrayList<String> operations = checkUserOperation();
+            if (operations != null) {
+                invoker.addUserOperation(new UserOperation(txtFieldUsOperationName.getText(), operations));
+                definedUserOperations.add(txtFieldUsOperationName.getText());
+                updateView();
+                popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been defined with success", "The new user operation\nName: " + txtFieldUsOperationName.getText() + "\nOperations: " + operations);
+            }
         }
     }
 
     private void modifyUserOperation() {
-
+        
     }
 
     @FXML
@@ -319,6 +323,26 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void loadOnTxtFieldUsOperationSeqAction(ActionEvent event) {
+        String operationSeqInput = txtFieldUsOperationSeq.getText();
+        String selectedUserOperationName = choiceBoxUserOperations.getSelectionModel().getSelectedItem();
+        UserOperation oldUserOperation = null;
+        if (definedUserOperations.contains(selectedUserOperationName)) {
+            ArrayList<UserOperation> usOp = invoker.getUserOperations();
+            for (UserOperation uO : usOp) {
+                if (uO.getName().equals(selectedUserOperationName)) {
+                    oldUserOperation = uO;
+                }
+            }
+            ArrayList<String> operations = oldUserOperation.getOperations();
+            if(!operationSeqInput.endsWith(" "))
+                operationSeqInput += " ";
+            for(String op : operations){
+                operationSeqInput+=op+" ";
+            }
+            txtFieldUsOperationSeq.setText(operationSeqInput);
+        }else{
+            popUp(AlertType.ERROR, "ERROR", "The user operation doesn't exist", "The user operation " + selectedUserOperationName + " isn't defined yet");
+        }
     }
 
     @FXML
