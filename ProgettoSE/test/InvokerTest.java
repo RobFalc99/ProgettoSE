@@ -1,11 +1,9 @@
+
 import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
+import java.util.Arrays;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 
 public class InvokerTest {
 
@@ -19,28 +17,14 @@ public class InvokerTest {
     public InvokerTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
         calculator = new Calculator();
         instance = new Invoker();
-        operationsUo1 = new ArrayList<>();
-        operationsUo2 = new ArrayList<>();
-        operationsUo1.add("dup");
-        operationsUo1.add("*");
+        operationsUo1 = new ArrayList<>(Arrays.asList("dup", "*"));
+        operationsUo2 = new ArrayList<>(Arrays.asList("dup", "*", "notAnOperation"));
         uo1 = new UserOperation("hypotenuse", operationsUo1);
-        uo2 = new UserOperation("solve2degree", operationsUo2);
-    }
-
-    @After
-    public void tearDown() {
+        uo2 = new UserOperation("notACorrectUserOperation", operationsUo2);
     }
 
     /**
@@ -63,16 +47,20 @@ public class InvokerTest {
         Boolean result = instance.removeUserOperation(uo1);
         assertEquals(!instance.getUserOperations().contains(uo1), result);
     }
+
     /**
-    * Test of execute method, of class UserOperation.
-    */
+     * Test of execute method, of class UserOperation.
+     */
     @Test
     public void testExecute() {
         System.out.println("execute");
         instance.addUserOperation(uo1);
+        instance.addUserOperation(uo2);
         calculator.pushComplex("5");
         instance.execute("hypotenuse", calculator);
         assertEquals(calculator.getStack().top(), calculator.parse("25"));
+        calculator.pushComplex("6");
+        assertFalse(instance.execute("notACorrectUserOperation", calculator));
     }
 
 }

@@ -79,7 +79,7 @@ public class CalculatorTest {
         instance.pushComplex(operand3);
         instance.pushComplex("0");
         assertTrue(instance.divComplex().isNaN());
-        
+
     }
 
     /**
