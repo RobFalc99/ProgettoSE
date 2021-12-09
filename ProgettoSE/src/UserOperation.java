@@ -9,7 +9,8 @@ public class UserOperation {
     private ArrayList<String> operations;
 
     /**
-     * The class constructor
+     * A constructor which initialize the name attribute to a passed String
+     * parameter and the operations' list to a passed ArrayList parameter
      *
      * @param name The name of the new UserOperation
      * @param operations The operations' sequence of a new UserOperation
@@ -26,25 +27,25 @@ public class UserOperation {
     }
 
     /**
-     * The name attribute getter
+     * The name attribute's getter
      *
-     * @return A String which contains a UserOperation name
+     * @return A String which contains an UserOperation name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * The name attribute setter
+     * The name attribute's setter
      *
-     * @param name The new name of a UserOperation
+     * @param name The new name of an UserOperation
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * The operations attribute getter
+     * The operations attribute's getter
      *
      * @return A list of strings which contains a UserOperation operations'
      * sequence
@@ -54,9 +55,9 @@ public class UserOperation {
     }
 
     /**
-     * The operations attribute setter
+     * The operations attribute's setter
      *
-     * @param operations The new operations' sequence of a UserOperation
+     * @param operations The new operations' sequence of an UserOperation
      */
     public void setOperations(ArrayList<String> operations) {
         this.operations = operations;
@@ -67,7 +68,8 @@ public class UserOperation {
      * operation and executes them in sequence by calling the suitable
      * Calculator methods.
      *
-     * @param calculator The calculator object on which to call the operations
+     * @param calculator The calculator object on which the operations' sequence
+     * need to be called
      * @return True if the execute ends correctly, False otherwise
      */
     public Boolean execute(Calculator calculator) {
@@ -102,14 +104,13 @@ public class UserOperation {
                     } else {
                         return false;
                     }
-                }
-                else{
-                  if (calculator.getStack().getList().size() > 1) {
+                } else {
+                    if (calculator.getStack().getList().size() > 1) {
                         r = map.get(s);
                         r.run();
                     } else {
                         return false;
-                    }  
+                    }
                 }
 
             }

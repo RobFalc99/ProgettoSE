@@ -84,10 +84,8 @@ public class FXMLDocumentController implements Initializable {
         complexOperand = FXCollections.observableArrayList();
         stackOperand.setItems(complexOperand);
         invoker = new Invoker();
-
         definedUserOperations = FXCollections.observableArrayList();
         choiceBoxUserOperations.setItems(definedUserOperations);
-
     }
 
     private void updateView() {
@@ -324,9 +322,9 @@ public class FXMLDocumentController implements Initializable {
             invoker.removeUserOperation(toRemoveUO);
             updateView();
             definedUserOperations.remove(userOperationName);
-            popUp(AlertType.CONFIRMATION, "SUCCESS", "The old user operation has been removed with success", "The old user operation\nName: " + toRemoveUO.getName() + "\nOperations: " + toRemoveUO.getOperations());
+            popUp(AlertType.CONFIRMATION, "SUCCESS", "The old user operation has been removed", "The old user operation\nName: " + toRemoveUO.getName() + "\nOperations: " + toRemoveUO.getOperations());
         } else {
-            popUp(AlertType.ERROR, "ERROR", "The new user operation defined doesn't exists", "The user operation " + userOperationName + " isn't defined yet");
+            popUp(AlertType.ERROR, "ERROR", "The user operation specified doesn't exist", "The user operation " + userOperationName + " isn't defined yet");
         }
     }
 
@@ -342,19 +340,17 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
         }
-
         if (toCommitUO != null) {
             Boolean res = invoker.execute(userOperationName, calculator);
             if (res == true) {
                 updateView();
                 choiceBoxUserOperations.getSelectionModel().clearSelection();
-                popUp(AlertType.CONFIRMATION, "SUCCESS", "The user operation was successfully runned", "The user operation\nName: " + toCommitUO.getName() + "\nOperations: " + toCommitUO.getOperations());
+                popUp(AlertType.CONFIRMATION, "SUCCESS", "The user operation has been successfully runned", "The user operation\nName: " + toCommitUO.getName() + "\nOperations: " + toCommitUO.getOperations());
             } else {
-                popUp(AlertType.ERROR, "ERROR", "The user operation meets an error", "The user operation name: " + userOperationName);
+                popUp(AlertType.ERROR, "ERROR", "The user operation can't be executed due to an error", "The user operation name: " + userOperationName + " contains an operation which can't be executed");
             }
-
         } else {
-            popUp(AlertType.ERROR, "ERROR", "The invoked user operation doesn't exists", "The user operation " + userOperationName + " isn't defined yet");
+            popUp(AlertType.ERROR, "ERROR", "The invoked user operation doesn't exist", "The user operation " + userOperationName + " isn't defined yet");
         }
     }
 

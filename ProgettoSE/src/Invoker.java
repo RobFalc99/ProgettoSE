@@ -13,7 +13,7 @@ public class Invoker {
     }
 
     /**
-     * The userOperations attribute getter
+     * The userOperations attribute's getter
      *
      * @return An ArrayList on UserOperation which contains the userOperations
      * attribute
@@ -35,7 +35,7 @@ public class Invoker {
      * Adds a new User Operation to the userOperations list
      *
      * @param uo The new User Operation to be added
-     * @return True if the input User Operation is added, else otherwise (as
+     * @return True if the input User Operation is added, False otherwise (as
      * specified by Collection.add(E))
      */
     public Boolean addUserOperation(UserOperation uo) {
@@ -46,7 +46,7 @@ public class Invoker {
      * Removes the input User Operation in the userOperations list
      *
      * @param uo The User Operation to be removed
-     * @return True if the input User Operation is removed, else otherwise
+     * @return True if the input User Operation is removed, False otherwise
      */
     public Boolean removeUserOperation(UserOperation uo) {
         return userOperations.remove(uo);
@@ -58,7 +58,7 @@ public class Invoker {
      *
      * @param name The name of the userOperations
      * @param calculator The calculator object that you need to pass to execute
-     * @return True if the execute ends correctly, False otherwise
+     * @return True if the execution ends correctly, False otherwise
      */
     public Boolean execute(String name, Calculator calculator) {
         for (UserOperation u : userOperations) {

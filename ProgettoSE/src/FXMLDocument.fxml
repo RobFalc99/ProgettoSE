@@ -35,11 +35,11 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="73.0" prefWidth="463.0" spacing="20.0">
                                        <children>
-                                          <Label prefHeight="21.0" prefWidth="144.0" text="Inserire un operando">
+                                          <Label prefHeight="21.0" prefWidth="144.0" text="Insert an operand">
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font></Label>
-                                          <TextField fx:id="txtFieldOperand" alignment="CENTER" minHeight="-Infinity" minWidth="160.0" onKeyPressed="#onEnterAction" prefHeight="31.0" prefWidth="178.0" promptText="Es. 5,3+2,6i  or  0+4i">
+                                          <TextField fx:id="txtFieldOperand" alignment="CENTER" minHeight="-Infinity" minWidth="160.0" onKeyPressed="#onEnterAction" prefHeight="31.0" prefWidth="178.0" promptText="Ex. 5,3+2,6i  or  0+4i">
                                              <font>
                                                 <Font size="14.0" />
                                              </font></TextField>
@@ -48,7 +48,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="163.0" prefWidth="463.0" spacing="20.0">
                                        <children>
-                                          <Label prefHeight="17.0" prefWidth="169.0" text="Scegliere un'operazione">
+                                          <Label prefHeight="17.0" prefWidth="169.0" text="Choose an operation">
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font></Label>
@@ -79,11 +79,11 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="106.0" prefWidth="463.0" spacing="20.0">
                                        <children>
-                                          <Label text="Inserire operazione su variabile">
+                                          <Label text="Insert a variable's operation">
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font></Label>
-                                          <TextField fx:id="txtFieldVariable" alignment="CENTER" onKeyPressed="#onEnterVariableAction" prefHeight="31.0" prefWidth="170.0" promptText="Es. &gt;A, &lt;B, +C, -D">
+                                          <TextField fx:id="txtFieldVariable" alignment="CENTER" onKeyPressed="#onEnterVariableAction" prefHeight="31.0" prefWidth="170.0" promptText="Ex. &gt;A, &lt;B, +C, -D">
                                              <font>
                                                 <Font size="14.0" />
                                              </font></TextField>
@@ -111,7 +111,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="132.0" prefWidth="659.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="31.0" prefWidth="135.0" text="Operazioni utente">
+                  <Label alignment="CENTER" prefHeight="31.0" prefWidth="135.0" text="User Operations">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -123,12 +123,12 @@
                      <children>
                         <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="132.0" spacing="5.0">
                            <children>
-                              <Label text="Nome">
+                              <Label text="Name">
                                  <font>
                                     <Font name="System Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtFieldUsOperationName" alignment="CENTER" prefHeight="29.0" prefWidth="109.0" promptText="Es. Hypotenuse">
+                              <TextField fx:id="txtFieldUsOperationName" alignment="CENTER" prefHeight="29.0" prefWidth="109.0" promptText="Ex. Hypotenuse">
                                  <font>
                                     <Font size="14.0" />
                                  </font></TextField>
@@ -136,12 +136,12 @@
                         </VBox>
                         <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="198.0" spacing="5.0">
                            <children>
-                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="76.0" text="Operazioni">
+                              <Label alignment="CENTER" prefHeight="20.0" prefWidth="76.0" text="Operations">
                                  <font>
                                     <Font name="System Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtFieldUsOperationSeq" alignment="CENTER" onKeyPressed="#onEnterUserOperationAction" prefHeight="29.0" prefWidth="173.0" promptText="Es. dup * swap dup * + sqrt">
+                              <TextField fx:id="txtFieldUsOperationSeq" alignment="CENTER" onKeyPressed="#onEnterUserOperationAction" prefHeight="29.0" prefWidth="173.0" promptText="Ex. dup * swap dup * + sqrt">
                                  <font>
                                     <Font size="14.0" />
                                  </font></TextField>
@@ -154,7 +154,7 @@
                         </Button>
                         <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="166.0" spacing="5.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="166.0" text="Operazioni utente definite" textAlignment="CENTER">
+                              <Label alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="166.0" text="Defined User Operations" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Italic" size="14.0" />
                                  </font>

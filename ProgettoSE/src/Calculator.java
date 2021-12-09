@@ -16,7 +16,6 @@ public class Calculator {
         stack = new Stack<>();
         variables = new Variables();
         operationMap = new HashMap<>();
-
         operationMap.put("+", () -> addComplex());
         operationMap.put("-", () -> subComplex());
         operationMap.put("*", () -> mulComplex());
@@ -28,7 +27,6 @@ public class Calculator {
         operationMap.put("over", () -> stack.overOperand());
         operationMap.put("drop", () -> stack.dropOperand());
         operationMap.put("clear", () -> stack.clear());
-
     }
 
     /**
@@ -41,7 +39,6 @@ public class Calculator {
         this.stack = stack;
         variables = new Variables();
         operationMap = new HashMap<>();
-
         operationMap.put("+", () -> addComplex());
         operationMap.put("-", () -> subComplex());
         operationMap.put("*", () -> mulComplex());
@@ -71,6 +68,15 @@ public class Calculator {
      */
     public Variables getVariables() {
         return variables;
+    }
+    
+    /**
+     * Getter of the operationMap attribute
+     *
+     * @return a map which represents the operationMap attribute
+     */
+    public Map<String, Runnable> getOperationMap() {
+        return operationMap;
     }
 
     /**
@@ -291,14 +297,4 @@ public class Calculator {
     public Complex subToVariable(String key) {
         return new Complex(variables.subValue(key, stack.pop()));
     }
-
-    /**
-     * Getter of the operationMap attribute
-     *
-     * @return a map which represents the operationMap attribute
-     */
-    public Map<String, Runnable> getOperationMap() {
-        return operationMap;
-    }
-
 }
