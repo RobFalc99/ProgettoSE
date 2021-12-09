@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="1000.0" maxWidth="1200.0" minHeight="650.0" minWidth="980.0" prefHeight="622.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="1000.0" maxWidth="1200.0" minHeight="650.0" minWidth="1011.0" prefHeight="650.0" prefWidth="1011.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLDocumentController">
     <children>
       <SplitPane dividerPositions="0.7425569176882661" layoutX="248.0" layoutY="174.0" orientation="VERTICAL" prefHeight="573.0" prefWidth="661.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -26,11 +26,11 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="93.0" prefWidth="463.0" spacing="35.0">
                                        <children>
-                                          <Button fx:id="btnClear" mnemonicParsing="false" onAction="#clearAction" text="Clear" />
-                                          <Button fx:id="btnDup" mnemonicParsing="false" onAction="#dupAction" text="Dup" />
-                                          <Button fx:id="btnDrop" mnemonicParsing="false" onAction="#dropAction" text="Drop" />
-                                          <Button fx:id="btnSwap" mnemonicParsing="false" onAction="#swapAction" text="Swap" />
-                                          <Button fx:id="btnOver" layoutX="104.0" layoutY="59.0" mnemonicParsing="false" onAction="#overAction" text="Over" />
+                                          <Button fx:id="btnClear" alignment="CENTER" mnemonicParsing="false" onAction="#clearAction" text="Clear" />
+                                          <Button fx:id="btnDup" alignment="CENTER" mnemonicParsing="false" onAction="#dupAction" text="Dup" />
+                                          <Button fx:id="btnDrop" alignment="CENTER" mnemonicParsing="false" onAction="#dropAction" text="Drop" />
+                                          <Button fx:id="btnSwap" alignment="CENTER" mnemonicParsing="false" onAction="#swapAction" text="Swap" />
+                                          <Button fx:id="btnOver" alignment="CENTER" layoutX="104.0" layoutY="59.0" mnemonicParsing="false" onAction="#overAction" text="Over" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="73.0" prefWidth="463.0" spacing="20.0">
@@ -43,7 +43,7 @@
                                              <font>
                                                 <Font size="14.0" />
                                              </font></TextField>
-                                          <Button fx:id="btnCommitOperand" mnemonicParsing="false" onAction="#commitOperand" text="Commit" />
+                                          <Button fx:id="btnCommitOperand" alignment="CENTER" mnemonicParsing="false" onAction="#commitOperand" text="Commit" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="163.0" prefWidth="463.0" spacing="20.0">
@@ -54,9 +54,9 @@
                                              </font></Label>
                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                              <children>
-                                                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addAction" prefHeight="31.0" prefWidth="46.0" text="+" />
-                                                <Button fx:id="btnSub" mnemonicParsing="false" onAction="#subAction" prefHeight="31.0" prefWidth="46.0" text="-" />
-                                                <Button fx:id="btnMul" mnemonicParsing="false" onAction="#mulAction" prefHeight="31.0" prefWidth="46.0" text="*" />
+                                                <Button fx:id="btnAdd" alignment="CENTER" mnemonicParsing="false" onAction="#addAction" prefHeight="31.0" prefWidth="46.0" text="+" />
+                                                <Button fx:id="btnSub" alignment="CENTER" mnemonicParsing="false" onAction="#subAction" prefHeight="31.0" prefWidth="46.0" text="-" />
+                                                <Button fx:id="btnMul" alignment="CENTER" mnemonicParsing="false" onAction="#mulAction" prefHeight="31.0" prefWidth="46.0" text="*" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -64,9 +64,9 @@
                                           </VBox>
                                           <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                                              <children>
-                                                <Button fx:id="btnSqrt" mnemonicParsing="false" onAction="#sqrtAction" text="sqrt" />
+                                                <Button fx:id="btnSqrt" alignment="CENTER" mnemonicParsing="false" onAction="#sqrtAction" text="sqrt" />
                                                 <Button fx:id="btnInvSign" alignment="CENTER" mnemonicParsing="false" onAction="#invSignAction" prefHeight="35.0" prefWidth="63.0" text="+-" />
-                                                <Button fx:id="btnDiv" mnemonicParsing="false" onAction="#divAction" prefHeight="31.0" prefWidth="46.0" text="/" />
+                                                <Button fx:id="btnDiv" alignment="CENTER" mnemonicParsing="false" onAction="#divAction" prefHeight="31.0" prefWidth="46.0" text="/" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -87,7 +87,7 @@
                                              <font>
                                                 <Font size="14.0" />
                                              </font></TextField>
-                                          <Button fx:id="btnCommitVariable" mnemonicParsing="false" onAction="#commitVariable" text="Commit" />
+                                          <Button fx:id="btnCommitVariable" alignment="CENTER" mnemonicParsing="false" onAction="#commitVariable" text="Commit" />
                                        </children>
                                        <VBox.margin>
                                           <Insets />
@@ -149,8 +149,8 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                            <children>
-                              <Button fx:id="btnInsertUserOperation" minHeight="40.0" minWidth="70.0" mnemonicParsing="false" onAction="#newUserOperationAction" prefHeight="40.0" prefWidth="70.0" text="New" />
-                              <Button fx:id="btnModifyUserOperationSeq" minHeight="40.0" minWidth="70.0" mnemonicParsing="false" onAction="#modifyUserOperationSeqAction" prefHeight="40.0" prefWidth="70.0" text="Modify" />
+                              <Button fx:id="btnInsertUserOperation" alignment="CENTER" minHeight="40.0" minWidth="88.0" mnemonicParsing="false" onAction="#newUserOperationAction" prefHeight="40.0" prefWidth="88.0" text="New" />
+                              <Button fx:id="btnModifyUserOperationSeq" alignment="CENTER" minHeight="40.0" minWidth="88.0" mnemonicParsing="false" onAction="#modifyUserOperationSeqAction" prefHeight="40.0" prefWidth="88.0" text="Modify" />
                            </children>
                            <HBox.margin>
                               <Insets top="27.0" />
@@ -172,17 +172,17 @@
                               <Insets />
                            </HBox.margin>
                         </VBox>
-                        <Button fx:id="btnLoadOnTxtFieldUsOperationSeq" mnemonicParsing="false" onAction="#loadOnTxtFieldUsOperationSeqAction" text="Load">
+                        <Button fx:id="btnLoadOnTxtFieldUsOperationSeq" alignment="CENTER" mnemonicParsing="false" onAction="#loadOnTxtFieldUsOperationSeqAction" text="Load">
                            <HBox.margin>
                               <Insets top="24.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="btnDeleteUserOperation" mnemonicParsing="false" onAction="#deleteUserOperationAction" text="Delete">
+                        <Button fx:id="btnDeleteUserOperation" alignment="CENTER" mnemonicParsing="false" onAction="#deleteUserOperationAction" text="Delete">
                            <HBox.margin>
                               <Insets top="24.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="btnCommitUserOperation" mnemonicParsing="false" onAction="#commitUserOperationAction" text="Commit">
+                        <Button fx:id="btnCommitUserOperation" alignment="CENTER" mnemonicParsing="false" onAction="#commitUserOperationAction" text="Commit">
                            <HBox.margin>
                               <Insets top="24.0" />
                            </HBox.margin>
