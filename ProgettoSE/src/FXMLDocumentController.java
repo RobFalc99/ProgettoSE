@@ -77,6 +77,8 @@ public class FXMLDocumentController implements Initializable {
     private Invoker invoker;
 
     private ObservableList<String> definedUserOperations;
+    @FXML
+    private Button btnModifyUserOperationSeq;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -367,6 +369,10 @@ public class FXMLDocumentController implements Initializable {
         } else {
             popUp(AlertType.ERROR, "ERROR", "The invoked user operation doesn't exist", "The user operation " + userOperationName + " isn't defined yet");
         }
+    }
+
+    @FXML
+    private void modifyUserOperationSeqAction(ActionEvent event) {
     }
 
 }
