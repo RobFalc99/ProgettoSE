@@ -262,12 +262,8 @@ public class FXMLDocumentController implements Initializable {
         insertVariable();
     }
 
-    private void insertUserOperation() {
+    private ArrayList<String> checkUserOperation() {
         String userOperationName = txtFieldUsOperationName.getText();
-        if (definedUserOperations.contains(userOperationName)) {
-            popUp(AlertType.ERROR, "ERROR", "The new user operation can't be defined", "There's already an user operation with the same name: " + userOperationName);
-            return;
-        }
         ArrayList<String> operations = new ArrayList<>();
         Scanner scan = new Scanner(txtFieldUsOperationSeq.getText());
         scan.useDelimiter(" ");
@@ -281,25 +277,44 @@ public class FXMLDocumentController implements Initializable {
                 operations.add(newOperation);
             } else {
                 popUp(AlertType.ERROR, "ERROR", "Impossible to define the user operation", "The user operation contains a not supported operation: " + newOperation);
-                return;
+                return null;
             }
         }
-        invoker.addUserOperation(new UserOperation(userOperationName, operations));
-        definedUserOperations.add(userOperationName);
-        updateView();
-        popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been defined with success", "The new user operation\nName: " + userOperationName + "\nOperations: " + operations);
+        return operations;
+    }
+
+    private void insertUserOperation() {
+        ArrayList<String> operations = checkUserOperation();
+        if (operations != null) {
+            invoker.addUserOperation(new UserOperation(txtFieldUsOperationName.getText(), operations));
+            definedUserOperations.add(txtFieldUsOperationName.getText());
+            updateView();
+            popUp(AlertType.CONFIRMATION, "SUCCESS", "The new user operation has been defined with success", "The new user operation\nName: " + txtFieldUsOperationName.getText() + "\nOperations: " + operations);
+        }
+    }
+
+    private void modifyUserOperation() {
+
     }
 
     @FXML
     private void onEnterUserOperationAction(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            insertUserOperation();
+            if (definedUserOperations.contains(txtFieldUsOperationName.getText())) {
+                modifyUserOperation();
+            } else {
+                insertUserOperation();
+            }
         }
     }
 
     @FXML
     private void newUserOperationAction(ActionEvent event) {
-        insertUserOperation();
+        if (definedUserOperations.contains(txtFieldUsOperationName.getText())) {
+            popUp(AlertType.ERROR, "ERROR", "The new user operation can't be defined", "There's already an user operation with the same name: " + txtFieldUsOperationName.getText());
+        } else {
+            insertUserOperation();
+        }
     }
 
     @FXML
