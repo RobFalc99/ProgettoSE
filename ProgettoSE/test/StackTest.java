@@ -31,15 +31,26 @@ public class StackTest {
     }
 
     /**
+     * Special test of push method, of class Stack.
+     */
+    @Test
+    public void testSpecialPush() {
+        System.out.println("special push");
+        instance.push(operand2);
+        instance.push(operand1);
+        assertEquals(operand1, instance.top());
+    }
+
+    /**
      * Test of pop method, of class Stack.
      */
     @Test
     public void testPop() {
         System.out.println("pop");
-        instance.push(operand2);
         instance.push(operand1);
-        Complex result = instance.pop();
-        assertEquals(operand1, result);
+        instance.push(operand2);
+        instance.pop();
+        assertEquals(operand1, instance.top());
     }
 
     /**
@@ -48,9 +59,9 @@ public class StackTest {
     @Test
     public void testTop() {
         System.out.println("top");
+        instance.push(operand2);
         instance.push(operand1);
-        Complex result = instance.top();
-        assertEquals(operand1, result);
+        assertEquals(operand1, instance.top());
     }
 
     /**
@@ -59,8 +70,11 @@ public class StackTest {
     @Test
     public void testIsEmpty() {
         System.out.println("isEmpty");
-        Boolean result = instance.isEmpty();
-        assertTrue(result);
+        instance.push(operand1);
+        instance.push(operand2);
+        instance.pop();
+        instance.pop();
+        assertTrue(instance.isEmpty());
     }
 
     /**
@@ -70,6 +84,7 @@ public class StackTest {
     public void testClear() {
         System.out.println("clear");
         instance.push(operand1);
+        instance.push(operand2);
         instance.clear();
         assertTrue(instance.isEmpty());
     }
@@ -84,8 +99,7 @@ public class StackTest {
         instance.push(operand2);
         instance.push(operand1);
         instance.push(operand2);
-        Complex result = instance.secondLast();
-        assertEquals(operand1, result);
+        assertEquals(operand1, instance.secondLast());
     }
 
     /**
@@ -95,8 +109,8 @@ public class StackTest {
     public void testDupOperand() {
         System.out.println("dupOperand");
         instance.push(operand1);
-        Complex result = instance.dupOperand();
-        assertEquals(operand1, result);
+        instance.dupOperand();
+        assertEquals(instance.top(), instance.secondLast());
     }
 
     /**
@@ -108,8 +122,7 @@ public class StackTest {
         instance.push(operand1);
         instance.push(operand2);
         instance.swapOperand();
-        Complex result = instance.top();
-        assertEquals(operand1, result);
+        assertEquals(operand1, instance.top());
     }
 
     /**
@@ -119,8 +132,9 @@ public class StackTest {
     public void testDropOperand() {
         System.out.println("dropOperand");
         instance.push(operand1);
-        Complex result = instance.dropOperand();
-        assertEquals(operand1, result);
+        instance.push(operand2);
+        instance.dropOperand();
+        assertEquals(operand1, instance.top());
     }
 
     /**
@@ -129,11 +143,9 @@ public class StackTest {
     @Test
     public void testOverOperand() {
         System.out.println("overOperand");
-        Complex second = new Complex(2, 1);
         instance.push(operand1);
-        instance.push(second);
-        Object result = instance.overOperand();
-        assertEquals(operand1, result);
+        instance.push(operand2);
+        assertEquals(operand1, instance.overOperand());
     }
 
 }
