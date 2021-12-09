@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -97,20 +98,22 @@ public class UserOperation {
                     }
                 }
             } else {
-                if (s.equals("dup") || s.equals("drop") || s.equals("sqrt") || s.equals("+-") || s.equals("clear")) {
+                if((Arrays.asList("dup","drop","sqrt","+-","clear")).contains(s)){
                     if (calculator.getStack().getList().size() >= 1) {
                         r = map.get(s);
                         r.run();
                     } else {
                         return false;
                     }
-                } else {
+                } else if ((Arrays.asList("+","-","*","/","swap")).contains(s)){
                     if (calculator.getStack().getList().size() > 1) {
                         r = map.get(s);
                         r.run();
                     } else {
                         return false;
                     }
+                }else{
+                    return false;
                 }
 
             }

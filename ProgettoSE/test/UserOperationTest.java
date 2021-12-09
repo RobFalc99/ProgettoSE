@@ -1,48 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
+import java.util.Arrays;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author FALCONE
- */
+
 public class UserOperationTest {
 
     Calculator calculator;
-    UserOperation instance;
+    UserOperation instance1;
+    UserOperation instance2;
+    
+    ArrayList<String> operationsUo1;
+    ArrayList<String> operationsUo2;
 
     public UserOperationTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
-        ArrayList<String> operationsUo1 = new ArrayList<>();
-        operationsUo1.add("dup");
-        operationsUo1.add("*");
+        operationsUo1 = new ArrayList<>(Arrays.asList("dup","*"));
+        operationsUo2 = new ArrayList<>(Arrays.asList("dup","*","swap", "ciao"));
         calculator = new Calculator();
-        instance = new UserOperation("op1", operationsUo1);
-    }
-
-    @After
-    public void tearDown() {
+        instance1 = new UserOperation("op1", operationsUo1);
+        instance2 = new UserOperation("op2", operationsUo2);
     }
 
     /**
@@ -52,9 +34,10 @@ public class UserOperationTest {
     public void testExecute() {
         System.out.println("execute");
         calculator.pushComplex("5");
-        instance.execute(calculator);
+        instance1.execute(calculator);
         assertEquals(calculator.getStack().top(), calculator.parse("25"));
-
+        calculator.pushComplex("6");
+        assertFalse(instance2.execute(calculator));
     }
 
 }
