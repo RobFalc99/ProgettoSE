@@ -28,17 +28,8 @@ public class StackTest {
         System.out.println("push");
         instance.push(operand1);
         assertFalse(instance.isEmpty());
-    }
-
-    /**
-     * Special test of push method, of class Stack.
-     */
-    @Test
-    public void testSpecialPush() {
-        System.out.println("special push");
         instance.push(operand2);
-        instance.push(operand1);
-        assertEquals(operand1, instance.top());
+        assertEquals(operand2, instance.top());
     }
 
     /**
