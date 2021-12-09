@@ -95,11 +95,21 @@ public class UserOperation {
                     }
                 }
             } else {
-                if (calculator.getStack().getList().size() > 1) {
-                    r = map.get(s);
-                    r.run();
-                } else {
-                    return false;
+                if (s.equals("dup") || s.equals("drop") || s.equals("sqrt") || s.equals("+-") || s.equals("clear")) {
+                    if (calculator.getStack().getList().size() >= 1) {
+                        r = map.get(s);
+                        r.run();
+                    } else {
+                        return false;
+                    }
+                }
+                else{
+                  if (calculator.getStack().getList().size() > 1) {
+                        r = map.get(s);
+                        r.run();
+                    } else {
+                        return false;
+                    }  
                 }
 
             }
