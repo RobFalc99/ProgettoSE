@@ -211,8 +211,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void divAction(ActionEvent event) {
-        if (!calculator.getStack().top().equals(new Complex(0))) {
-            if (checkOperationCondition(2)) {
+        if (checkOperationCondition(2)) {
+            if (!calculator.getStack().top().equals(new Complex(0))) {
                 calculator.divComplex();
                 updateView();
             }
