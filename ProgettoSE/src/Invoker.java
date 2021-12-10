@@ -1,9 +1,12 @@
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -76,6 +79,24 @@ public class Invoker {
         return false;
     }
     
+    public Boolean modifyUserOperation(String uoName, ArrayList<String> uoSeqOperations){
+        for(UserOperation uo: userOperations){
+            if (uo.getName().equals(uoName)){
+                uo.setOperations(uoSeqOperations);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    /**
+     * Imports all the user operations saved on a file passed as an parameter
+     * and adds them in the userOperations ArrayList
+     *
+     * @param fileBySave	The file from which import the user operations
+     * @return	True if the import ends correctly, False otherwise
+     */
     public Boolean importUserOperationsByFile(File fileBySave) {
         String line = null;
         try {
@@ -101,4 +122,26 @@ public class Invoker {
         return true;
     }
 
+    /**
+     * Saves on a file the UserOperations contained in the Invoker attribute list
+     * @param fileToSave the file on which to save
+     * @return True if the execution ends correctly, False otherwise
+     * @throws Exception IOException
+     */
+    public Boolean saveUserOperationOnFile(File fileToSave) throws Exception {
+        try (PrintWriter w = new PrintWriter(new BufferedWriter(new FileWriter(fileToSave)))) {
+            w.print("UserOperationName, UserOperationSequence");
+            for (UserOperation u : userOperations) {
+                w.print(u.getName() + ",");
+                ArrayList <String> operations = u.getOperations();
+                for (String s : operations) {
+                    w.print(s + " ");
+                }
+                w.print("\n");
+            }
+        } catch (IOException ex) {
+            return false;
+        }
+        return true;
+    }
 }

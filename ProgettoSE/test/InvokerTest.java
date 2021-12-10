@@ -2,9 +2,12 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 public class InvokerTest {
 
@@ -13,6 +16,7 @@ public class InvokerTest {
     private UserOperation uo2;
     private ArrayList<String> operationsUo1;
     private ArrayList<String> operationsUo2;
+    private ArrayList<String> operationsModifiedUo1;
     private Invoker instance;
 
     public InvokerTest() {
@@ -24,6 +28,7 @@ public class InvokerTest {
         instance = new Invoker();
         operationsUo1 = new ArrayList<>(Arrays.asList("dup", "*"));
         operationsUo2 = new ArrayList<>(Arrays.asList("dup", "*", "notAnOperation"));
+        operationsModifiedUo1 = new ArrayList<>(Arrays.asList("dup", "+"));
         uo1 = new UserOperation("hypotenuse", operationsUo1);
         uo2 = new UserOperation("notACorrectUserOperation", operationsUo2);
     }
@@ -64,7 +69,20 @@ public class InvokerTest {
         assertFalse(instance.execute("notACorrectUserOperation", calculator));
     }
 
-    
+
+    /**
+     * Test of modifyUserOperation method, of class Invoker.
+     */
+    @Test
+    public void testModifyUserOperation() {
+        System.out.println("modifyUserOperation");
+        instance.addUserOperation(uo1);
+        instance.addUserOperation(uo2);
+        assertTrue(instance.modifyUserOperation("hypotenuse", operationsModifiedUo1));
+        calculator.pushComplex("3+4i");
+        instance.execute(uo1.getName(), calculator);
+        assertEquals(calculator.parse("6+8i"), calculator.getStack().top());
+    }
 
     
     /**
