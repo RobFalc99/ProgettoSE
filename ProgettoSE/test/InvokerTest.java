@@ -2,12 +2,9 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 
 public class InvokerTest {
 
@@ -69,7 +66,6 @@ public class InvokerTest {
         assertFalse(instance.execute("notACorrectUserOperation", calculator));
     }
 
-
     /**
      * Test of modifyUserOperation method, of class Invoker.
      */
@@ -84,7 +80,6 @@ public class InvokerTest {
         assertEquals(calculator.parse("6+8i"), calculator.getStack().top());
     }
 
-    
     /**
      * Test of importUserOperationsByFile method, of class UserOperation.
      */

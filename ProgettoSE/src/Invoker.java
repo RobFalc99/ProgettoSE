@@ -78,24 +78,25 @@ public class Invoker {
         }
         return false;
     }
-    
+
     /**
-     * Modifies en existing User Operation by setting the new operations' sequence passed in input
+     * Modifies en existing User Operation by setting the new operations'
+     * sequence passed in input
+     *
      * @param uoName The name of the userOperations
      * @param uoSeqOperations The new operations' sequence to save
      * @return True if the change ends correctly, False otherwise
      */
-    public Boolean modifyUserOperation(String uoName, ArrayList<String> uoSeqOperations){
-        for(UserOperation uo: userOperations){
-            if (uo.getName().equals(uoName)){
+    public Boolean modifyUserOperation(String uoName, ArrayList<String> uoSeqOperations) {
+        for (UserOperation uo : userOperations) {
+            if (uo.getName().equals(uoName)) {
                 uo.setOperations(uoSeqOperations);
                 return true;
             }
         }
         return false;
     }
-    
-    
+
     /**
      * Imports all the user operations saved on a file passed as an parameter
      * and adds them in the userOperations ArrayList
@@ -129,17 +130,19 @@ public class Invoker {
     }
 
     /**
-     * Saves on a file the UserOperations contained in the Invoker attribute list
+     * Saves on a file the UserOperations contained in the Invoker attribute
+     * list
+     *
      * @param fileToSave the file on which to save
      * @return True if the execution ends correctly, False otherwise
      * @throws Exception IOException
      */
     public Boolean saveUserOperationOnFile(File fileToSave) throws Exception {
         try (PrintWriter w = new PrintWriter(new BufferedWriter(new FileWriter(fileToSave)))) {
-            w.print("UserOperationName, UserOperationSequence");
+            w.print("UserOperationName, UserOperationSequence\n");
             for (UserOperation u : userOperations) {
                 w.print(u.getName() + ",");
-                ArrayList <String> operations = u.getOperations();
+                ArrayList<String> operations = u.getOperations();
                 for (String s : operations) {
                     w.print(s + " ");
                 }
