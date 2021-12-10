@@ -14,6 +14,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -79,6 +81,12 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<String> definedUserOperations;
     @FXML
     private Button btnModifyUserOperationSeq;
+    @FXML
+    private Menu menuFile;
+    @FXML
+    private MenuItem importByFile;
+    @FXML
+    private MenuItem saveOnFile;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -397,6 +405,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void modifyUserOperationSeqAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void importFileAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void saveFileAction(ActionEvent event) {
     }
 
 }
