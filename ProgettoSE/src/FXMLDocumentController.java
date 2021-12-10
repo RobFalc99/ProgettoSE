@@ -438,6 +438,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void importFileAction(ActionEvent event) throws FileNotFoundException, IOException {
         FileChooser fc = new FileChooser();
+        fc.setTitle("Choose import file");
         File file = fc.showOpenDialog(anchorPane.getScene().getWindow());
         if (file != null) {
             String s;
@@ -446,7 +447,7 @@ public class FXMLDocumentController implements Initializable {
             if (s.equals("UserOperationName, UserOperationSequence")) {
                 Boolean c = invoker.importUserOperationsByFile(file);
                 for (UserOperation uo : invoker.getUserOperations()) {
-                    if (!definedUserOperations.contains(uo)) {
+                    if (!definedUserOperations.contains(uo.getName())) {
                         definedUserOperations.add(uo.getName());
                     }
                 }
@@ -462,7 +463,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void saveFileAction(ActionEvent event) throws Exception {
         FileChooser fc = new FileChooser();
-        File file = fc.showOpenDialog(anchorPane.getScene().getWindow());
+        fc.setTitle("Choose export file");
+        File file = fc.showSaveDialog(anchorPane.getScene().getWindow());
         if (file != null) {
             Boolean c = invoker.saveUserOperationOnFile(file);
             popUp(AlertType.CONFIRMATION, "SUCCESS", "The export to file ended correctly", "All the user opearations in the calculator have been loaded into the selected file");
