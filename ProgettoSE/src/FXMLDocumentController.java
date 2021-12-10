@@ -22,10 +22,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class FXMLDocumentController implements Initializable {
     
@@ -194,6 +196,8 @@ public class FXMLDocumentController implements Initializable {
     private void popUp(AlertType type, String title, String header, String message) {
         Alert a = new Alert(type);
         a.setTitle(title);
+        Stage stage = (Stage)a.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("popup_icon.png")));
         a.setHeaderText(header);
         a.setContentText(message);
         a.showAndWait();

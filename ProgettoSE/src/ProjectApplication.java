@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class ProjectApplication extends Application {
@@ -14,6 +15,8 @@ public class ProjectApplication extends Application {
         Scene scene = new Scene(root);
 
         Application.setUserAgentStylesheet(getClass().getResource("Template.css").toExternalForm());
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("calculator_icon.png")));
+        stage.setTitle("Complex Scientific Calculator");
 
         stage.setScene(scene);
         stage.show();
