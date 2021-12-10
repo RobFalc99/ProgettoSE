@@ -79,6 +79,12 @@ public class Invoker {
         return false;
     }
     
+    /**
+     * Modifies en existing User Operation by setting the new operations' sequence passed in input
+     * @param uoName The name of the userOperations
+     * @param uoSeqOperations The new operations' sequence to save
+     * @return True if the change ends correctly, False otherwise
+     */
     public Boolean modifyUserOperation(String uoName, ArrayList<String> uoSeqOperations){
         for(UserOperation uo: userOperations){
             if (uo.getName().equals(uoName)){
