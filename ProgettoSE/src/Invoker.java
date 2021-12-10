@@ -68,5 +68,15 @@ public class Invoker {
         }
         return false;
     }
+    
+    public Boolean modifyUserOperation(String uoName, ArrayList<String> uoSeqOperations){
+        for(UserOperation uo: userOperations){
+            if (uo.getName().equals(uoName)){
+                uo.setOperations(uoSeqOperations);
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

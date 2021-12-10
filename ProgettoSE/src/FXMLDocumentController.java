@@ -308,6 +308,23 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void modifyUserOperation() {
+        if (txtFieldUsOperationName.getText().isEmpty() || txtFieldUsOperationSeq.getText().isEmpty()) {
+            popUp(AlertType.ERROR, "ERROR", "Impossible to modify the user operation", "There are some missing informations");
+        } else {
+            ArrayList<String> newOperations = checkUserOperation();
+            Boolean modified = false;
+            if (newOperations != null) {
+                definedUserOperations.remove(txtFieldUsOperationName.getText());
+                modified = invoker.modifyUserOperation(txtFieldUsOperationName.getText(), newOperations);
+            }
+            if (modified == true) {
+                definedUserOperations.add(txtFieldUsOperationName.getText());
+                popUp(AlertType.CONFIRMATION, "SUCCESS", "The user operation has been modified with success", "The new user operation\nName: " + txtFieldUsOperationName.getText() + "\nOperations: " + newOperations);
+                updateView();
+            } else{
+                popUp(AlertType.ERROR, "ERROR", "Impossible to modify the user operation", "Some errors occur");
+            }
+        }
         
     }
 
@@ -405,6 +422,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void modifyUserOperationSeqAction(ActionEvent event) {
+        modifyUserOperation();
     }
 
     @FXML
