@@ -1,4 +1,9 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Invoker {
@@ -69,4 +74,26 @@ public class Invoker {
         return false;
     }
 
+    /**
+     * Saves on a file the UserOperations contained in the Invoker attribute list
+     * @param fileToSave the file on which to save
+     * @return True if the execution ends correctly, False otherwise
+     * @throws Exception IOException
+     */
+    public Boolean saveUserOperationOnFile(File fileToSave) throws Exception {
+        try (PrintWriter w = new PrintWriter(new BufferedWriter(new FileWriter(fileToSave)))) {
+            w.print("UserOperationName, UserOperationSequence");
+            for (UserOperation u : userOperations) {
+                w.print(u.getName() + ",");
+                ArrayList <String> operations = u.getOperations();
+                for (String s : operations) {
+                    w.print(s + " ");
+                }
+                w.print("\n");
+            }
+        } catch (IOException ex) {
+            return false;
+        }
+        return true;
+    }
 }
