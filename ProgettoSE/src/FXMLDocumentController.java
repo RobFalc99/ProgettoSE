@@ -1,4 +1,9 @@
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
 public class FXMLDocumentController implements Initializable {
 
@@ -425,11 +431,26 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void importFileAction(ActionEvent event) {
+    private void importFileAction(ActionEvent event) throws FileNotFoundException, IOException {
+         FileChooser fc = new FileChooser();
+        File file = fc.showOpenDialog(anchorPane.getScene().getWindow());
+        if(file!=null){
+        String s;
+        BufferedReader reader=new BufferedReader(new FileReader(file));
+        s=reader.readLine();
+        if(s.equals("UserOperationName,UserOperationSequence")){
+           Boolean c=invoker.importUserOperationsByFile(file);
+        } else {
+            popUp(AlertType.ERROR,"ERROR","In this file there aren't user operations","The first line of this file doesn't contain a string of the type [Name,Operation]");
+        }
+        }
     }
 
     @FXML
-    private void saveFileAction(ActionEvent event) {
+    private void saveFileAction(ActionEvent event) throws Exception {
+         FileChooser fc = new FileChooser();
+        File file = fc.showOpenDialog(anchorPane.getScene().getWindow());
+        Boolean c=invoker.saveUserOperationOnFile(file);
     }
 
 }
