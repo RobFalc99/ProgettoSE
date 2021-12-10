@@ -20,7 +20,7 @@ public class Calculator {
         operationMap.put("-", () -> subComplex());
         operationMap.put("*", () -> mulComplex());
         operationMap.put("/", () -> divComplex());
-        operationMap.put("rad", () -> sqrtComplex());
+        operationMap.put("sqrt", () -> sqrtComplex());
         operationMap.put("+-", () -> invSignComplex());
         operationMap.put("swap", () -> stack.swapOperand());
         operationMap.put("dup", () -> stack.dupOperand());
@@ -43,7 +43,7 @@ public class Calculator {
         operationMap.put("-", () -> subComplex());
         operationMap.put("*", () -> mulComplex());
         operationMap.put("/", () -> divComplex());
-        operationMap.put("rad", () -> sqrtComplex());
+        operationMap.put("sqrt", () -> sqrtComplex());
         operationMap.put("+-", () -> invSignComplex());
         operationMap.put("swap", () -> stack.swapOperand());
         operationMap.put("dup", () -> stack.dupOperand());

@@ -119,7 +119,7 @@ public class Invoker {
                 String usOperations = scan.next();
                 ArrayList<String> usListOperations = new ArrayList<>(Arrays.asList(usOperations.split(" ")));
 
-                this.addUserOperation(new UserOperation(usName, usListOperations));
+                userOperations.add(new UserOperation(usName, usListOperations));
             }
         } catch (FileNotFoundException ex) {
             return false;

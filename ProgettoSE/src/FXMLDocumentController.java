@@ -30,7 +30,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class FXMLDocumentController implements Initializable {
-    
+
     @FXML
     private Button btnCommitOperand;
     @FXML
@@ -47,9 +47,9 @@ public class FXMLDocumentController implements Initializable {
     private Button btnSwap;
     @FXML
     private AnchorPane anchorPane;
-    
+
     private Calculator calculator;
-    
+
     private ObservableList<Complex> complexOperand;
     @FXML
     private Button btnOver;
@@ -83,9 +83,9 @@ public class FXMLDocumentController implements Initializable {
     private Button btnDeleteUserOperation;
     @FXML
     private Button btnCommitUserOperation;
-    
+
     private Invoker invoker;
-    
+
     private ObservableList<String> definedUserOperations;
     @FXML
     private Button btnModifyUserOperationSeq;
@@ -95,7 +95,7 @@ public class FXMLDocumentController implements Initializable {
     private MenuItem importByFile;
     @FXML
     private MenuItem saveOnFile;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         calculator = new Calculator();
@@ -105,7 +105,7 @@ public class FXMLDocumentController implements Initializable {
         definedUserOperations = FXCollections.observableArrayList();
         choiceBoxUserOperations.setItems(definedUserOperations);
     }
-    
+
     private void updateView() {
         txtFieldOperand.clear();
         txtFieldVariable.clear();
@@ -114,7 +114,7 @@ public class FXMLDocumentController implements Initializable {
         txtFieldUsOperationName.clear();
         txtFieldUsOperationSeq.clear();
     }
-    
+
     private void insertOperand() {
         String operand = txtFieldOperand.getText();
         if (operand.matches("[" + "0123456789i.,+-" + "]+")) {
@@ -124,7 +124,7 @@ public class FXMLDocumentController implements Initializable {
             popUp(AlertType.ERROR, "ERROR", "Illegal expression", "You are entering an invalid operand format. Please re-enter the operand as 5,3+2,6i");
         }
     }
-    
+
     private void insertVariable() {
         String varOperation = txtFieldVariable.getText();
         if (varOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")) {
@@ -146,7 +146,7 @@ public class FXMLDocumentController implements Initializable {
             popUp(AlertType.ERROR, "ERROR", "Not a variable operation", "The entered variable isn't an alphabet letter");
         }
     }
-    
+
     private Boolean checkOperationCondition(int minOperands) {
         if (complexOperand.size() >= minOperands) {
             return true;
@@ -155,12 +155,12 @@ public class FXMLDocumentController implements Initializable {
             return false;
         }
     }
-    
+
     @FXML
     private void commitOperand(ActionEvent event) {
         insertOperand();
     }
-    
+
     @FXML
     private void clearAction(ActionEvent event) {
         if (checkOperationCondition(1)) {
@@ -168,7 +168,7 @@ public class FXMLDocumentController implements Initializable {
             calculator.clearStack();
         }
     }
-    
+
     @FXML
     private void dupAction(ActionEvent event) {
         if (checkOperationCondition(1)) {
@@ -176,7 +176,7 @@ public class FXMLDocumentController implements Initializable {
             updateView();
         }
     }
-    
+
     @FXML
     private void dropAction(ActionEvent event) {
         if (checkOperationCondition(1)) {
@@ -184,7 +184,7 @@ public class FXMLDocumentController implements Initializable {
             updateView();
         }
     }
-    
+
     @FXML
     private void swapAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
@@ -192,17 +192,17 @@ public class FXMLDocumentController implements Initializable {
             updateView();
         }
     }
-    
+
     private void popUp(AlertType type, String title, String header, String message) {
         Alert a = new Alert(type);
         a.setTitle(title);
-        Stage stage = (Stage)a.getDialogPane().getScene().getWindow();
+        Stage stage = (Stage) a.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(getClass().getResourceAsStream("popup_icon.png")));
         a.setHeaderText(header);
         a.setContentText(message);
         a.showAndWait();
     }
-    
+
     @FXML
     private void addAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
@@ -210,7 +210,7 @@ public class FXMLDocumentController implements Initializable {
             updateView();
         }
     }
-    
+
     @FXML
     private void subAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
@@ -218,7 +218,7 @@ public class FXMLDocumentController implements Initializable {
             updateView();
         }
     }
-    
+
     @FXML
     private void mulAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
@@ -226,7 +226,7 @@ public class FXMLDocumentController implements Initializable {
             updateView();
         }
     }
-    
+
     @FXML
     private void divAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
@@ -238,7 +238,7 @@ public class FXMLDocumentController implements Initializable {
             popUp(AlertType.ERROR, "ERROR", "Impossible to execute division", "You are trying to divide by zero");
         }
     }
-    
+
     @FXML
     private void sqrtAction(ActionEvent event) {
         if (checkOperationCondition(1)) {
@@ -246,7 +246,7 @@ public class FXMLDocumentController implements Initializable {
             updateView();
         }
     }
-    
+
     @FXML
     private void overAction(ActionEvent event) {
         if (checkOperationCondition(2)) {
@@ -254,7 +254,7 @@ public class FXMLDocumentController implements Initializable {
             updateView();
         }
     }
-    
+
     @FXML
     private void invSignAction(ActionEvent event) {
         if (checkOperationCondition(1)) {
@@ -262,26 +262,26 @@ public class FXMLDocumentController implements Initializable {
             updateView();
         }
     }
-    
+
     @FXML
     private void onEnterAction(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             insertOperand();
         }
     }
-    
+
     @FXML
     private void onEnterVariableAction(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             insertVariable();
         }
     }
-    
+
     @FXML
     private void commitVariable(ActionEvent event) {
         insertVariable();
     }
-    
+
     private ArrayList<String> checkUserOperation() {
         String userOperationName = txtFieldUsOperationName.getText();
         ArrayList<String> operations = new ArrayList<>();
@@ -301,7 +301,7 @@ public class FXMLDocumentController implements Initializable {
         }
         return operations;
     }
-    
+
     private void insertUserOperation() {
         if (txtFieldUsOperationName.getText().isEmpty() || txtFieldUsOperationSeq.getText().isEmpty()) {
             popUp(AlertType.ERROR, "ERROR", "Impossible to define the user operation", "Hasn't been defined any user operation");
@@ -315,7 +315,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     }
-    
+
     private void modifyUserOperation() {
         if (txtFieldUsOperationName.getText().isEmpty() || txtFieldUsOperationSeq.getText().isEmpty()) {
             popUp(AlertType.ERROR, "ERROR", "Impossible to modify the user operation", "There are some missing informations");
@@ -334,9 +334,9 @@ public class FXMLDocumentController implements Initializable {
                 popUp(AlertType.ERROR, "ERROR", "Impossible to modify the user operation", "Some errors occur");
             }
         }
-        
+
     }
-    
+
     @FXML
     private void onEnterUserOperationAction(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
@@ -347,7 +347,7 @@ public class FXMLDocumentController implements Initializable {
             }
         }
     }
-    
+
     @FXML
     private void newUserOperationAction(ActionEvent event) {
         if (definedUserOperations.contains(txtFieldUsOperationName.getText())) {
@@ -356,7 +356,7 @@ public class FXMLDocumentController implements Initializable {
             insertUserOperation();
         }
     }
-    
+
     @FXML
     private void loadOnTxtFieldUsOperationSeqAction(ActionEvent event) {
         String operationSeqInput = txtFieldUsOperationSeq.getText();
@@ -376,12 +376,12 @@ public class FXMLDocumentController implements Initializable {
             for (String op : operations) {
                 operationSeqInput += op + " ";
             }
-            txtFieldUsOperationSeq.setText(operationSeqInput);
+            txtFieldUsOperationSeq.setText(operationSeqInput.replace("  ", " "));
         } else {
             popUp(AlertType.ERROR, "ERROR", "The user operation doesn't exist", "The user operation " + selectedUserOperationName + " isn't defined yet");
         }
     }
-    
+
     @FXML
     private void deleteUserOperationAction(ActionEvent event) {
         String userOperationName = choiceBoxUserOperations.getSelectionModel().getSelectedItem();
@@ -403,7 +403,7 @@ public class FXMLDocumentController implements Initializable {
             popUp(AlertType.ERROR, "ERROR", "The user operation specified doesn't exist", "The user operation " + userOperationName + " isn't defined yet");
         }
     }
-    
+
     @FXML
     private void commitUserOperationAction(ActionEvent event) {
         String userOperationName = choiceBoxUserOperations.getSelectionModel().getSelectedItem();
@@ -429,12 +429,12 @@ public class FXMLDocumentController implements Initializable {
             popUp(AlertType.ERROR, "ERROR", "The invoked user operation doesn't exist", "The user operation " + userOperationName + " isn't defined yet");
         }
     }
-    
+
     @FXML
     private void modifyUserOperationSeqAction(ActionEvent event) {
         modifyUserOperation();
     }
-    
+
     @FXML
     private void importFileAction(ActionEvent event) throws FileNotFoundException, IOException {
         FileChooser fc = new FileChooser();
@@ -450,17 +450,26 @@ public class FXMLDocumentController implements Initializable {
                         definedUserOperations.add(uo.getName());
                     }
                 }
+                popUp(AlertType.CONFIRMATION, "SUCCESS", "The import from file ended correctly", "All the user operations in the selected file has been loaded into the calculator");
             } else {
                 popUp(AlertType.ERROR, "ERROR", "In this file there aren't user operations", "The first line of this file doesn't contain a string of the type [UserOperationName, UserOperationSequence]");
             }
+        } else {
+            popUp(AlertType.ERROR, "ERROR", "Impossible to open the selected file", "The selected file can't be open or no file has been selected");
         }
     }
-    
+
     @FXML
     private void saveFileAction(ActionEvent event) throws Exception {
         FileChooser fc = new FileChooser();
         File file = fc.showOpenDialog(anchorPane.getScene().getWindow());
-        Boolean c = invoker.saveUserOperationOnFile(file);
+        if (file != null) {
+            Boolean c = invoker.saveUserOperationOnFile(file);
+            popUp(AlertType.CONFIRMATION, "SUCCESS", "The export to file ended correctly", "All the user opearations in the calculator have been loaded into the selected file");
+        } else {
+            popUp(AlertType.ERROR, "ERROR", "Impossible to selected the file", "The selected file can't be finded or no file has been selected");
+        }
+
     }
-    
+
 }
