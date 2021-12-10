@@ -282,8 +282,7 @@ public class FXMLDocumentController implements Initializable {
             String newOperation = scan.next();
             if (correctOperations.contains(newOperation)
                     || newOperation.matches("[+-<>][ABCDEFGHIJKLMNOPQRSTUVWXYZ]")
-                    || newOperation.matches("[" + "0123456789i.,+-" + "]")
-                    || newOperation.matches("(\\d,\\d)|(\\d,\\di)|(\\d,\\d[+-]\\d,\\di)|(\\d[+-]\\d,\\di)|(\\d[+-]\\di)")) {
+                    || newOperation.matches("(\\d+,\\d+)|(\\d+,\\d+i)|(\\d+,\\d+[+-]\\d+,\\d+i)|(\\d+[+-]\\d+,\\d+i)|(\\d+[+-]\\d+i)|(\\d+)|(\\d+i)")) {
                 operations.add(newOperation);
             } else {
                 popUp(AlertType.ERROR, "ERROR", "Impossible to define the user operation", "The user operation contains a not supported operation: " + newOperation);

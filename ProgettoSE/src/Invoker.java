@@ -1,5 +1,12 @@
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Invoker {
 
@@ -67,6 +74,31 @@ public class Invoker {
             }
         }
         return false;
+    }
+    
+    public Boolean importUserOperationsByFile(File fileBySave) {
+        String line = null;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileBySave));
+            line = reader.readLine();
+            if (!line.equals("UserOperationName, UserOperationSequence")) {
+                return false;
+            }
+            while ((line = reader.readLine()) != null) {
+                Scanner scan = new Scanner(line);
+                scan.useDelimiter(",");
+                String usName = scan.next();
+                String usOperations = scan.next();
+                ArrayList<String> usListOperations = new ArrayList<>(Arrays.asList(usOperations.split(" ")));
+
+                this.addUserOperation(new UserOperation(usName, usListOperations));
+            }
+        } catch (FileNotFoundException ex) {
+            return false;
+        } catch (IOException ex) {
+            return false;
+        }
+        return true;
     }
 
 }

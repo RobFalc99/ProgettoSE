@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.Before;
@@ -63,4 +64,17 @@ public class InvokerTest {
         assertFalse(instance.execute("notACorrectUserOperation", calculator));
     }
 
+    
+
+    
+    /**
+     * Test of importUserOperationsByFile method, of class UserOperation.
+     */
+    @Test
+    public void testImportUserOperationsByFile() {
+        System.out.println("importUserOperationsByFile");
+        File file = new File("provaImport.txt");
+        instance.importUserOperationsByFile(file);
+        assertTrue(instance.getUserOperations().size() == 2);
+    }
 }
