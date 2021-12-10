@@ -14,6 +14,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -79,6 +81,12 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<String> definedUserOperations;
     @FXML
     private Button btnModifyUserOperationSeq;
+    @FXML
+    private Menu menuFile;
+    @FXML
+    private MenuItem importByFile;
+    @FXML
+    private MenuItem saveOnFile;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -300,6 +308,23 @@ public class FXMLDocumentController implements Initializable {
     }
 
     private void modifyUserOperation() {
+        if (txtFieldUsOperationName.getText().isEmpty() || txtFieldUsOperationSeq.getText().isEmpty()) {
+            popUp(AlertType.ERROR, "ERROR", "Impossible to modify the user operation", "There are some missing informations");
+        } else {
+            ArrayList<String> newOperations = checkUserOperation();
+            Boolean modified = false;
+            if (newOperations != null) {
+                definedUserOperations.remove(txtFieldUsOperationName.getText());
+                modified = invoker.modifyUserOperation(txtFieldUsOperationName.getText(), newOperations);
+            }
+            if (modified == true) {
+                definedUserOperations.add(txtFieldUsOperationName.getText());
+                popUp(AlertType.CONFIRMATION, "SUCCESS", "The user operation has been modified with success", "The new user operation\nName: " + txtFieldUsOperationName.getText() + "\nOperations: " + newOperations);
+                updateView();
+            } else{
+                popUp(AlertType.ERROR, "ERROR", "Impossible to modify the user operation", "Some errors occur");
+            }
+        }
         
     }
 
@@ -397,6 +422,15 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void modifyUserOperationSeqAction(ActionEvent event) {
+        modifyUserOperation();
+    }
+
+    @FXML
+    private void importFileAction(ActionEvent event) {
+    }
+
+    @FXML
+    private void saveFileAction(ActionEvent event) {
     }
 
 }

@@ -73,6 +73,16 @@ public class Invoker {
         }
         return false;
     }
+    
+    public Boolean modifyUserOperation(String uoName, ArrayList<String> uoSeqOperations){
+        for(UserOperation uo: userOperations){
+            if (uo.getName().equals(uoName)){
+                uo.setOperations(uoSeqOperations);
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Saves on a file the UserOperations contained in the Invoker attribute list
