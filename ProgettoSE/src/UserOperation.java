@@ -98,21 +98,21 @@ public class UserOperation {
                     }
                 }
             } else {
-                if((Arrays.asList("dup","drop","sqrt","+-","clear")).contains(s)){
+                if ((Arrays.asList("dup", "drop", "sqrt", "+-", "clear")).contains(s)) {
                     if (calculator.getStack().getList().size() >= 1) {
                         r = map.get(s);
                         r.run();
                     } else {
                         return false;
                     }
-                } else if ((Arrays.asList("+","-","*","/","swap")).contains(s)){
+                } else if ((Arrays.asList("+", "-", "*", "/", "swap")).contains(s)) {
                     if (calculator.getStack().getList().size() > 1) {
                         r = map.get(s);
                         r.run();
                     } else {
                         return false;
                     }
-                }else{
+                } else {
                     return false;
                 }
 

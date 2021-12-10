@@ -69,7 +69,7 @@ public class Calculator {
     public Variables getVariables() {
         return variables;
     }
-    
+
     /**
      * Getter of the operationMap attribute
      *
